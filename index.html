@@ -2064,10 +2064,8 @@ function doPost(e) {
     // 5. TAB 2: CASH INCOME (HISTORICAL Q3 2025–Q3 2026 + Q4 2026 LIVE) & INVOICES
     // =========================================================================
     function getQuarterlyIncomeRollup() {
-      const q4Orders = state.orders.filter(o => {
-        const d = String(o.pickupDate || '');
-        return d.startsWith('2026-10') || d.startsWith('2026-11') || d.startsWith('2026-12');
-      });
+      // Include all orders (both completed/delivered and open) from the live Cakeflakes_Orders sheet
+      const q4Orders = state.orders;
       const q4Revenue = q4Orders.reduce((s, o) => s + (parseFloat(o.totalPrice) || 0), 0);
       const q4Collected = q4Orders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
 
