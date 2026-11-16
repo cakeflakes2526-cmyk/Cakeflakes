@@ -1,0 +1,3074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cakeflakes LLC — Operations & Financial Hub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            serif: ['Playfair Display', 'serif'],
+          },
+          colors: {
+            cream: {
+              50: '#FDFBF7',
+              100: '#F8F3EB',
+              200: '#EFE6D8',
+              300: '#E2D4C0',
+            },
+            berry: {
+              50: '#FDF2F8',
+              100: '#FCE7F3',
+              200: '#FBCFE8',
+              600: '#DB2777',
+              700: '#BE185D',
+              800: '#9D174D',
+              900: '#831843',
+            },
+            cocoa: {
+              700: '#4A3F3A',
+              800: '#2E2623',
+              900: '#1D1816',
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .tabular-nums { font-variant-numeric: tabular-nums; }
+    @media print {
+      body * { visibility: hidden !important; }
+      #printableInvoiceArea, #printableInvoiceArea * { visibility: visible !important; }
+      #printableInvoiceArea {
+        position: fixed !important;
+        inset: 0 !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 28px !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+        border: none !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-cream-50 text-cocoa-900 font-sans antialiased selection:bg-berry-200 selection:text-cocoa-900">
+
+  <!-- 4-DIGIT PIN LOCK SCREEN OVERLAY (PIN: 2526) -->
+  <div id="pinLockOverlay" class="fixed inset-0 z-50 flex items-center justify-center bg-cream-100/95 backdrop-blur-md p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-sm w-full p-7 border border-cream-200 shadow-2xl text-center space-y-5">
+      <div class="w-16 h-16 mx-auto rounded-full bg-cream-50 flex items-center justify-center shadow-xs">
+        <svg viewBox="0 0 120 120" class="w-15 h-15" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cakeflakes Logo">
+          <circle cx="60" cy="60" r="56" fill="#FDFBF7" stroke="#1D1816" stroke-width="2.5" />
+          <path d="M36 48C29 44 27 32 31 25C35 19 43 19 47 25C51 32 49 44 42 48L44 64H37L36 48Z" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M39 39C39 39 34 35.5 34 32.3C34 30.4 35.5 29 37.2 29C38.1 29 38.7 29.5 39 30.1C39.3 29.5 39.9 29 40.8 29C42.5 29 44 30.4 44 32.3C44 35.5 39 39 39 39Z" stroke="#2E2623" stroke-width="1.8" stroke-linejoin="round" />
+          <path d="M39 80L41 96C41.2 97.8 43.8 97.8 44 96L45 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+          <path d="M56 26V17C56 14.5 64 14.5 64 17V26" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+          <rect x="52" y="26" width="16" height="38" rx="3" stroke="#2E2623" stroke-width="2.1" />
+          <line x1="56" y1="32" x2="56" y2="56" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+          <path d="M56 80V98C56 101 64 101 64 98V80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+          <path d="M77 61C71 45 71 23 82 22C93 21 94 43 82 61" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+          <path d="M79 61C75 45 76 24 82 22C88 24 88 45 81 61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+          <line x1="82" y1="22" x2="80" y2="61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+          <rect x="76" y="60" width="7" height="4" rx="1" stroke="#2E2623" stroke-width="1.9" />
+          <path d="M75 80L73 95C72.8 96.8 75.5 97.2 76 95.5L79 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+          <rect x="6" y="64" width="108" height="16" fill="#FDFBF7" />
+          <line x1="6" y1="64" x2="114" y2="64" stroke="#2E2623" stroke-width="2.1" />
+          <line x1="6" y1="80" x2="114" y2="80" stroke="#2E2623" stroke-width="2.1" />
+          <text x="60" y="76" text-anchor="middle" fill="#2E2623" font-family="Georgia, 'Playfair Display', serif" font-size="14.5" font-weight="600" letter-spacing="0.3">Cakeflakes</text>
+        </svg>
+      </div>
+
+      <div>
+        <span class="text-[11px] font-bold uppercase tracking-widest text-berry-700">Private Bakery Hub</span>
+        <h2 class="font-serif text-2xl font-bold text-cocoa-900 mt-0.5">Enter 4-Digit Passcode</h2>
+        <p class="text-xs text-cocoa-700/80 mt-1">Bothell, WA Operations &amp; Financial Ledger</p>
+      </div>
+
+      <form onsubmit="verifyPinUnlock(event)" class="space-y-4">
+        <input
+          type="password"
+          id="pinPasscodeInput"
+          inputmode="numeric"
+          maxlength="4"
+          autocomplete="off"
+          placeholder="••••"
+          oninput="handlePinAutoSubmit(this.value)"
+          class="w-44 mx-auto block text-center text-2xl font-bold tracking-[0.55em] px-4 py-3 bg-cream-50 border-2 border-cream-300 rounded-2xl focus:outline-none focus:border-berry-700"
+        />
+        <p id="pinErrorMsg" class="hidden text-xs font-semibold text-rose-600">Incorrect passcode — try again.</p>
+        <button type="submit" class="w-full py-3 rounded-2xl bg-berry-700 hover:bg-berry-800 text-white text-sm font-semibold shadow-sm active:scale-95 transition">
+          <i class="fa-solid fa-lock-open mr-1.5"></i> Unlock Dashboard
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none no-print"></div>
+
+  <!-- TOP HEADER & MULTI-TAB NAVIGATION -->
+  <header class="bg-white border-b border-cream-200 sticky top-0 z-30 shadow-xs no-print">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-3.5 pb-2.5 space-y-3">
+      <!-- Row 1: Brand + Global Actions -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <!-- Official Cakeflakes Circular Emblem (Heart Spoon, Rolling Pin & Whisk) -->
+            <div class="w-13 h-13 rounded-full bg-cream-50 flex items-center justify-center shadow-xs shrink-0">
+              <svg viewBox="0 0 120 120" class="w-12 h-12" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cakeflakes Logo">
+                <circle cx="60" cy="60" r="56" fill="#FDFBF7" stroke="#1D1816" stroke-width="2.5" />
+                <!-- Heart-Cutout Wooden Spoon (Left) -->
+                <path d="M36 48C29 44 27 32 31 25C35 19 43 19 47 25C51 32 49 44 42 48L44 64H37L36 48Z" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M39 39C39 39 34 35.5 34 32.3C34 30.4 35.5 29 37.2 29C38.1 29 38.7 29.5 39 30.1C39.3 29.5 39.9 29 40.8 29C42.5 29 44 30.4 44 32.3C44 35.5 39 39 39 39Z" stroke="#2E2623" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M39 80L41 96C41.2 97.8 43.8 97.8 44 96L45 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <!-- Rolling Pin (Center) -->
+                <path d="M56 26V17C56 14.5 64 14.5 64 17V26" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <rect x="52" y="26" width="16" height="38" rx="3" stroke="#2E2623" stroke-width="2.1" />
+                <line x1="56" y1="32" x2="56" y2="56" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M56 80V98C56 101 64 101 64 98V80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <!-- Wire Whisk (Right) -->
+                <path d="M77 61C71 45 71 23 82 22C93 21 94 43 82 61" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <path d="M79 61C75 45 76 24 82 22C88 24 88 45 81 61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <line x1="82" y1="22" x2="80" y2="61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <rect x="76" y="60" width="7" height="4" rx="1" stroke="#2E2623" stroke-width="1.9" />
+                <path d="M75 80L73 95C72.8 96.8 75.5 97.2 76 95.5L79 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <!-- Horizontal Banner Lines & Wordmark -->
+                <rect x="6" y="64" width="108" height="16" fill="#FDFBF7" />
+                <line x1="6" y1="64" x2="114" y2="64" stroke="#2E2623" stroke-width="2.1" />
+                <line x1="6" y1="80" x2="114" y2="80" stroke="#2E2623" stroke-width="2.1" />
+                <text x="60" y="76" text-anchor="middle" fill="#2E2623" font-family="Georgia, 'Playfair Display', serif" font-size="14.5" font-weight="600" letter-spacing="0.3">Cakeflakes</text>
+              </svg>
+            </div>
+            <div>
+              <div class="flex flex-wrap items-center gap-2">
+                <h1 class="font-serif text-xl sm:text-2xl font-bold text-cocoa-900 tracking-tight">Cakeflakes Operations &amp; Financial Hub</h1>
+                <span class="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-cream-100 text-cocoa-700 border border-cream-300">Bothell, WA</span>
+              </div>
+              <p class="text-xs text-cocoa-700/80">www.cakeflakes.com • @Cake_flakes • +1 425 414 6735</p>
+            </div>
+          </div>
+
+          <button onclick="openNewOrderModal()" class="md:hidden inline-flex items-center gap-1.5 bg-berry-700 hover:bg-berry-800 text-white text-sm font-semibold px-3.5 py-2.5 rounded-xl shadow-xs active:scale-95 transition">
+            <i class="fa-solid fa-plus"></i> Order
+          </button>
+        </div>
+
+        <!-- Global Top Action Bar -->
+        <div class="flex flex-wrap items-center gap-2">
+          <button onclick="openNewOrderModal()" class="hidden md:inline-flex items-center gap-2 bg-berry-700 hover:bg-berry-800 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-xs active:scale-95 transition">
+            <i class="fa-solid fa-plus"></i>
+            <span>+ New Order</span>
+          </button>
+
+          <button onclick="openSheetSyncModal()" class="inline-flex items-center gap-2 bg-white hover:bg-cream-100 text-cocoa-800 border border-cream-300 px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-xs">
+            <span id="sheetStatusDot" class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <span id="sheetStatusText">Google Sheet Sync</span>
+          </button>
+
+          <button id="refreshSheetBtn" onclick="refreshFromGoogleSheet()" class="inline-flex items-center gap-1.5 bg-emerald-600 hover:bg-emerald-700 text-white px-3.5 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-xs active:scale-95">
+            <i id="refreshSheetIcon" class="fa-solid fa-arrows-rotate"></i>
+            <span>Refresh Sheet</span>
+          </button>
+
+          <button onclick="clearLocalCache()" class="inline-flex items-center gap-1.5 bg-cream-100 hover:bg-cream-200 text-cocoa-800 border border-cream-300 px-3 py-2.5 rounded-xl text-xs sm:text-sm font-medium transition">
+            <i class="fa-solid fa-broom"></i>
+            <span>Clear Local Cache</span>
+          </button>
+
+          <button onclick="lockDashboardScreen()" title="Lock Screen" class="inline-flex items-center gap-1.5 bg-cocoa-900 hover:bg-cocoa-800 text-white px-3 py-2.5 rounded-xl text-xs sm:text-sm font-semibold transition shadow-xs">
+            <i class="fa-solid fa-lock"></i>
+            <span>Lock</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Row 2: 5-Tab Hub Navigation -->
+      <nav class="flex items-center gap-2 overflow-x-auto pb-1 pt-1 border-t border-cream-100" aria-label="Dashboard Sections">
+        <button id="navTab-orders" onclick="switchHubTab('orders')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-berry-700 text-white shadow-xs">
+          <i class="fa-regular fa-calendar-check"></i>
+          <span>1. Open Orders &amp; Calendar</span>
+        </button>
+        <button id="navTab-income" onclick="switchHubTab('income')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800">
+          <i class="fa-solid fa-file-invoice-dollar"></i>
+          <span>2. Cash Income &amp; Invoices</span>
+        </button>
+        <button id="navTab-expenses" onclick="switchHubTab('expenses')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800">
+          <i class="fa-solid fa-receipt"></i>
+          <span>3. Expenses Tracker</span>
+        </button>
+        <button id="navTab-traffic" onclick="switchHubTab('traffic')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800">
+          <i class="fa-solid fa-chart-line"></i>
+          <span>4. Traffic &amp; Leads</span>
+        </button>
+        <button id="navTab-reconcile" onclick="switchHubTab('reconcile')" class="px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800">
+          <i class="fa-solid fa-scale-balanced"></i>
+          <span>5. Financial Reconciliation</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT WORKSPACE -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6 no-print">
+
+    <!-- ===================================================================== -->
+    <!-- TAB 1: OPEN ORDERS & PRODUCTION CALENDAR                              -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-orders" class="space-y-6">
+      <div class="grid grid-cols-2 lg:grid-cols-5 gap-3">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-cocoa-700">Open Orders (1–4)</span>
+          <div id="kpiActiveOrders" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">0</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Active baking queue</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-pink-800">Baking / Designing</span>
+          <div id="kpiInProgressOrders" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">0</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">In kitchen right now</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-purple-800">Ready for Pickup</span>
+          <div id="kpiReadyOrders" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">0</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Boxed &amp; chilled</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800">Open Order Value</span>
+          <div id="kpiOpenOrderValue" class="text-2xl font-bold text-emerald-900 mt-1.5 tabular-nums">$0.00</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Active contracted total</p>
+        </div>
+
+        <div class="col-span-2 lg:col-span-1 bg-cream-100 rounded-2xl p-4 border border-cream-300 flex flex-col justify-between">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-cocoa-800">Show Delivered / Completed</span>
+          <label class="mt-2 inline-flex items-center justify-between cursor-pointer select-none">
+            <span id="showCompletedStatusText" class="text-xs font-bold text-cocoa-800">OFF</span>
+            <input type="checkbox" id="showCompletedToggle" onchange="toggleShowCompleted()" class="sr-only peer" />
+            <div class="relative w-11 h-6 bg-cream-300 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-[#059669]"></div>
+          </label>
+        </div>
+      </div>
+
+      <!-- Phase Filter Pills + Search + CSV Upload -->
+      <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-1.5" id="phaseFilterPillsContainer"></div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="relative flex-1 sm:flex-initial">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-cocoa-700/50 text-xs"></i>
+            <input type="text" id="orderSearchInput" oninput="renderOrdersTab()" placeholder="Search customer, flavor, tier..." class="w-full sm:w-52 pl-8 pr-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-berry-600/30" />
+          </div>
+
+          <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs font-semibold transition">
+            <i class="fa-solid fa-file-csv text-emerald-700"></i>
+            <span>Import Orders CSV</span>
+            <input type="file" accept=".csv" onchange="handleCustomerOrdersCsvUpload(event)" class="hidden" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Synchronized Monthly Pickup Calendar -->
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center gap-3">
+            <h2 id="calendarMonthHeading" class="font-serif text-xl font-bold text-cocoa-900">November 2026</h2>
+            <div class="inline-flex items-center bg-white border border-cream-300 rounded-xl p-0.5">
+              <button onclick="navigateMonth(-1)" class="w-8 h-8 rounded-lg hover:bg-cream-100 flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-left"></i></button>
+              <button onclick="jumpToNov2026()" class="px-3 py-1 text-xs font-semibold hover:bg-cream-100 rounded-lg">Nov 2026</button>
+              <button onclick="navigateMonth(1)" class="w-8 h-8 rounded-lg hover:bg-cream-100 flex items-center justify-center text-xs"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+          </div>
+          <p class="text-xs text-cocoa-700/80">Click any order pill to edit tiers/phases • Click <strong>+</strong> on any date to schedule</p>
+        </div>
+
+        <div class="grid grid-cols-7 bg-cream-50 border-b border-cream-200 text-center py-2 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+          <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+        </div>
+        <div id="calendarDaysGrid" class="grid grid-cols-7 divide-x divide-y divide-cream-200"></div>
+      </section>
+
+      <!-- Production Orders List -->
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Production Orders &amp; Countdown Queue</h2>
+            <p class="text-xs text-cocoa-700/80">Click any phase pill (1–5) to advance production or click fields to edit inline.</p>
+          </div>
+          <button onclick="openNewOrderModal()" class="inline-flex items-center gap-1.5 bg-berry-700 hover:bg-berry-800 text-white text-xs sm:text-sm font-semibold px-3.5 py-2 rounded-xl shadow-xs transition">
+            <i class="fa-solid fa-plus"></i> Add Order
+          </button>
+        </div>
+
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-3.5">Pickup Date &amp; Countdown</th>
+                <th class="py-3 px-3.5">Customer &amp; Event</th>
+                <th class="py-3 px-3.5">Cake Specs &amp; Tiers</th>
+                <th class="py-3 px-3.5 text-right">Total ($)</th>
+                <th class="py-3 px-3.5 text-right">Advance ($)</th>
+                <th class="py-3 px-3.5 text-right">Balance</th>
+                <th class="py-3 px-3.5 min-w-[270px]">Production Phase (1–5)</th>
+                <th class="py-3 px-3.5 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+
+        <div id="ordersEmptyState" class="hidden py-12 px-4 text-center">
+          <p class="font-serif text-lg font-bold text-cocoa-900">No open orders to display</p>
+          <p class="text-xs text-cocoa-700/80 mt-1">Click <strong>+ New Order</strong>, <strong>Import Orders CSV</strong>, or <strong>Refresh Sheet</strong> to load your orders.</p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 2: CASH INCOME & INVOICES                                         -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-income" class="hidden space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Total Contracted</span>
+          <div id="incKpiContracted" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
+          <p id="incKpiOrderCount" class="text-xs text-cocoa-700/75 mt-1">Across 0 confirmed orders</p>
+        </div>
+
+        <div class="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Collected to Date</span>
+          <div id="incKpiCollected" class="text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums">$0.00</div>
+          <p class="text-xs text-emerald-800/80 mt-1">Advances + Pickup Balances</p>
+        </div>
+
+        <div class="bg-amber-50/70 rounded-2xl p-4 border border-amber-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Pending at Pickup</span>
+          <div id="incKpiPending" class="text-2xl sm:text-3xl font-bold text-amber-900 mt-2 tabular-nums">$0.00</div>
+          <p id="incKpiPendingCount" class="text-xs text-amber-800/80 mt-1">0 orders due at pickup</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs space-y-1.5">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Collected by Mode</span>
+          <div class="text-xs space-y-1 pt-1">
+            <div class="flex justify-between"><span class="font-semibold text-emerald-800">Cash</span><span id="incModeCash" class="font-bold tabular-nums">$0.00</span></div>
+            <div class="flex justify-between"><span class="font-semibold text-blue-800">Credit Card</span><span id="incModeCard" class="font-bold tabular-nums">$0.00</span></div>
+            <div class="flex justify-between"><span class="font-semibold text-purple-800">Zelle</span><span id="incModeZelle" class="font-bold tabular-nums">$0.00</span></div>
+          </div>
+          <div class="w-full h-2 rounded-full bg-cream-200 overflow-hidden flex">
+            <div id="incBarCash" class="bg-emerald-600 h-full" style="width:33%"></div>
+            <div id="incBarCard" class="bg-blue-600 h-full" style="width:33%"></div>
+            <div id="incBarZelle" class="bg-purple-600 h-full" style="width:34%"></div>
+          </div>
+        </div>
+      </div>
+
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Order Payment Ledger &amp; Customer Invoices</h2>
+            <p class="text-xs text-cocoa-700/80">Collect remaining pickup balances in 1 click or print/save customer invoices.</p>
+          </div>
+          <button onclick="exportOrdersCsv()" class="px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-semibold">
+            <i class="fa-solid fa-file-csv mr-1"></i> Export Income CSV
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-4">Order ID</th>
+                <th class="py-3 px-4">Pickup Date</th>
+                <th class="py-3 px-4">Customer &amp; Cake</th>
+                <th class="py-3 px-4 text-right">Total</th>
+                <th class="py-3 px-4 text-right">Advance Paid</th>
+                <th class="py-3 px-4 text-right">Balance Due</th>
+                <th class="py-3 px-4">Status</th>
+                <th class="py-3 px-4 text-right">Actions</th>
+              </tr>
+            </thead>
+            <tbody id="incomeLedgerBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: EXPENSES TRACKER                                               -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-expenses" class="hidden space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Gross Spend</span>
+          <div id="expKpiGross" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
+          <p id="expKpiCount" class="text-xs text-cocoa-700/75 mt-1">0 supply receipts</p>
+        </div>
+
+        <div class="bg-blue-50/70 rounded-2xl p-4 border border-blue-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-900">Refunds / Credits</span>
+          <div id="expKpiRefunds" class="text-2xl sm:text-3xl font-bold text-blue-900 mt-2 tabular-nums">$0.00</div>
+          <p class="text-xs text-blue-800/80 mt-1">Returned items credited</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Net Spend</span>
+          <div id="expKpiNet" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
+          <p class="text-xs text-cocoa-700/75 mt-1">Gross minus refunds</p>
+        </div>
+
+        <div id="netCashPositionCard" class="bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Net Cash Position</span>
+          <div id="expKpiNetCash" class="text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums">$0.00</div>
+          <p class="text-xs text-emerald-800/80 mt-1">Collected Income − Net Spend</p>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section class="lg:col-span-2 bg-white rounded-2xl p-5 border border-cream-200 shadow-xs space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cream-100 pb-3">
+            <div>
+              <h2 class="font-serif text-lg sm:text-xl font-bold text-cocoa-900">Log Store Purchase or Import Vendor CSV</h2>
+              <p class="text-xs text-cocoa-700/80">Supports Amazon Business CSV, Restaurant Depot CSV, or manual entries.</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              <label class="cursor-pointer px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold">
+                <i class="fa-brands fa-amazon mr-1"></i> Amazon CSV
+                <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Amazon')" class="hidden" />
+              </label>
+              <label class="cursor-pointer px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 text-xs font-semibold">
+                <i class="fa-solid fa-file-invoice mr-1"></i> Restaurant Depot CSV
+                <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Restaurant Depot')" class="hidden" />
+              </label>
+            </div>
+          </div>
+
+          <form onsubmit="addExpenseEntry(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
+            <div>
+              <label for="expInputDate" class="block text-xs font-semibold mb-1">Date *</label>
+              <input type="date" id="expInputDate" required value="2026-11-15" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+            </div>
+            <div>
+              <label for="expInputStore" class="block text-xs font-semibold mb-1">Store *</label>
+              <select id="expInputStore" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
+                <option value="Amazon">Amazon</option>
+                <option value="Restaurant Depot">Restaurant Depot</option>
+                <option value="Temu">Temu</option>
+                <option value="Dawn's Candy & Cake Supply">Dawn's Candy &amp; Cake Supply</option>
+                <option value="Costco">Costco</option>
+                <option value="Safeway">Safeway</option>
+                <option value="Fred Meyer">Fred Meyer</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="expInputCategory" class="block text-xs font-semibold mb-1">Category *</label>
+              <select id="expInputCategory" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
+                <option value="Consumables">Consumables</option>
+                <option value="Capital Expenditure">Capital Expenditure</option>
+                <option value="Tools & Equipment">Tools &amp; Equipment</option>
+                <option value="Edible Printing & Toppers">Edible Printing &amp; Toppers</option>
+              </select>
+            </div>
+            <div class="sm:col-span-2">
+              <label for="expInputItem" class="block text-xs font-semibold mb-1">Item Description *</label>
+              <input type="text" id="expInputItem" required placeholder="e.g., 12-inch Tall Window Cake Boxes" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+            </div>
+            <div>
+              <label for="expInputGross" class="block text-xs font-semibold mb-1">Gross ($) *</label>
+              <input type="number" step="0.01" min="0" id="expInputGross" required placeholder="34.99" oninput="previewExpenseNet()" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+            </div>
+            <div>
+              <label for="expInputRefund" class="block text-xs font-semibold mb-1">Refund ($)</label>
+              <input type="number" step="0.01" min="0" id="expInputRefund" value="0" oninput="previewExpenseNet()" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+            </div>
+            <div class="sm:col-span-4 flex items-center justify-between pt-1">
+              <span id="expFormNetBadge" class="text-xs font-bold text-cocoa-800 bg-cream-100 px-3 py-1.5 rounded-xl">Net: $0.00</span>
+              <button type="submit" class="px-5 py-2.5 rounded-xl bg-berry-700 hover:bg-berry-800 text-white text-xs sm:text-sm font-semibold shadow-xs transition">+ Add Expense</button>
+            </div>
+          </form>
+        </section>
+
+        <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs flex flex-col justify-between">
+          <div>
+            <h2 class="font-serif text-lg font-bold text-cocoa-900">Spend by Category</h2>
+            <div id="expCategoryBars" class="mt-4 space-y-3"></div>
+          </div>
+          <button onclick="resetExpenseFilters()" class="mt-4 w-full py-2 text-xs font-semibold bg-cream-100 hover:bg-cream-200 rounded-xl border border-cream-200">Reset Filters</button>
+        </section>
+      </div>
+
+      <section class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs flex flex-wrap items-center justify-between gap-2.5">
+        <div class="flex flex-wrap gap-1.5" id="expStoreChips"></div>
+        <div class="flex items-center gap-2">
+          <select id="expCategoryFilter" onchange="renderExpensesTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+            <option value="ALL">All Categories</option>
+            <option value="Capital Expenditure">Capital Expenditure</option>
+            <option value="Consumables">Consumables</option>
+            <option value="Tools & Equipment">Tools &amp; Equipment</option>
+            <option value="Edible Printing & Toppers">Edible Printing &amp; Toppers</option>
+          </select>
+          <button onclick="exportExpensesCsv()" class="px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-semibold">
+            <i class="fa-solid fa-file-csv mr-1"></i> Export CSV
+          </button>
+        </div>
+      </section>
+
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-4">Date</th>
+                <th class="py-3 px-4">Store</th>
+                <th class="py-3 px-4">Category</th>
+                <th class="py-3 px-4">Item Description</th>
+                <th class="py-3 px-4 text-right">Gross</th>
+                <th class="py-3 px-4 text-right">Refund</th>
+                <th class="py-3 px-4 text-right">Net</th>
+                <th class="py-3 px-4 text-right">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="expensesTableBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: TRAFFIC & LEADS (MARKETING CONVERSION)                         -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-traffic" class="hidden space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Monthly Inquiries</span>
+          <div class="text-3xl font-bold text-cocoa-900 mt-2">42</div>
+          <p class="text-xs text-emerald-700 font-semibold mt-1">+18% vs October (Instagram &amp; Website)</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Quote-to-Order Conversion</span>
+          <div class="text-3xl font-bold text-berry-700 mt-2">34%</div>
+          <p class="text-xs text-cocoa-700/80 mt-1">Bothell &amp; Mill Creek custom cake requests</p>
+        </div>
+        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Top Lead Channel</span>
+          <div class="text-2xl font-bold text-cocoa-900 mt-2">@Cake_flakes IG</div>
+          <p class="text-xs text-cocoa-700/80 mt-1">Followed by www.cakeflakes.com &amp; referrals</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 5: FINANCIAL RECONCILIATION & WA DOR QUARTERLY TAX                -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-reconcile" class="hidden space-y-6">
+      <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">100% Local Browser CSV Parsing</span>
+          <h2 class="font-serif text-xl font-bold text-cocoa-900">Bank &amp; Credit Card Statement Reconciliation</h2>
+          <p class="text-xs text-cocoa-700/80 mt-0.5">Compare logged orders &amp; expenses against uploaded bank/card statements and highlight variances.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center gap-2">
+          <div class="inline-flex bg-cream-100 p-1 rounded-xl border border-cream-200">
+            <button id="recPeriodMonthBtn" onclick="setReconcilePeriod('MONTH')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs">Month-to-Month</button>
+            <button id="recPeriodYtdBtn" onclick="setReconcilePeriod('YTD')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200">Year-to-Date (2026)</button>
+          </div>
+
+          <select id="recMonthSelect" onchange="renderReconcileTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+            <option value="2026-10">October 2026</option>
+            <option value="2026-11" selected>November 2026</option>
+            <option value="2026-12">December 2026</option>
+          </select>
+
+          <select id="stmtAccountTypeSelect" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+            <option value="Bank Checking (Debit & Credit)">Bank Checking (Debit &amp; Credit)</option>
+            <option value="Business Credit Card">Business Credit Card</option>
+          </select>
+
+          <label class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cocoa-900 hover:bg-cocoa-800 text-white text-xs font-semibold shadow-xs transition">
+            <i class="fa-solid fa-upload"></i>
+            <span>Upload Statement CSV</span>
+            <input type="file" accept=".csv" onchange="handleStatementCsvUpload(event)" class="hidden" />
+          </label>
+
+          <button onclick="loadSampleStatementLines()" class="px-3 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-800 border border-cream-300 text-xs font-semibold">Sample Statement</button>
+          <button onclick="clearStatementLines()" class="px-3 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-700 border border-cream-300 text-xs font-semibold">Clear</button>
+        </div>
+      </section>
+
+      <!-- Income & Expense Variance Highlight Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div id="recIncomeCard" class="bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-lg font-bold text-cocoa-900">Deposits &amp; Collected Income Match</h3>
+            <span id="recIncomeStatusPill" class="px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800">Upload Statement</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-xs">
+            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Logged Orders</span>
+              <span id="recLoggedIncome" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
+            </div>
+            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Statement Deposits</span>
+              <span id="recStmtIncome" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
+            </div>
+            <div id="recIncomeVarBox" class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Variance</span>
+              <span id="recIncomeVariance" class="text-base font-bold text-cocoa-800 tabular-nums">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="recExpenseCard" class="bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-lg font-bold text-cocoa-900">Card &amp; Debit Spend Match</h3>
+            <span id="recExpenseStatusPill" class="px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800">Upload Statement</span>
+          </div>
+          <div class="grid grid-cols-3 gap-2 text-xs">
+            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Logged Net Spend</span>
+              <span id="recLoggedExpense" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
+            </div>
+            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Statement Charges</span>
+              <span id="recStmtExpense" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
+            </div>
+            <div id="recExpenseVarBox" class="bg-cream-50 p-3 rounded-xl border border-cream-200">
+              <span class="text-cocoa-700/80 block">Variance</span>
+              <span id="recExpenseVariance" class="text-base font-bold text-cocoa-800 tabular-nums">$0.00</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Statement Line-by-Line Matching Table -->
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200">
+          <h3 class="font-serif text-lg font-bold text-cocoa-900">Uploaded Statement Line-by-Line Verification</h3>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-4">Date</th>
+                <th class="py-3 px-4">Account</th>
+                <th class="py-3 px-4">Statement Description</th>
+                <th class="py-3 px-4 text-right">Amount</th>
+                <th class="py-3 px-4">Match Status</th>
+                <th class="py-3 px-4 text-right">Action</th>
+              </tr>
+            </thead>
+            <tbody id="reconcileLinesBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+        <div id="reconcileEmptyState" class="py-10 text-center text-xs text-cocoa-700/80">
+          No bank or credit card CSV uploaded for this period yet. Click <strong>Upload Statement CSV</strong> or <strong>Sample Statement</strong> above.
+        </div>
+      </section>
+
+      <!-- WA DOR Quarterly Excise Tax Summary -->
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 class="font-serif text-lg font-bold text-cocoa-900">Washington DOR Quarterly Excise Tax Summary (2026)</h3>
+            <p class="text-xs text-cocoa-700/80">Quarterly Gross Collected Revenue, Payment Mode Split, Supply Deductions &amp; Net Operating Profit.</p>
+          </div>
+          <button onclick="exportDorQuarterlyCsv()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs">
+            <i class="fa-solid fa-file-csv mr-1"></i> Export WA DOR Quarterly CSV
+          </button>
+        </div>
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-4">Quarter</th>
+                <th class="py-3 px-4">WA DOR Due Date</th>
+                <th class="py-3 px-4 text-right">Orders</th>
+                <th class="py-3 px-4 text-right">Gross Taxable Sales</th>
+                <th class="py-3 px-4 text-right">Payment Split</th>
+                <th class="py-3 px-4 text-right">Supply Expenses</th>
+                <th class="py-3 px-4 text-right">Net Profit</th>
+              </tr>
+            </thead>
+            <tbody id="dorQuarterlyBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+  </main>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 1: ADD / EDIT ORDER MODAL (MULTI-TIER DYNAMIC LINES)              -->
+  <!-- ======================================================================= -->
+  <div id="orderModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-cocoa-900/55 backdrop-blur-xs p-4 overflow-y-auto no-print">
+    <div class="bg-white rounded-3xl max-w-3xl w-full border border-cream-200 shadow-2xl overflow-hidden my-auto">
+      <div class="px-6 py-4 bg-cream-100 border-b border-cream-200 flex items-center justify-between">
+        <div>
+          <span id="orderModalSub" class="text-[11px] font-bold uppercase tracking-wider text-berry-700">New Cakeflakes Order</span>
+          <h3 id="orderModalTitle" class="font-serif text-xl font-bold text-cocoa-900">Log Order &amp; Advance Deposit</h3>
+        </div>
+        <button onclick="closeOrderModal()" class="w-9 h-9 rounded-full bg-white hover:bg-cream-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <form onsubmit="saveOrderModal(event)" class="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+        <input type="hidden" id="formOrderId" />
+
+        <div>
+          <label class="block text-xs font-bold uppercase tracking-wider text-cocoa-700 mb-1.5">Production Phase</label>
+          <div id="modalPhaseSelector" class="grid grid-cols-2 sm:grid-cols-5 gap-2"></div>
+          <input type="hidden" id="formOrderPhase" value="Order Received" />
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div class="sm:col-span-2">
+            <label for="formCustomerName" class="block text-xs font-semibold mb-1">Customer Name *</label>
+            <input type="text" id="formCustomerName" required placeholder="e.g., Ramya" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+          <div>
+            <label for="formCustomerPhone" class="block text-xs font-semibold mb-1">Phone / WhatsApp</label>
+            <input type="text" id="formCustomerPhone" placeholder="+1 425..." class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+          <div>
+            <label for="formPickupDate" class="block text-xs font-semibold mb-1">Pickup Date *</label>
+            <input type="date" id="formPickupDate" required class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div>
+            <label for="formEventType" class="block text-xs font-semibold mb-1">Occasion / Event</label>
+            <select id="formEventType" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl">
+              <option value="Birthday">Birthday</option>
+              <option value="Wedding">Wedding</option>
+              <option value="Engagement">Engagement</option>
+              <option value="Baby Shower">Baby Shower</option>
+              <option value="Themed Cake">Themed Cake</option>
+              <option value="Special Occasion">Special Occasion</option>
+            </select>
+          </div>
+          <div class="sm:col-span-2">
+            <label for="formThemeTitle" class="block text-xs font-semibold mb-1">Cake Design / Theme Title *</label>
+            <input type="text" id="formThemeTitle" required placeholder="e.g., Lambeth Vintage Heart Cake" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+        </div>
+
+        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 space-y-3">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-cocoa-800 block mb-1">Tiers / Structure</span>
+              <div id="tierPillsContainer" class="flex flex-wrap gap-1.5"></div>
+              <input type="hidden" id="formTiers" value="1 Tier" />
+            </div>
+            <div>
+              <span class="text-xs font-bold uppercase tracking-wider text-cocoa-800 block mb-1">Default Shape</span>
+              <div id="shapePillsContainer" class="flex flex-wrap gap-1.5"></div>
+              <input type="hidden" id="formShape" value="Round" />
+            </div>
+          </div>
+
+          <div id="tierRowsContainer" class="space-y-2.5"></div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div>
+            <label for="formFrosting" class="block text-xs font-semibold mb-1">Frosting Finish</label>
+            <select id="formFrosting" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl">
+              <option value="Swiss Meringue Buttercream">Swiss Meringue Buttercream</option>
+              <option value="Whipped Cream">Whipped Cream</option>
+              <option value="Fondant">Fondant</option>
+              <option value="Chocolate Ganache">Chocolate Ganache</option>
+              <option value="Cream Cheese Buttercream">Cream Cheese Buttercream</option>
+            </select>
+          </div>
+          <div>
+            <label for="formColors" class="block text-xs font-semibold mb-1">Color Palette</label>
+            <input type="text" id="formColors" placeholder="e.g., Blush Pink, Ivory & Gold" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+        </div>
+
+        <div>
+          <label for="formNotes" class="block text-xs font-semibold mb-1">Dietary, Topper &amp; Packaging Notes</label>
+          <input type="text" id="formNotes" placeholder="e.g., Eggless, tall window box, acrylic topper" class="w-full px-3.5 py-2 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+        </div>
+
+        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 grid grid-cols-1 sm:grid-cols-4 gap-3">
+          <div>
+            <label for="formTotalPrice" class="block text-xs font-semibold mb-1">Total Quoted ($) *</label>
+            <input type="number" step="0.01" min="0" id="formTotalPrice" required oninput="updateOrderModalBalancePreview()" class="w-full px-3 py-2 text-sm font-bold bg-white border border-cream-300 rounded-xl" />
+          </div>
+          <div>
+            <label for="formAdvancePaid" class="block text-xs font-semibold mb-1">Advance Paid ($)</label>
+            <input type="number" step="0.01" min="0" id="formAdvancePaid" value="100" oninput="updateOrderModalBalancePreview()" class="w-full px-3 py-2 text-sm font-semibold bg-white border border-cream-300 rounded-xl" />
+          </div>
+          <div>
+            <label for="formAdvanceMode" class="block text-xs font-semibold mb-1">Advance Mode</label>
+            <select id="formAdvanceMode" class="w-full px-3 py-2 text-sm bg-white border border-cream-300 rounded-xl">
+              <option value="Zelle">Zelle</option>
+              <option value="Credit Card">Credit Card</option>
+              <option value="Cash">Cash</option>
+            </select>
+          </div>
+          <div class="bg-white px-3 py-2 rounded-xl border border-amber-200 flex flex-col justify-center">
+            <span class="text-[10px] font-bold uppercase text-amber-800">Balance Due</span>
+            <span id="orderModalBalancePreview" class="text-base font-bold text-amber-900 tabular-nums">$0.00</span>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-cream-200 flex items-center justify-between gap-2">
+          <button type="button" id="deleteModalOrderBtn" onclick="deleteModalOrder()" class="px-4 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50">
+            <i class="fa-regular fa-trash-can mr-1"></i> Delete Order
+          </button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button type="button" onclick="closeOrderModal()" class="px-4 py-2 rounded-xl text-xs font-semibold text-cocoa-700 hover:bg-cream-100">Cancel</button>
+            <button type="submit" class="px-5 py-2.5 rounded-xl bg-berry-700 hover:bg-berry-800 text-white text-xs sm:text-sm font-semibold shadow-xs">Save Order</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 2: COLLECT PICKUP BALANCE MODAL                                   -->
+  <!-- ======================================================================= -->
+  <div id="collectModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-cocoa-900/55 backdrop-blur-xs p-4 no-print">
+    <div class="bg-white rounded-3xl max-w-md w-full border border-cream-200 shadow-2xl overflow-hidden">
+      <div class="px-6 py-4 bg-emerald-50 border-b border-emerald-200 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800">Pickup Settlement</span>
+          <h3 id="collectTitle" class="font-serif text-xl font-bold text-cocoa-900">Collect Balance</h3>
+        </div>
+        <button onclick="closeCollectModal()" class="w-8 h-8 rounded-full bg-white hover:bg-emerald-100 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <div class="p-6 space-y-4">
+        <input type="hidden" id="collectOrderIdInput" />
+        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 flex items-center justify-between">
+          <div>
+            <p id="collectCustomerText" class="text-sm font-bold text-cocoa-900">Customer</p>
+            <p id="collectCakeText" class="text-xs text-cocoa-700/80">Cake</p>
+          </div>
+          <div class="text-right">
+            <span class="text-[10px] font-bold uppercase text-amber-800 block">Due Now</span>
+            <span id="collectBalanceAmount" class="text-xl font-bold text-emerald-800 tabular-nums">$0.00</span>
+          </div>
+        </div>
+        <div class="grid grid-cols-3 gap-2.5">
+          <button type="button" onclick="completeBalanceCollection('Cash')" class="p-3 rounded-2xl border-2 border-emerald-200 bg-emerald-50/70 hover:bg-emerald-600 hover:text-white text-emerald-900 font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i class="fa-solid fa-money-bill-wave text-base"></i>
+            <span>Cash</span>
+          </button>
+          <button type="button" onclick="completeBalanceCollection('Credit Card')" class="p-3 rounded-2xl border-2 border-blue-200 bg-blue-50/70 hover:bg-blue-600 hover:text-white text-blue-900 font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i class="fa-regular fa-credit-card text-base"></i>
+            <span>Credit Card</span>
+          </button>
+          <button type="button" onclick="completeBalanceCollection('Zelle')" class="p-3 rounded-2xl border-2 border-purple-200 bg-purple-50/70 hover:bg-purple-600 hover:text-white text-purple-900 font-bold text-xs flex flex-col items-center gap-1 transition">
+            <i class="fa-solid fa-bolt text-base"></i>
+            <span>Zelle</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 3: PRINTABLE CUSTOMER INVOICE MODAL                               -->
+  <!-- ======================================================================= -->
+  <div id="invoiceModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-cocoa-900/60 backdrop-blur-xs p-4 overflow-y-auto">
+    <div class="bg-white rounded-3xl max-w-2xl w-full border border-cream-200 shadow-2xl overflow-hidden my-auto">
+      <div class="px-6 py-3.5 bg-cream-100 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2 no-print">
+        <div class="flex items-center gap-3">
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-800">Invoice Preview</span>
+          <label class="inline-flex items-center gap-1.5 text-xs font-medium bg-white px-2.5 py-1 rounded-lg border border-cream-300 cursor-pointer">
+            <input type="checkbox" id="invPayPalToggle" checked onchange="renderInvoiceModalBody()" class="rounded text-berry-700" />
+            <span>Show PayPal Link</span>
+          </label>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="window.print()" class="inline-flex items-center gap-1.5 bg-cocoa-900 hover:bg-cocoa-800 text-white text-xs sm:text-sm font-semibold px-4 py-2 rounded-xl shadow-xs">
+            <i class="fa-solid fa-print"></i> Print / Save PDF
+          </button>
+          <button onclick="closeInvoiceModal()" class="w-9 h-9 rounded-full bg-white hover:bg-cream-200 flex items-center justify-center">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+      </div>
+
+      <div id="printableInvoiceArea" class="p-6 sm:p-10 bg-white text-cocoa-900 space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 border-b-2 border-cream-200 pb-6">
+          <div>
+            <div class="flex items-center gap-3">
+              <svg viewBox="0 0 120 120" class="w-14 h-14 shrink-0" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Cakeflakes LLC Logo">
+                <circle cx="60" cy="60" r="56" fill="#FFFFFF" stroke="#1D1816" stroke-width="2.5" />
+                <path d="M36 48C29 44 27 32 31 25C35 19 43 19 47 25C51 32 49 44 42 48L44 64H37L36 48Z" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" />
+                <path d="M39 39C39 39 34 35.5 34 32.3C34 30.4 35.5 29 37.2 29C38.1 29 38.7 29.5 39 30.1C39.3 29.5 39.9 29 40.8 29C42.5 29 44 30.4 44 32.3C44 35.5 39 39 39 39Z" stroke="#2E2623" stroke-width="1.8" stroke-linejoin="round" />
+                <path d="M39 80L41 96C41.2 97.8 43.8 97.8 44 96L45 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <path d="M56 26V17C56 14.5 64 14.5 64 17V26" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <rect x="52" y="26" width="16" height="38" rx="3" stroke="#2E2623" stroke-width="2.1" />
+                <line x1="56" y1="32" x2="56" y2="56" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <path d="M56 80V98C56 101 64 101 64 98V80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <path d="M77 61C71 45 71 23 82 22C93 21 94 43 82 61" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <path d="M79 61C75 45 76 24 82 22C88 24 88 45 81 61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <line x1="82" y1="22" x2="80" y2="61" stroke="#2E2623" stroke-width="1.6" stroke-linecap="round" />
+                <rect x="76" y="60" width="7" height="4" rx="1" stroke="#2E2623" stroke-width="1.9" />
+                <path d="M75 80L73 95C72.8 96.8 75.5 97.2 76 95.5L79 80" stroke="#2E2623" stroke-width="2.1" stroke-linecap="round" />
+                <rect x="6" y="64" width="108" height="16" fill="#FFFFFF" />
+                <line x1="6" y1="64" x2="114" y2="64" stroke="#2E2623" stroke-width="2.1" />
+                <line x1="6" y1="80" x2="114" y2="80" stroke="#2E2623" stroke-width="2.1" />
+                <text x="60" y="76" text-anchor="middle" fill="#2E2623" font-family="Georgia, 'Playfair Display', serif" font-size="14.5" font-weight="600" letter-spacing="0.3">Cakeflakes</text>
+              </svg>
+              <div>
+                <h2 class="font-serif text-2xl font-bold text-cocoa-900">CAKEFLAKES LLC</h2>
+                <p class="text-xs font-medium text-berry-700">Artisan Custom Cakes &amp; Confections</p>
+              </div>
+            </div>
+            <div class="mt-3 text-xs text-cocoa-700 space-y-0.5">
+              <p>Bothell, WA 98012 • United States</p>
+              <p>Phone: +1 425 414 6735 • www.cakeflakes.com</p>
+              <p>Instagram: @Cake_flakes</p>
+            </div>
+          </div>
+          <div class="sm:text-right">
+            <span class="inline-block text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full bg-cream-100 border border-cream-300">Customer Invoice</span>
+            <p id="invNumText" class="font-serif text-2xl font-bold mt-2">#CF-203</p>
+            <p id="invPickupText" class="text-xs text-cocoa-700 mt-0.5">Pickup Date: 2026-11-15</p>
+            <div id="invBadgeBox" class="mt-2"></div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-cream-50 p-4 rounded-2xl border border-cream-200">
+          <div>
+            <span class="text-[10px] font-bold uppercase tracking-wider text-cocoa-700/70">Billed To</span>
+            <p id="invCustName" class="text-base font-bold text-cocoa-900 mt-0.5">Customer Name</p>
+            <p id="invCustPhone" class="text-xs text-cocoa-700/80 mt-0.5"></p>
+          </div>
+          <div class="sm:text-right">
+            <span class="text-[10px] font-bold uppercase tracking-wider text-cocoa-700/70">Accepted Payment Modes</span>
+            <p class="text-xs font-semibold text-cocoa-900 mt-0.5">Zelle • Credit Card • Cash</p>
+            <p id="invPayPalRow" class="text-xs text-blue-700 font-medium mt-0.5">PayPal: paypal.me/cakeflakes</p>
+          </div>
+        </div>
+
+        <table class="w-full text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+              <th class="py-2.5">Custom Bakery Order</th>
+              <th class="py-2.5 text-right">Amount</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-cream-200 text-sm">
+            <tr>
+              <td class="py-4 pr-4">
+                <p id="invDescText" class="font-semibold text-cocoa-900">Custom Cake</p>
+                <p id="invSpecsLine" class="text-xs font-medium text-cocoa-800 mt-1"></p>
+                <p id="invEventSubtext" class="text-xs text-cocoa-700/75 mt-0.5"></p>
+              </td>
+              <td id="invLineAmount" class="py-4 text-right font-bold tabular-nums align-top">$0.00</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="flex justify-end">
+          <div class="w-full sm:w-80 space-y-2 text-sm border-t-2 border-cream-200 pt-4">
+            <div class="flex justify-between">
+              <span>Order Total:</span>
+              <span id="invTotalAmt" class="font-semibold tabular-nums">$0.00</span>
+            </div>
+            <div class="flex justify-between text-emerald-800">
+              <span id="invAdvLabel">Advance Paid:</span>
+              <span id="invAdvAmt" class="font-semibold tabular-nums">-$0.00</span>
+            </div>
+            <div id="invFinalPaidRow" class="hidden flex justify-between text-emerald-800">
+              <span id="invFinalLabel">Pickup Balance Paid:</span>
+              <span id="invFinalAmt" class="font-semibold tabular-nums">-$0.00</span>
+            </div>
+            <div class="flex justify-between items-center border-t border-cream-300 pt-2.5 text-base font-bold">
+              <span id="invBalLabel">Balance Due at Pickup:</span>
+              <span id="invBalAmt" class="text-lg tabular-nums">$0.00</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="border-t border-cream-200 pt-4 text-center text-xs text-cocoa-700/80 space-y-1">
+          <p class="font-semibold text-cocoa-900">Thank you for choosing Cakeflakes LLC for your celebration!</p>
+          <p>Bothell, WA 98012 • www.cakeflakes.com • +1 425 414 6735</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================= -->
+  <!-- MODAL 4: GOOGLE SHEET SYNC MODAL                                        -->
+  <!-- ======================================================================= -->
+  <div id="sheetSyncModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-cocoa-900/55 backdrop-blur-xs p-4 overflow-y-auto no-print">
+    <div class="bg-white rounded-3xl max-w-2xl w-full border border-cream-200 shadow-2xl overflow-hidden my-auto">
+      <div class="px-6 py-4 bg-cream-100 border-b border-cream-200 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-800">Drive Folder: Cakeflakes</span>
+          <h3 class="font-serif text-xl font-bold text-cocoa-900">Google Sheet Master Workbook Sync</h3>
+        </div>
+        <button onclick="closeSheetSyncModal()" class="w-9 h-9 rounded-full bg-white hover:bg-cream-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+        <div class="space-y-3">
+          <div>
+            <label for="sheetCsvInput" class="block text-xs font-bold uppercase tracking-wider text-cocoa-800 mb-1">Published CSV URL (Read-Only Feed)</label>
+            <input type="url" id="sheetCsvInput" placeholder="https://docs.google.com/spreadsheets/d/e/.../pub?output=csv" class="w-full px-3.5 py-2.5 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+          <div>
+            <label for="sheetScriptInput" class="block text-xs font-bold uppercase tracking-wider text-cocoa-800 mb-1">Apps Script Web App URL (2-Way Read &amp; Write to Q4_2026_Orders)</label>
+            <input type="url" id="sheetScriptInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2.5 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          </div>
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="flex gap-2">
+              <button onclick="saveAndSyncGoogleSheet()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold">Save &amp; Sync Now</button>
+              <button onclick="exportOrdersCsv()" class="px-3.5 py-2.5 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs sm:text-sm font-semibold">Export CSV</button>
+            </div>
+            <button onclick="disconnectGoogleSheet()" class="text-xs text-cocoa-700 hover:text-rose-600 underline">Use Local Storage Only</button>
+          </div>
+        </div>
+
+        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-cocoa-900">1-Click Clean 15-Column Table Builder (Cakeflakes_Orders)</span>
+            <button onclick="copyAppsScript()" class="px-3 py-1 rounded-lg bg-white border border-cream-300 text-xs font-semibold hover:bg-cream-100"><i class="fa-regular fa-copy mr-1"></i> Copy Script</button>
+          </div>
+          <ol class="text-xs text-cocoa-800 space-y-1 list-decimal list-inside">
+            <li><strong>First-Time Setup Only:</strong> Open your Google Sheet &rarr; <strong>Extensions &rarr; Apps Script</strong>, paste this script, select <strong>setupCleanOrdersSheet</strong>, and click <strong>Run</strong> (safe — never wipes existing rows).</li>
+            <li><strong>When Updating Script Later:</strong> Never click Run again — just click <strong>Deploy &rarr; Manage deployments &rarr; Edit (pencil) &rarr; Version: New version &rarr; Deploy</strong>.</li>
+          </ol>
+          <pre id="appsScriptCodeBlock" class="bg-cocoa-900 text-cream-100 p-3 rounded-xl text-[11px] overflow-x-auto leading-relaxed">function backupOrdersTab() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName('Cakeflakes_Orders');
+  if (!sheet || sheet.getLastRow() <= 1) return;
+  let backup = ss.getSheetByName('Backup_Orders');
+  if (!backup) backup = ss.insertSheet('Backup_Orders');
+  backup.clear();
+  sheet.getDataRange().copyTo(backup.getRange(1, 1));
+}
+
+function setupCleanOrdersSheet() {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName('Cakeflakes_Orders') || ss.getSheets()[0];
+  sheet.setName('Cakeflakes_Orders');
+
+  // Safeguard: If rows already exist, back them up and NEVER clear data
+  if (sheet.getLastRow() > 0) {
+    backupOrdersTab();
+  }
+
+  // Clean Row 1 Headers (15 Columns: A through O — 1-to-1 with Dashboard)
+  const headers = [
+    'Order_ID', 'Pickup_Date', 'Customer_Name', 'Phone', 'Event_Type',
+    'Theme_Title', 'Tiers', 'Tier_Specs', 'Frosting_Colors', 'Notes',
+    'Total_Price', 'Advance_Paid', 'Advance_Mode', 'Final_Paid', 'Phase'
+  ];
+  sheet.getRange(1, 1, 1, headers.length)
+    .setValues([headers])
+    .setFontWeight('bold')
+    .setBackground('#9D174D')
+    .setFontColor('#FFFFFF');
+  sheet.setFrozenRows(1);
+
+  // Format Pickup_Date column as plain YYYY-MM-DD text so dates never shift
+  sheet.getRange('B2:B500').setNumberFormat('@STRING@');
+
+  // Add Data Validation Dropdowns
+  const tierRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['1 Tier', '2 Tier', '3 Tier', 'Sheet / Box'], true).build();
+  const modeRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList(['Zelle', 'Credit Card', 'Cash'], true).build();
+  const phaseRule = SpreadsheetApp.newDataValidation()
+    .requireValueInList([
+      'Order Received', 'Baking Finished', 'Designing Phase',
+      'Ready for Pickup', 'Finally Delivered / Completed'
+    ], true).build();
+
+  sheet.getRange('G2:G500').setDataValidation(tierRule);
+  sheet.getRange('M2:M500').setDataValidation(modeRule);
+  sheet.getRange('O2:O500').setDataValidation(phaseRule);
+}
+
+function doGet(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName('Cakeflakes_Orders') || ss.getSheets()[0];
+  const tz = ss.getSpreadsheetTimeZone();
+  const fmtDate = (val) => (val instanceof Date)
+    ? Utilities.formatDate(val, tz, 'yyyy-MM-dd')
+    : String(val || '').trim();
+
+  const rows = sheet.getDataRange().getValues();
+  const orders = rows.slice(1)
+    .filter(r => r[2] && String(r[2]).trim() !== '')
+    .map((r, i) => ({
+      id: String(r[0] || `CF-${101 + i}`).trim(),
+      pickupDate: fmtDate(r[1]),
+      customerName: String(r[2] || '').trim(),
+      phone: String(r[3] || '').trim(),
+      eventType: String(r[4] || 'Birthday').trim(),
+      themeTitle: String(r[5] || '').trim(),
+      tiers: String(r[6] || '1 Tier').trim(),
+      tierSpecs: String(r[7] || '').trim(),
+      frostingColors: String(r[8] || '').trim(),
+      notes: String(r[9] || '').trim(),
+      totalPrice: parseFloat(r[10]) || 0,
+      advancePaid: parseFloat(r[11]) || 0,
+      advanceMode: String(r[12] || 'Zelle').trim(),
+      finalPaid: parseFloat(r[13]) || 0,
+      phase: String(r[14] || 'Order Received').trim()
+    }));
+
+  const jsonStr = JSON.stringify({ orders });
+  const cb = e && e.parameter && e.parameter.callback;
+  if (cb) {
+    return ContentService.createTextOutput(`${cb}(${jsonStr})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(jsonStr)
+    .setMimeType(ContentService.MimeType.JSON);
+}
+
+function doPost(e) {
+  const lock = LockService.getScriptLock();
+  lock.waitLock(10000);
+  try {
+    const payload = JSON.parse(e.postData.contents);
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const sheet = ss.getSheetByName('Cakeflakes_Orders') || ss.getSheets()[0];
+    const o = payload.order;
+    if (!o) return ContentService.createTextOutput(JSON.stringify({ status: 'no_order' }));
+
+    const rows = sheet.getDataRange().getValues();
+    const targetId = String(o.id || '').trim().toLowerCase();
+    const targetCust = String(o.customerName || '').trim().toLowerCase();
+    const targetDate = String(o.pickupDate || '').trim();
+
+    let matchRow = -1;
+    // 1. Primary match: exact Order_ID in Column A
+    if (targetId) {
+      for (let i = 1; i < rows.length; i++) {
+        if (String(rows[i][0] || '').trim().toLowerCase() === targetId) {
+          matchRow = i + 1;
+          break;
+        }
+      }
+    }
+    // 2. Fallback match: Customer_Name + Pickup_Date (prevents duplicate if Order_ID was blank in sheet)
+    if (matchRow === -1 && targetCust && targetDate) {
+      for (let i = 1; i < rows.length; i++) {
+        const rowCust = String(rows[i][2] || '').trim().toLowerCase();
+        const rowDate = (rows[i][1] instanceof Date)
+          ? Utilities.formatDate(rows[i][1], ss.getSpreadsheetTimeZone(), 'yyyy-MM-dd')
+          : String(rows[i][1] || '').trim();
+        if (rowCust === targetCust && rowDate === targetDate) {
+          matchRow = i + 1;
+          break;
+        }
+      }
+    }
+
+    if (payload.action === 'delete') {
+      if (matchRow > 1) sheet.deleteRow(matchRow);
+      return ContentService.createTextOutput(JSON.stringify({ status: 'deleted' }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const rowValues = [[
+      o.id, o.pickupDate, o.customerName, o.phone || '', o.eventType || 'Birthday',
+      o.themeTitle || '', o.tiers || '1 Tier', o.tierSpecs || '', o.frostingColors || '',
+      o.notes || '', o.totalPrice || 0, o.advancePaid || 0, o.advanceMode || 'Zelle',
+      o.finalPaid || 0, o.phase || 'Order Received'
+    ]];
+
+    if (matchRow > 1) {
+      sheet.getRange(matchRow, 1, 1, 15).setValues(rowValues);
+    } else {
+      sheet.appendRow(rowValues[0]);
+    }
+    return ContentService.createTextOutput(JSON.stringify({ status: 'saved', row: matchRow }))
+      .setMimeType(ContentService.MimeType.JSON);
+  } finally {
+    lock.releaseLock();
+  }
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // =========================================================================
+    // 1. CONSTANTS, 5-PHASE CONFIGURATION & REAL CUSTOMER ORDERS_CAKEFLAKES DATA
+    // =========================================================================
+    const TODAY_ISO = '2026-11-15';
+    const FINAL_PHASE = 'Finally Delivered / Completed';
+
+    const PHASES = [
+      { name: 'Order Received', short: 'Received', step: 1, hex: '#2563EB', pillClass: 'bg-[#2563EB] text-white border-blue-700' },
+      { name: 'Baking Finished', short: 'Baked', step: 2, hex: '#D97706', pillClass: 'bg-[#D97706] text-white border-amber-700' },
+      { name: 'Designing Phase', short: 'Designing', step: 3, hex: '#DB2777', pillClass: 'bg-[#DB2777] text-white border-pink-700' },
+      { name: 'Ready for Pickup', short: 'Ready Pickup', step: 4, hex: '#7C3AED', pillClass: 'bg-[#7C3AED] text-white border-purple-700' },
+      { name: 'Finally Delivered / Completed', short: 'Delivered', step: 5, hex: '#059669', pillClass: 'bg-[#059669] text-white border-emerald-700' }
+    ];
+
+    const TIER_OPTIONS = ['1 Tier', '2 Tier', '3 Tier', 'Sheet / Box'];
+    const SHAPE_OPTIONS = ['Round', 'Heart', 'Square', 'Sheet / Rect', 'Number / Custom'];
+    const FLAVOR_PRESETS = ['Vanilla Bean Berry', 'Chocolate Truffle', 'Rasmalai Pistachio', 'Mango Passionfruit', 'Red Velvet', 'Lemon Elderflower'];
+    const STORES = ['Amazon', 'Restaurant Depot', 'Temu', "Dawn's Candy & Cake Supply", 'Costco', 'Safeway', 'Fred Meyer', 'Other'];
+    const EXP_CATEGORIES = ['Capital Expenditure', 'Consumables', 'Tools & Equipment', 'Edible Printing & Toppers'];
+
+    const KEY_ORDERS = 'cakeflakes_hub_orders_live_v1';
+    const KEY_EXPENSES = 'cakeflakes_hub_expenses_live_v1';
+    const KEY_SHEET = 'cakeflakes_hub_sheet_v1';
+    const KEY_STATEMENT = 'cakeflakes_hub_statement_v1';
+    const PIN_PASSCODE = '2526';
+    const KEY_PIN_SESSION = 'cakeflakes_hub_unlocked_v1';
+
+    const DEMO_ORDERS = [];
+    const DEMO_EXPENSES = [];
+
+    // =========================================================================
+    // 2. APPLICATION STATE & STORAGE
+    // =========================================================================
+    let state = {
+      activeTab: 'orders',
+      orders: [],
+      expenses: [],
+      statementLines: [],
+      reconcilePeriod: 'MONTH',
+      year: 2026,
+      month: 10, // November 2026
+      showCompleted: false,
+      phaseFilter: 'OPEN',
+      storeFilter: 'ALL',
+      activeInvoiceOrderId: null,
+      sheetConfig: { csvUrl: '', scriptUrl: '' }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      initPinLockScreen();
+      loadAllStorage();
+      updateSheetStatusBadge();
+      switchHubTab('orders');
+      if (state.sheetConfig.scriptUrl || state.sheetConfig.csvUrl) {
+        refreshFromGoogleSheet(true);
+      }
+    });
+
+    function initPinLockScreen() {
+      const overlay = document.getElementById('pinLockOverlay');
+      const input = document.getElementById('pinPasscodeInput');
+      if (!overlay) return;
+      if (sessionStorage.getItem(KEY_PIN_SESSION) === 'true') {
+        overlay.classList.add('hidden');
+      } else {
+        overlay.classList.remove('hidden');
+        setTimeout(() => input?.focus(), 80);
+      }
+    }
+
+    function handlePinAutoSubmit(val) {
+      document.getElementById('pinErrorMsg')?.classList.add('hidden');
+      if (String(val).trim() === PIN_PASSCODE) {
+        sessionStorage.setItem(KEY_PIN_SESSION, 'true');
+        document.getElementById('pinLockOverlay')?.classList.add('hidden');
+        showToast('Welcome back to Cakeflakes Hub!', 'success');
+      }
+    }
+
+    function verifyPinUnlock(ev) {
+      ev.preventDefault();
+      const input = document.getElementById('pinPasscodeInput');
+      const err = document.getElementById('pinErrorMsg');
+      if (String(input?.value || '').trim() === PIN_PASSCODE) {
+        sessionStorage.setItem(KEY_PIN_SESSION, 'true');
+        document.getElementById('pinLockOverlay')?.classList.add('hidden');
+        if (err) err.classList.add('hidden');
+        showToast('Welcome back to Cakeflakes Hub!', 'success');
+      } else {
+        if (err) err.classList.remove('hidden');
+        if (input) { input.value = ''; input.focus(); }
+      }
+    }
+
+    function lockDashboardScreen() {
+      sessionStorage.removeItem(KEY_PIN_SESSION);
+      const overlay = document.getElementById('pinLockOverlay');
+      const input = document.getElementById('pinPasscodeInput');
+      document.getElementById('pinErrorMsg')?.classList.add('hidden');
+      if (input) input.value = '';
+      if (overlay) overlay.classList.remove('hidden');
+      setTimeout(() => input?.focus(), 80);
+    }
+
+    function loadAllStorage() {
+      try {
+        const o = localStorage.getItem(KEY_ORDERS);
+        const e = localStorage.getItem(KEY_EXPENSES);
+        const s = localStorage.getItem(KEY_SHEET);
+        const st = localStorage.getItem(KEY_STATEMENT);
+        state.orders = o ? JSON.parse(o) : JSON.parse(JSON.stringify(DEMO_ORDERS));
+        state.expenses = e ? JSON.parse(e) : JSON.parse(JSON.stringify(DEMO_EXPENSES));
+        state.sheetConfig = s ? JSON.parse(s) : { csvUrl: '', scriptUrl: '' };
+        state.statementLines = st ? JSON.parse(st) : [];
+        if (!o || !e) saveAllStorage();
+      } catch (err) {
+        state.orders = JSON.parse(JSON.stringify(DEMO_ORDERS));
+        state.expenses = JSON.parse(JSON.stringify(DEMO_EXPENSES));
+        state.statementLines = [];
+      }
+    }
+
+    function saveAllStorage() {
+      localStorage.setItem(KEY_ORDERS, JSON.stringify(state.orders));
+      localStorage.setItem(KEY_EXPENSES, JSON.stringify(state.expenses));
+      localStorage.setItem(KEY_SHEET, JSON.stringify(state.sheetConfig));
+      localStorage.setItem(KEY_STATEMENT, JSON.stringify(state.statementLines));
+    }
+
+    function clearLocalCache() {
+      state.orders = [];
+      state.expenses = [];
+      state.statementLines = [];
+      state.reconcilePeriod = 'MONTH';
+      state.year = 2026;
+      state.month = 10;
+      state.showCompleted = false;
+      state.phaseFilter = 'OPEN';
+      state.storeFilter = 'ALL';
+      const toggle = document.getElementById('showCompletedToggle');
+      if (toggle) toggle.checked = false;
+      const statusTxt = document.getElementById('showCompletedStatusText');
+      if (statusTxt) statusTxt.textContent = 'OFF';
+      saveAllStorage();
+      renderAll();
+      showToast('Cleared local cache — ready for live Google Sheet sync', 'info');
+    }
+
+    // =========================================================================
+    // 3. UNIFIED TAB SWITCHING
+    // =========================================================================
+    function switchHubTab(tabName) {
+      state.activeTab = tabName;
+      ['orders', 'income', 'expenses', 'traffic', 'reconcile'].forEach(t => {
+        const panel = document.getElementById(`tabPanel-${t}`);
+        const btn = document.getElementById(`navTab-${t}`);
+        if (!panel || !btn) return;
+        if (t === tabName) {
+          panel.classList.remove('hidden');
+          btn.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-berry-700 text-white shadow-xs';
+        } else {
+          panel.classList.add('hidden');
+          btn.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800';
+        }
+      });
+      renderAll();
+    }
+
+    function renderAll() {
+      renderOrdersTab();
+      renderIncomeTab();
+      renderExpensesTab();
+      renderReconcileTab();
+    }
+
+    // =========================================================================
+    // 4. TAB 1: OPEN ORDERS, DAYS-TO-DELIVER COUNTDOWN & CALENDAR LOGIC
+    // =========================================================================
+    function getPhaseInfo(name) {
+      return PHASES.find(p => p.name === name) || PHASES[0];
+    }
+
+    function getDeliveryCountdown(order) {
+      const meta = getPhaseInfo(order.phase);
+      if (order.phase === FINAL_PHASE) {
+        return {
+          days: 0,
+          text: 'Delivered ✓',
+          phaseStepText: `Phase ${meta.step}/5 • Completed`,
+          badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-200'
+        };
+      }
+      const [ty, tm, td] = TODAY_ISO.split('-').map(Number);
+      const [py, pm, pd] = String(order.pickupDate || TODAY_ISO).split('-').map(Number);
+      const todayUtc = Date.UTC(ty, tm - 1, td);
+      const pickupUtc = Date.UTC(py, pm - 1, pd);
+      const diffDays = Math.round((pickupUtc - todayUtc) / 86400000);
+
+      let text = '';
+      let badgeClass = '';
+      if (diffDays < 0) {
+        text = `${Math.abs(diffDays)}d overdue`;
+        badgeClass = 'bg-rose-100 text-rose-900 border-rose-300';
+      } else if (diffDays === 0) {
+        text = 'Due Today (0d)';
+        badgeClass = 'bg-purple-100 text-purple-900 border-purple-300';
+      } else if (diffDays === 1) {
+        text = '1 day to deliver';
+        badgeClass = 'bg-amber-100 text-amber-900 border-amber-300';
+      } else {
+        text = `${diffDays} days to deliver`;
+        badgeClass = diffDays <= 3
+          ? 'bg-amber-50 text-amber-900 border-amber-200'
+          : 'bg-blue-50 text-blue-900 border-blue-200';
+      }
+
+      return {
+        days: diffDays,
+        text,
+        phaseStepText: `Phase ${meta.step}/5 • ${meta.name}`,
+        badgeClass
+      };
+    }
+
+    function getOrderTierList(order) {
+      if (Array.isArray(order.tierDetails) && order.tierDetails.length > 0) {
+        return order.tierDetails;
+      }
+      return [{
+        label: order.tiers || 'Tier 1',
+        shape: order.shape || 'Round',
+        diameter: order.diameter || '',
+        height: order.height || '',
+        servings: order.servings || '',
+        flavor: order.flavors || ''
+      }];
+    }
+
+    function getOrderBalance(order) {
+      const total = parseFloat(order.totalPrice) || 0;
+      const adv = parseFloat(order.advancePaid) || 0;
+      const fin = parseFloat(order.finalPaid) || 0;
+      return Math.max(0, Number((total - adv - fin).toFixed(2)));
+    }
+
+    function getFilteredOrders() {
+      const q = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
+      return state.orders
+        .filter(o => {
+          const isDone = o.phase === FINAL_PHASE;
+          if (!state.showCompleted && isDone && state.phaseFilter !== FINAL_PHASE) return false;
+          if (state.phaseFilter === 'OPEN' && isDone) return false;
+          if (state.phaseFilter !== 'OPEN' && state.phaseFilter !== 'ALL' && o.phase !== state.phaseFilter) return false;
+          if (q) {
+            const tierHay = getOrderTierList(o).map(t => `${t.label} ${t.shape} ${t.diameter} ${t.flavor}`).join(' ');
+            const hay = `${o.id} ${o.customerName} ${o.eventType} ${o.themeTitle || o.cakeDetails || ''} ${tierHay} ${o.frosting || ''} ${o.colors || ''} ${o.notes || ''} ${o.pickupDate}`.toLowerCase();
+            if (!hay.includes(q)) return false;
+          }
+          return true;
+        })
+        .sort((a, b) => a.pickupDate.localeCompare(b.pickupDate));
+    }
+
+    function renderOrdersTab() {
+      const activeOrders = state.orders.filter(o => o.phase !== FINAL_PHASE);
+      const inProgress = state.orders.filter(o => o.phase === 'Baking Finished' || o.phase === 'Designing Phase');
+      const ready = state.orders.filter(o => o.phase === 'Ready for Pickup');
+      const openVal = activeOrders.reduce((s, o) => s + (parseFloat(o.totalPrice) || 0), 0);
+
+      document.getElementById('kpiActiveOrders').textContent = activeOrders.length;
+      document.getElementById('kpiInProgressOrders').textContent = inProgress.length;
+      document.getElementById('kpiReadyOrders').textContent = ready.length;
+      document.getElementById('kpiOpenOrderValue').textContent = fmtMoney(openVal);
+
+      // Phase Filter Pills
+      const pillsBox = document.getElementById('phaseFilterPillsContainer');
+      const filterItems = [
+        { key: 'OPEN', label: 'All Open (1–4)', dot: 'bg-cocoa-900' },
+        ...PHASES.map(p => ({ key: p.name, label: `${p.step}. ${p.name}`, dot: `bg-[${p.hex}]` }))
+      ];
+      pillsBox.innerHTML = filterItems.map(item => {
+        const active = state.phaseFilter === item.key;
+        return `
+          <button onclick="setOrderPhaseFilter('${item.key}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition ${
+            active ? 'bg-cocoa-900 text-white border-cocoa-900 shadow-xs' : 'bg-cream-50 text-cocoa-800 border-cream-300 hover:bg-cream-100'
+          }">
+            <span class="w-2 h-2 rounded-full ${item.dot}"></span>
+            <span>${item.label}</span>
+          </button>
+        `;
+      }).join('');
+
+      renderCalendarGrid();
+      renderOrdersTable();
+    }
+
+    function renderCalendarGrid() {
+      const grid = document.getElementById('calendarDaysGrid');
+      const heading = document.getElementById('calendarMonthHeading');
+      const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      heading.textContent = `${monthNames[state.month]} ${state.year}`;
+
+      const firstWeekday = new Date(state.year, state.month, 1).getDay();
+      const totalDays = new Date(state.year, state.month + 1, 0).getDate();
+      const filtered = getFilteredOrders();
+
+      const byDate = {};
+      filtered.forEach(o => {
+        if (!byDate[o.pickupDate]) byDate[o.pickupDate] = [];
+        byDate[o.pickupDate].push(o);
+      });
+
+      let html = '';
+      for (let i = 0; i < firstWeekday; i++) {
+        html += `<div class="min-h-[112px] sm:min-h-[130px] bg-cream-50/70 p-2"></div>`;
+      }
+
+      for (let d = 1; d <= totalDays; d++) {
+        const iso = `${state.year}-${String(state.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const list = byDate[iso] || [];
+        const isToday = iso === '2026-11-15';
+
+        html += `
+          <div class="group min-h-[112px] sm:min-h-[130px] p-1.5 sm:p-2 flex flex-col justify-between transition hover:bg-cream-50 ${isToday ? 'bg-berry-50/40' : 'bg-white'}">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="w-6 h-6 rounded-full inline-flex items-center justify-center text-xs font-bold ${isToday ? 'bg-berry-700 text-white' : 'text-cocoa-800'}">${d}</span>
+                <button onclick="openNewOrderModal('${iso}')" title="Add order on ${iso}" class="opacity-80 sm:opacity-0 sm:group-hover:opacity-100 w-6 h-6 rounded-lg bg-cream-100 hover:bg-berry-700 hover:text-white text-cocoa-800 flex items-center justify-center text-xs transition">
+                  <i class="fa-solid fa-plus"></i>
+                </button>
+              </div>
+              <div class="space-y-1">
+                ${list.map(o => {
+                  const meta = getPhaseInfo(o.phase);
+                  const titleText = o.themeTitle || o.cakeDetails || 'Custom Cake';
+                  const cd = getDeliveryCountdown(o);
+                  return `
+                    <button onclick="openEditOrderModal('${o.id}')" class="w-full text-left px-2 py-1.5 rounded-xl border text-[11px] leading-tight shadow-xs hover:brightness-95 transition ${meta.pillClass}">
+                      <div class="flex items-center justify-between gap-1 font-bold truncate">
+                        <span class="truncate">${esc(o.customerName)}</span>
+                        <span class="text-[9px] uppercase bg-black/20 px-1.5 py-0.5 rounded shrink-0">${meta.short}</span>
+                      </div>
+                      <div class="truncate text-[10px] opacity-95 mt-0.5">${esc(o.tiers || '')} • ${esc(titleText)}</div>
+                      <div class="mt-1 flex items-center justify-between text-[9px] font-bold bg-black/15 px-1.5 py-0.5 rounded">
+                        <span>${esc(cd.text)}</span>
+                        <span>P${meta.step}/5</span>
+                      </div>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      const rem = (firstWeekday + totalDays) % 7;
+      if (rem !== 0) {
+        for (let i = 0; i < 7 - rem; i++) {
+          html += `<div class="min-h-[112px] sm:min-h-[130px] bg-cream-50/70 p-2"></div>`;
+        }
+      }
+      grid.innerHTML = html;
+    }
+
+    function renderOrdersTable() {
+      const tbody = document.getElementById('ordersTableBody');
+      const emptyEl = document.getElementById('ordersEmptyState');
+      const list = getFilteredOrders();
+
+      if (list.length === 0) {
+        tbody.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+      emptyEl.classList.add('hidden');
+
+      tbody.innerHTML = list.map(o => {
+        const bal = getOrderBalance(o);
+        const titleText = o.themeTitle || o.cakeDetails || 'Custom Cake';
+        const tierList = getOrderTierList(o);
+        const cd = getDeliveryCountdown(o);
+        const phaseBtns = PHASES.map(p => {
+          const active = p.name === o.phase;
+          return `
+            <button type="button" onclick="quickSetOrderPhase('${o.id}', '${p.name}')" class="px-2 py-1 rounded-lg text-[11px] font-semibold border transition ${
+              active ? `${p.pillClass} shadow-xs` : 'bg-cream-50 text-cocoa-800 border-cream-200 hover:bg-cream-100'
+            }">
+              ${p.step}. ${p.short}
+            </button>
+          `;
+        }).join('');
+
+        const tierBadgesHtml = tierList.map(t => {
+          const specs = [t.shape, t.diameter ? `${t.diameter} Dia` : '', t.height ? `${t.height} H` : '', t.servings ? `${t.servings} srv` : ''].filter(Boolean).join(' • ');
+          return `
+            <div class="text-[11px] bg-cream-50 border border-cream-200 rounded-lg px-2 py-1">
+              <span class="font-bold text-berry-800">${esc(t.label)}:</span>
+              <span class="font-semibold text-cocoa-900">${esc(t.flavor || 'Custom Flavor')}</span>
+              ${specs ? `<span class="text-cocoa-700"> (${esc(specs)})</span>` : ''}
+            </div>
+          `;
+        }).join('');
+
+        return `
+          <tr class="hover:bg-cream-50/90 transition align-top">
+            <td class="py-3 px-3.5 whitespace-nowrap">
+              <input type="date" value="${o.pickupDate}" onchange="inlineEditOrder('${o.id}', 'pickupDate', this.value)" class="text-xs font-semibold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-1 focus:outline-none" />
+              <div class="px-1.5 mt-1">
+                <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full border ${cd.badgeClass}">${esc(cd.text)}</span>
+              </div>
+              <div class="text-[10px] font-semibold text-cocoa-700/70 px-1.5 mt-0.5">${esc(o.id)}</div>
+            </td>
+            <td class="py-3 px-3.5">
+              <input type="text" value="${esc(o.customerName)}" onchange="inlineEditOrder('${o.id}', 'customerName', this.value)" class="font-semibold text-cocoa-900 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-0.5 w-full max-w-[170px] focus:outline-none" />
+              <span class="inline-block mt-1 ml-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cream-100 text-cocoa-800 border border-cream-200">${esc(o.eventType)}</span>
+            </td>
+            <td class="py-3 px-3.5 min-w-[270px] max-w-sm space-y-1.5">
+              <div class="font-bold text-cocoa-900 text-xs sm:text-sm">${esc(titleText)}</div>
+              <div class="space-y-1">${tierBadgesHtml}</div>
+              <div class="text-[11px] text-cocoa-800 leading-snug">
+                ${o.frosting ? `<span class="font-semibold">Frosting:</span> ${esc(o.frosting)}` : ''}
+                ${o.colors ? ` • <span class="font-semibold">Colors:</span> ${esc(o.colors)}` : ''}
+              </div>
+              ${o.notes ? `<div class="text-[11px] italic text-cocoa-700/85 bg-cream-100/70 px-2 py-0.5 rounded-md"><i class="fa-regular fa-note-sticky mr-1 text-berry-700"></i>${esc(o.notes)}</div>` : ''}
+            </td>
+            <td class="py-3 px-3.5 text-right whitespace-nowrap tabular-nums">
+              <span class="text-xs text-cocoa-700/70">$</span>
+              <input type="number" step="0.01" value="${o.totalPrice}" onchange="inlineEditOrder('${o.id}', 'totalPrice', parseFloat(this.value) || 0)" class="w-16 text-right font-bold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
+            </td>
+            <td class="py-3 px-3.5 text-right whitespace-nowrap tabular-nums">
+              <span class="text-xs text-cocoa-700/70">$</span>
+              <input type="number" step="0.01" value="${o.advancePaid}" onchange="inlineEditOrder('${o.id}', 'advancePaid', parseFloat(this.value) || 0)" class="w-16 text-right font-semibold text-emerald-800 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
+            </td>
+            <td class="py-3 px-3.5 text-right whitespace-nowrap font-bold tabular-nums ${bal > 0 ? 'text-amber-800' : 'text-emerald-700'}">
+              ${bal > 0 ? fmtMoney(bal) : 'Paid'}
+            </td>
+            <td class="py-3 px-3.5">
+              <div class="flex flex-wrap gap-1">${phaseBtns}</div>
+              <div class="text-[10px] font-semibold text-cocoa-700/80 mt-1">${esc(cd.phaseStepText)} • ${esc(cd.text)}</div>
+            </td>
+            <td class="py-3 px-3.5 text-right whitespace-nowrap">
+              <button onclick="openEditOrderModal('${o.id}')" title="Edit cake specs" class="p-2 rounded-xl text-cocoa-700 hover:text-cocoa-900 hover:bg-cream-100 transition"><i class="fa-regular fa-pen-to-square"></i></button>
+              <button onclick="openInvoiceModal('${o.id}')" title="Print Invoice" class="p-2 rounded-xl text-berry-700 hover:bg-berry-50 transition"><i class="fa-solid fa-print"></i></button>
+              <button onclick="removeOrder('${o.id}')" title="Delete" class="p-2 rounded-xl text-cocoa-700 hover:text-rose-600 hover:bg-rose-50 transition"><i class="fa-regular fa-trash-can"></i></button>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function toggleShowCompleted() {
+      const checked = document.getElementById('showCompletedToggle').checked;
+      state.showCompleted = checked;
+      document.getElementById('showCompletedStatusText').textContent = checked ? 'ON' : 'OFF';
+      state.phaseFilter = checked ? 'ALL' : 'OPEN';
+      renderOrdersTab();
+    }
+
+    function setOrderPhaseFilter(key) {
+      state.phaseFilter = key;
+      if (key === FINAL_PHASE && !state.showCompleted) {
+        state.showCompleted = true;
+        document.getElementById('showCompletedToggle').checked = true;
+        document.getElementById('showCompletedStatusText').textContent = 'ON';
+      } else if (key === 'OPEN' && state.showCompleted) {
+        state.showCompleted = false;
+        document.getElementById('showCompletedToggle').checked = false;
+        document.getElementById('showCompletedStatusText').textContent = 'OFF';
+      }
+      renderOrdersTab();
+    }
+
+    function navigateMonth(delta) {
+      state.month += delta;
+      if (state.month < 0) { state.month = 11; state.year -= 1; }
+      else if (state.month > 11) { state.month = 0; state.year += 1; }
+      renderCalendarGrid();
+    }
+
+    function jumpToNov2026() {
+      state.year = 2026;
+      state.month = 10;
+      renderCalendarGrid();
+    }
+
+    function quickSetOrderPhase(id, phase) {
+      const o = state.orders.find(x => x.id === id);
+      if (!o || o.phase === phase) return;
+      o.phase = phase;
+      saveAllStorage();
+      pushOrderToGoogleSheet(o);
+      renderAll();
+      showToast(`${o.customerName}: moved to "${phase}"`, 'success');
+    }
+
+    function inlineEditOrder(id, field, val) {
+      const o = state.orders.find(x => x.id === id);
+      if (!o) return;
+      o[field] = val;
+      saveAllStorage();
+      pushOrderToGoogleSheet(o);
+      renderAll();
+      showToast(`Saved ${o.customerName}'s update`, 'info');
+    }
+
+    function removeOrder(id) {
+      const idx = state.orders.findIndex(x => x.id === id);
+      if (idx === -1) return;
+      const removed = state.orders.splice(idx, 1)[0];
+      saveAllStorage();
+      pushOrderToGoogleSheet(removed, 'delete');
+      renderAll();
+      showToast(`Removed ${removed.customerName}'s order`, 'info');
+    }
+
+    // Order Modal (Add / Quick-Edit with Per-Tier Rows)
+    let modalTierRows = [];
+
+    function buildDefaultTierRows(tierOption, defaultShape = 'Round', existingRows = []) {
+      const count = tierOption === '3 Tier' ? 3 : tierOption === '2 Tier' ? 2 : 1;
+      const labels = count === 3
+        ? ['Tier 1 (Bottom)', 'Tier 2 (Middle)', 'Tier 3 (Top)']
+        : count === 2
+        ? ['Tier 1 (Bottom)', 'Tier 2 (Top)']
+        : [tierOption === 'Sheet / Box' ? 'Sheet / Box' : 'Tier 1'];
+      const defaultDias = count === 3 ? ['10"', '8"', '6"'] : count === 2 ? ['8"', '6"'] : ['8"'];
+      const defaultServs = count === 3 ? ['30', '22', '13'] : count === 2 ? ['22', '13'] : ['20'];
+
+      return labels.map((lbl, idx) => {
+        const prev = existingRows[idx] || {};
+        return {
+          label: lbl,
+          shape: prev.shape || defaultShape,
+          diameter: prev.diameter || defaultDias[idx] || '8"',
+          height: prev.height || '5" Tall',
+          servings: prev.servings || defaultServs[idx] || '20',
+          flavor: prev.flavor || ''
+        };
+      });
+    }
+
+    function renderModalTierRows() {
+      const box = document.getElementById('tierRowsContainer');
+      box.innerHTML = modalTierRows.map((row, idx) => `
+        <div class="bg-white p-3 rounded-xl border border-cream-300 space-y-2">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold text-berry-700">${esc(row.label)}</span>
+            <span class="text-[10px] text-cocoa-700/70">Line ${idx + 1} of ${modalTierRows.length}</span>
+          </div>
+          <div class="grid grid-cols-2 sm:grid-cols-6 gap-2">
+            <div>
+              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Shape</label>
+              <select onchange="updateModalTierField(${idx}, 'shape', this.value)" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg">
+                ${SHAPE_OPTIONS.map(s => `<option value="${esc(s)}" ${row.shape === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}
+              </select>
+            </div>
+            <div>
+              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Diameter</label>
+              <input type="text" value="${esc(row.diameter)}" onchange="updateModalTierField(${idx}, 'diameter', this.value)" placeholder='8"' class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Height</label>
+              <input type="text" value="${esc(row.height)}" onchange="updateModalTierField(${idx}, 'height', this.value)" placeholder='5" Tall' class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
+            </div>
+            <div>
+              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Servings</label>
+              <input type="text" value="${esc(row.servings)}" onchange="updateModalTierField(${idx}, 'servings', this.value)" placeholder="20" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
+            </div>
+            <div class="col-span-2">
+              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Flavor &amp; Filling *</label>
+              <input type="text" required value="${esc(row.flavor)}" oninput="updateModalTierField(${idx}, 'flavor', this.value)" placeholder="e.g., Vanilla Bean Strawberry" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
+            </div>
+          </div>
+          <div class="flex flex-wrap gap-1 pt-0.5">
+            ${FLAVOR_PRESETS.map(fl => `
+              <button type="button" onclick="setModalTierFlavor(${idx}, '${fl}')" class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-cream-50 border border-cream-300 hover:bg-berry-50">+ ${fl}</button>
+            `).join('')}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function updateModalTierField(idx, field, val) {
+      if (modalTierRows[idx]) modalTierRows[idx][field] = val;
+    }
+
+    function setModalTierFlavor(idx, flavorText) {
+      if (!modalTierRows[idx]) return;
+      modalTierRows[idx].flavor = flavorText;
+      renderModalTierRows();
+    }
+
+    function selectTierOption(opt) {
+      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, opt, 'selectTierOption');
+      const defShape = document.getElementById('formShape').value || 'Round';
+      modalTierRows = buildDefaultTierRows(opt, defShape, modalTierRows);
+      renderModalTierRows();
+    }
+
+    function selectDefaultShapeOption(shapeOpt) {
+      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, shapeOpt, 'selectDefaultShapeOption');
+      modalTierRows.forEach(r => { r.shape = shapeOpt; });
+      renderModalTierRows();
+    }
+
+    function renderSpecPills(containerId, hiddenInputId, options, selectedVal, handlerName) {
+      document.getElementById(hiddenInputId).value = selectedVal;
+      const box = document.getElementById(containerId);
+      box.innerHTML = options.map(opt => {
+        const active = opt === selectedVal;
+        return `
+          <button type="button" onclick="${handlerName}('${opt}')" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition ${
+            active ? 'bg-berry-700 text-white border-berry-700 shadow-xs' : 'bg-white text-cocoa-800 border-cream-300 hover:bg-cream-100'
+          }">
+            ${esc(opt)}
+          </button>
+        `;
+      }).join('');
+    }
+
+    function setSpecInput(inputId, val) {
+      const el = document.getElementById(inputId);
+      if (el) el.value = val;
+    }
+
+    function openNewOrderModal(prefillDate = '2026-11-21') {
+      const safeFutureDate = prefillDate < TODAY_ISO ? TODAY_ISO : prefillDate;
+      document.getElementById('orderModalSub').textContent = 'New Cakeflakes Order (Ahead Pickup Date)';
+      document.getElementById('orderModalTitle').textContent = 'Log Order & Advance Deposit';
+      document.getElementById('formOrderId').value = '';
+      document.getElementById('formCustomerName').value = '';
+      document.getElementById('formCustomerPhone').value = '';
+      const dateInput = document.getElementById('formPickupDate');
+      dateInput.min = TODAY_ISO;
+      dateInput.value = safeFutureDate;
+      document.getElementById('formEventType').value = 'Birthday';
+      document.getElementById('formThemeTitle').value = '';
+      modalTierRows = buildDefaultTierRows('1 Tier', 'Round', []);
+      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, '1 Tier', 'selectTierOption');
+      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, 'Round', 'selectDefaultShapeOption');
+      renderModalTierRows();
+      document.getElementById('formFrosting').value = 'Swiss Meringue Buttercream';
+      document.getElementById('formColors').value = '';
+      document.getElementById('formNotes').value = '';
+      document.getElementById('formTotalPrice').value = '';
+      document.getElementById('formAdvancePaid').value = '100';
+      document.getElementById('formAdvanceMode').value = 'Zelle';
+      document.getElementById('deleteModalOrderBtn').classList.add('hidden');
+      selectModalPhasePill('Order Received');
+      updateOrderModalBalancePreview();
+
+      const m = document.getElementById('orderModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function openEditOrderModal(id) {
+      const o = state.orders.find(x => x.id === id);
+      if (!o) return;
+      document.getElementById('orderModalSub').textContent = `Order ${o.id} • ${getDeliveryCountdown(o).text}`;
+      document.getElementById('orderModalTitle').textContent = `Edit Order • ${o.customerName}`;
+      document.getElementById('formOrderId').value = o.id;
+      document.getElementById('formCustomerName').value = o.customerName;
+      document.getElementById('formCustomerPhone').value = o.phone || '';
+      const dateInput = document.getElementById('formPickupDate');
+      dateInput.removeAttribute('min');
+      dateInput.value = o.pickupDate;
+      document.getElementById('formEventType').value = o.eventType || 'Birthday';
+      document.getElementById('formThemeTitle').value = o.themeTitle || o.cakeDetails || '';
+
+      const tierOpt = TIER_OPTIONS.includes(o.tiers) ? o.tiers : '1 Tier';
+      const shapeOpt = SHAPE_OPTIONS.includes(o.shape) ? o.shape : 'Round';
+      modalTierRows = buildDefaultTierRows(tierOpt, shapeOpt, getOrderTierList(o));
+      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, tierOpt, 'selectTierOption');
+      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, shapeOpt, 'selectDefaultShapeOption');
+      renderModalTierRows();
+
+      document.getElementById('formFrosting').value = o.frosting || 'Swiss Meringue Buttercream';
+      document.getElementById('formColors').value = o.colors || '';
+      document.getElementById('formNotes').value = o.notes || '';
+      document.getElementById('formTotalPrice').value = o.totalPrice;
+      document.getElementById('formAdvancePaid').value = o.advancePaid;
+      document.getElementById('formAdvanceMode').value = o.advanceMode || 'Zelle';
+      document.getElementById('deleteModalOrderBtn').classList.remove('hidden');
+      selectModalPhasePill(o.phase);
+      updateOrderModalBalancePreview();
+
+      const m = document.getElementById('orderModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeOrderModal() {
+      const m = document.getElementById('orderModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function selectModalPhasePill(phaseName) {
+      document.getElementById('formOrderPhase').value = phaseName;
+      const box = document.getElementById('modalPhaseSelector');
+      box.innerHTML = PHASES.map(p => {
+        const active = p.name === phaseName;
+        const span = p.name === FINAL_PHASE ? 'col-span-2 sm:col-span-1' : '';
+        return `
+          <button type="button" onclick="selectModalPhasePill('${p.name}')" class="${span} p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1 transition ${
+            active ? `${p.pillClass} shadow-sm` : 'bg-cream-50 text-cocoa-800 border-cream-300 hover:bg-cream-100'
+          }">
+            <span class="w-2.5 h-2.5 rounded-full ${active ? 'bg-white' : `bg-[${p.hex}]`}"></span>
+            <span>${p.step}. ${p.short}</span>
+          </button>
+        `;
+      }).join('');
+    }
+
+    function updateOrderModalBalancePreview() {
+      const tot = parseFloat(document.getElementById('formTotalPrice').value) || 0;
+      const adv = parseFloat(document.getElementById('formAdvancePaid').value) || 0;
+      document.getElementById('orderModalBalancePreview').textContent = fmtMoney(Math.max(0, tot - adv));
+    }
+
+    function saveOrderModal(e) {
+      e.preventDefault();
+      const existingId = document.getElementById('formOrderId').value;
+      const existing = existingId ? state.orders.find(x => x.id === existingId) : null;
+      const pickupDate = document.getElementById('formPickupDate').value;
+      const phase = document.getElementById('formOrderPhase').value;
+
+      if (!existingId && phase === 'Order Received' && pickupDate < TODAY_ISO) {
+        showToast('New Order Received must have a pickup date today or ahead.', 'info');
+        return;
+      }
+
+      const total = parseFloat(document.getElementById('formTotalPrice').value) || 0;
+      const adv = parseFloat(document.getElementById('formAdvancePaid').value) || 0;
+      const tiers = document.getElementById('formTiers').value;
+      const shape = document.getElementById('formShape').value;
+      const frosting = document.getElementById('formFrosting').value;
+      const colors = document.getElementById('formColors').value.trim();
+      const notes = document.getElementById('formNotes').value.trim();
+      const themeTitle = document.getElementById('formThemeTitle').value.trim();
+      const cleanTiers = modalTierRows.map(r => ({ ...r }));
+
+      const flavorsSummary = cleanTiers.map(t => `${t.label}: ${t.flavor}`).join(' | ');
+      const tierSpecsFormatted = cleanTiers
+        .map(t => `${t.label}: ${[t.diameter, t.shape, t.height, t.servings ? `${t.servings} srv` : '', t.flavor].filter(Boolean).join(' ')}`)
+        .join(' | ');
+      const frostingColorsFormatted = [frosting, colors].filter(Boolean).join(' • ');
+      const combinedSummary = `${tiers} ${themeTitle} (${flavorsSummary})`;
+      const uniqueNewId = `CF-${String(Date.now()).slice(-4)}`;
+
+      const payload = {
+        id: existingId || uniqueNewId,
+        pickupDate,
+        customerName: document.getElementById('formCustomerName').value.trim(),
+        phone: document.getElementById('formCustomerPhone').value.trim(),
+        eventType: document.getElementById('formEventType').value,
+        themeTitle,
+        tiers,
+        shape,
+        tierDetails: cleanTiers,
+        tierSpecs: tierSpecsFormatted,
+        flavors: flavorsSummary,
+        frosting,
+        colors,
+        frostingColors: frostingColorsFormatted,
+        notes,
+        cakeDetails: combinedSummary,
+        totalPrice: total,
+        advancePaid: adv,
+        advanceMode: document.getElementById('formAdvanceMode').value,
+        finalPaid: existing ? (existing.finalPaid || 0) : 0,
+        finalMode: existing ? (existing.finalMode || 'Pending') : (adv >= total && total > 0 ? 'Paid in Advance' : 'Pending'),
+        phase
+      };
+
+      if (existing) {
+        Object.assign(existing, payload);
+        showToast(`Updated order ${payload.id}`, 'success');
+      } else {
+        state.orders.push(payload);
+        const [y, m] = payload.pickupDate.split('-').map(Number);
+        if (y && m) { state.year = y; state.month = m - 1; }
+        showToast(`Added order ${payload.id} for ${payload.customerName}`, 'success');
+      }
+
+      saveAllStorage();
+      pushOrderToGoogleSheet(payload, 'upsert');
+      closeOrderModal();
+      renderAll();
+    }
+
+    function deleteModalOrder() {
+      const id = document.getElementById('formOrderId').value;
+      closeOrderModal();
+      removeOrder(id);
+    }
+
+    // =========================================================================
+    // 5. TAB 2: CASH INCOME & PRINTABLE INVOICES
+    // =========================================================================
+    function renderIncomeTab() {
+      let contracted = 0, collected = 0, pending = 0, pendingCount = 0;
+      let cash = 0, card = 0, zelle = 0;
+
+      state.orders.forEach(o => {
+        const tot = parseFloat(o.totalPrice) || 0;
+        const adv = parseFloat(o.advancePaid) || 0;
+        const fin = parseFloat(o.finalPaid) || 0;
+        const bal = getOrderBalance(o);
+
+        contracted += tot;
+        collected += (adv + fin);
+        pending += bal;
+        if (bal > 0) pendingCount += 1;
+
+        if (o.advanceMode === 'Cash') cash += adv;
+        else if (o.advanceMode === 'Credit Card') card += adv;
+        else if (o.advanceMode === 'Zelle') zelle += adv;
+
+        if (fin > 0) {
+          if (o.finalMode === 'Cash') cash += fin;
+          else if (o.finalMode === 'Credit Card') card += fin;
+          else if (o.finalMode === 'Zelle') zelle += fin;
+        }
+      });
+
+      document.getElementById('incKpiContracted').textContent = fmtMoney(contracted);
+      document.getElementById('incKpiOrderCount').textContent = `Across ${state.orders.length} confirmed orders`;
+      document.getElementById('incKpiCollected').textContent = fmtMoney(collected);
+      document.getElementById('incKpiPending').textContent = fmtMoney(pending);
+      document.getElementById('incKpiPendingCount').textContent = `${pendingCount} order${pendingCount === 1 ? '' : 's'} due at pickup`;
+
+      document.getElementById('incModeCash').textContent = fmtMoney(cash);
+      document.getElementById('incModeCard').textContent = fmtMoney(card);
+      document.getElementById('incModeZelle').textContent = fmtMoney(zelle);
+
+      const modeSum = Math.max(1, cash + card + zelle);
+      document.getElementById('incBarCash').style.width = `${(cash / modeSum) * 100}%`;
+      document.getElementById('incBarCard').style.width = `${(card / modeSum) * 100}%`;
+      document.getElementById('incBarZelle').style.width = `${(zelle / modeSum) * 100}%`;
+
+      const sorted = [...state.orders].sort((a, b) => a.pickupDate.localeCompare(b.pickupDate));
+      document.getElementById('incomeLedgerBody').innerHTML = sorted.map(o => {
+        const bal = getOrderBalance(o);
+        const isPaid = bal <= 0.009;
+        return `
+          <tr class="hover:bg-cream-50/90 transition align-middle">
+            <td class="py-3.5 px-4 font-bold text-cocoa-900 whitespace-nowrap">${esc(o.id)}</td>
+            <td class="py-3.5 px-4 text-xs font-medium whitespace-nowrap">${esc(o.pickupDate)}</td>
+            <td class="py-3.5 px-4">
+              <div class="font-semibold text-cocoa-900">${esc(o.customerName)}</div>
+              <div class="text-xs text-cocoa-700/80 truncate max-w-xs">${esc(o.themeTitle || o.cakeDetails)} • ${esc(o.tiers || '')} ${esc(o.shape || '')}</div>
+            </td>
+            <td class="py-3.5 px-4 text-right font-bold tabular-nums whitespace-nowrap">${fmtMoney(o.totalPrice)}</td>
+            <td class="py-3.5 px-4 text-right whitespace-nowrap">
+              <span class="font-semibold text-emerald-800 tabular-nums">${fmtMoney(o.advancePaid)}</span>
+              <span class="ml-1.5 text-[10px] font-bold px-2 py-0.5 rounded-full bg-cream-100 text-cocoa-800 border border-cream-300">${esc(o.advanceMode)}</span>
+            </td>
+            <td class="py-3.5 px-4 text-right font-bold tabular-nums whitespace-nowrap ${bal > 0 ? 'text-amber-800' : 'text-cocoa-700/50'}">
+              ${fmtMoney(bal)}
+            </td>
+            <td class="py-3.5 px-4 whitespace-nowrap">
+              ${isPaid
+                ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-200"><i class="fa-solid fa-check-circle"></i> Paid in Full</span>`
+                : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-200"><i class="fa-solid fa-clock"></i> Balance Due</span>`
+              }
+            </td>
+            <td class="py-3.5 px-4 text-right whitespace-nowrap">
+              <div class="inline-flex items-center gap-1.5">
+                ${!isPaid ? `<button onclick="openCollectModal('${o.id}')" class="px-3 py-1.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition">Collect Balance</button>` : ''}
+                <button onclick="openInvoiceModal('${o.id}')" class="px-3 py-1.5 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs font-semibold transition">
+                  <i class="fa-solid fa-print mr-1 text-berry-700"></i> Invoice
+                </button>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function openCollectModal(id) {
+      const o = state.orders.find(x => x.id === id);
+      if (!o) return;
+      document.getElementById('collectOrderIdInput').value = o.id;
+      document.getElementById('collectTitle').textContent = `Collect Balance • ${o.id}`;
+      document.getElementById('collectCustomerText').textContent = o.customerName;
+      document.getElementById('collectCakeText').textContent = o.cakeDetails;
+      document.getElementById('collectBalanceAmount').textContent = fmtMoney(getOrderBalance(o));
+
+      const m = document.getElementById('collectModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeCollectModal() {
+      const m = document.getElementById('collectModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function completeBalanceCollection(mode) {
+      const id = document.getElementById('collectOrderIdInput').value;
+      const o = state.orders.find(x => x.id === id);
+      if (!o) return;
+      const due = getOrderBalance(o);
+      o.finalPaid = Number(((parseFloat(o.finalPaid) || 0) + due).toFixed(2));
+      o.finalMode = mode;
+      saveAllStorage();
+      pushOrderToGoogleSheet(o);
+      closeCollectModal();
+      renderAll();
+      showToast(`Collected ${fmtMoney(due)} via ${mode} — ${o.id} Paid in Full!`, 'success');
+    }
+
+    function openInvoiceModal(id) {
+      state.activeInvoiceOrderId = id;
+      renderInvoiceModalBody();
+      const m = document.getElementById('invoiceModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeInvoiceModal() {
+      const m = document.getElementById('invoiceModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function renderInvoiceModalBody() {
+      const o = state.orders.find(x => x.id === state.activeInvoiceOrderId);
+      if (!o) return;
+      const bal = getOrderBalance(o);
+      const tierBreakdown = getOrderTierList(o).map(t =>
+        `${t.label}: ${t.shape} ${t.diameter || ''} (${t.height || ''}, ${t.servings || '?'} srv) — ${t.flavor}`
+      ).join(' | ');
+      const specsList = [
+        tierBreakdown,
+        o.frosting ? `Frosting: ${o.frosting}` : '',
+        o.colors ? `Colors: ${o.colors}` : ''
+      ].filter(Boolean).join(' • ');
+
+      document.getElementById('invNumText').textContent = `#${o.id}`;
+      document.getElementById('invPickupText').textContent = `Pickup Date: ${o.pickupDate}`;
+      document.getElementById('invCustName').textContent = o.customerName;
+      document.getElementById('invCustPhone').textContent = o.phone ? `Phone / WhatsApp: ${o.phone}` : 'Bothell Pickup / Delivery';
+      document.getElementById('invDescText').textContent = o.themeTitle || o.cakeDetails;
+      document.getElementById('invSpecsLine').textContent = specsList;
+      document.getElementById('invEventSubtext').textContent = `Event Type: ${o.eventType}${o.notes ? ` • Notes: ${o.notes}` : ''}`;
+      document.getElementById('invLineAmount').textContent = fmtMoney(o.totalPrice);
+      document.getElementById('invTotalAmt').textContent = fmtMoney(o.totalPrice);
+
+      document.getElementById('invAdvLabel').textContent = `Advance Paid (${o.advanceMode}):`;
+      document.getElementById('invAdvAmt').textContent = `-${fmtMoney(o.advancePaid)}`;
+
+      const finRow = document.getElementById('invFinalPaidRow');
+      if ((parseFloat(o.finalPaid) || 0) > 0) {
+        finRow.classList.remove('hidden');
+        document.getElementById('invFinalLabel').textContent = `Pickup Balance Paid (${o.finalMode}):`;
+        document.getElementById('invFinalAmt').textContent = `-${fmtMoney(o.finalPaid)}`;
+      } else {
+        finRow.classList.add('hidden');
+      }
+
+      const badgeBox = document.getElementById('invBadgeBox');
+      if (bal <= 0.009) {
+        document.getElementById('invBalLabel').textContent = 'Balance Due:';
+        document.getElementById('invBalAmt').textContent = '$0.00 (PAID IN FULL)';
+        document.getElementById('invBalAmt').className = 'text-lg tabular-nums text-emerald-700';
+        badgeBox.innerHTML = `<span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">PAID IN FULL</span>`;
+      } else {
+        document.getElementById('invBalLabel').textContent = 'Balance Due at Pickup:';
+        document.getElementById('invBalAmt').textContent = fmtMoney(bal);
+        document.getElementById('invBalAmt').className = 'text-lg tabular-nums text-amber-800';
+        badgeBox.innerHTML = `<span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">DEPOSIT PAID • BALANCE DUE</span>`;
+      }
+
+      document.getElementById('invPayPalRow').style.display = document.getElementById('invPayPalToggle').checked ? 'block' : 'none';
+    }
+
+    // =========================================================================
+    // 6. TAB 3: EXPENSES TRACKER LOGIC
+    // =========================================================================
+    function getExpenseNet(e) {
+      return Number(((parseFloat(e.gross) || 0) - (parseFloat(e.refund) || 0)).toFixed(2));
+    }
+
+    function previewExpenseNet() {
+      const g = parseFloat(document.getElementById('expInputGross').value) || 0;
+      const r = parseFloat(document.getElementById('expInputRefund').value) || 0;
+      document.getElementById('expFormNetBadge').textContent = `Net: ${fmtMoney(Math.max(0, g - r))}`;
+    }
+
+    function addExpenseEntry(ev) {
+      ev.preventDefault();
+      state.expenses.unshift({
+        id: `EXP-${Date.now()}`,
+        date: document.getElementById('expInputDate').value,
+        store: document.getElementById('expInputStore').value,
+        category: document.getElementById('expInputCategory').value,
+        item: document.getElementById('expInputItem').value.trim(),
+        gross: parseFloat(document.getElementById('expInputGross').value) || 0,
+        refund: parseFloat(document.getElementById('expInputRefund').value) || 0
+      });
+      saveAllStorage();
+      document.getElementById('expInputItem').value = '';
+      document.getElementById('expInputGross').value = '';
+      document.getElementById('expInputRefund').value = '0';
+      previewExpenseNet();
+      renderExpensesTab();
+      showToast('Expense added to ledger', 'success');
+    }
+
+    function renderExpensesTab() {
+      let grossSum = 0, refundSum = 0, netSum = 0;
+      const catMap = { 'Capital Expenditure': 0, 'Consumables': 0, 'Tools & Equipment': 0, 'Edible Printing & Toppers': 0 };
+
+      state.expenses.forEach(e => {
+        const g = parseFloat(e.gross) || 0;
+        const r = parseFloat(e.refund) || 0;
+        const n = getExpenseNet(e);
+        grossSum += g;
+        refundSum += r;
+        netSum += n;
+        if (catMap[e.category] !== undefined) catMap[e.category] += n;
+      });
+
+      const collectedIncome = state.orders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
+      const netCashPos = collectedIncome - netSum;
+
+      document.getElementById('expKpiGross').textContent = fmtMoney(grossSum);
+      document.getElementById('expKpiCount').textContent = `${state.expenses.length} supply receipts`;
+      document.getElementById('expKpiRefunds').textContent = fmtMoney(refundSum);
+      document.getElementById('expKpiNet').textContent = fmtMoney(netSum);
+
+      const netCashEl = document.getElementById('expKpiNetCash');
+      const netCashCard = document.getElementById('netCashPositionCard');
+      netCashEl.textContent = fmtMoney(netCashPos);
+      if (netCashPos >= 0) {
+        netCashCard.className = 'bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200 shadow-xs';
+        netCashEl.className = 'text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums';
+      } else {
+        netCashCard.className = 'bg-rose-50/80 rounded-2xl p-4 border border-rose-200 shadow-xs';
+        netCashEl.className = 'text-2xl sm:text-3xl font-bold text-rose-900 mt-2 tabular-nums';
+      }
+
+      // Visual Category Breakdown Bars
+      const barColors = {
+        'Capital Expenditure': 'bg-indigo-600',
+        'Consumables': 'bg-amber-500',
+        'Tools & Equipment': 'bg-teal-600',
+        'Edible Printing & Toppers': 'bg-berry-600'
+      };
+      const denom = Math.max(1, netSum);
+      document.getElementById('expCategoryBars').innerHTML = EXP_CATEGORIES.map(c => {
+        const val = catMap[c] || 0;
+        const pct = Math.round((val / denom) * 100);
+        return `
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-semibold text-cocoa-800">${c}</span>
+              <span class="font-bold tabular-nums">${fmtMoney(val)} (${pct}%)</span>
+            </div>
+            <div class="w-full h-2 rounded-full bg-cream-100 overflow-hidden">
+              <div class="${barColors[c]} h-full rounded-full transition-all" style="width: ${pct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Store Quick-Filter Chips
+      document.getElementById('expStoreChips').innerHTML = ['ALL', ...STORES].map(st => {
+        const active = state.storeFilter === st;
+        return `
+          <button onclick="setStoreFilter('${st.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full text-xs font-semibold border transition ${
+            active ? 'bg-cocoa-900 text-white border-cocoa-900' : 'bg-white text-cocoa-800 border-cream-300 hover:bg-cream-50'
+          }">${st === 'ALL' ? 'All Stores' : esc(st)}</button>
+        `;
+      }).join('');
+
+      const catFilter = document.getElementById('expCategoryFilter').value;
+      const filtered = state.expenses
+        .filter(e => (state.storeFilter === 'ALL' || e.store === state.storeFilter) && (catFilter === 'ALL' || e.category === catFilter))
+        .sort((a, b) => b.date.localeCompare(a.date));
+
+      document.getElementById('expensesTableBody').innerHTML = filtered.map(e => `
+        <tr class="hover:bg-cream-50/90 transition align-middle">
+          <td class="py-3 px-4 whitespace-nowrap text-xs font-medium">${esc(e.date)}</td>
+          <td class="py-3 px-4 whitespace-nowrap">
+            <select onchange="editExpenseField('${e.id}', 'store', this.value)" class="text-xs font-semibold bg-cream-50 border border-cream-300 rounded-lg px-2 py-1">
+              ${STORES.map(s => `<option value="${esc(s)}" ${e.store === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}
+            </select>
+          </td>
+          <td class="py-3 px-4 whitespace-nowrap">
+            <select onchange="editExpenseField('${e.id}', 'category', this.value)" class="text-xs font-semibold bg-cream-50 border border-cream-300 rounded-lg px-2 py-1">
+              ${EXP_CATEGORIES.map(c => `<option value="${esc(c)}" ${e.category === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
+            </select>
+          </td>
+          <td class="py-3 px-4 min-w-[220px]">
+            <input type="text" value="${esc(e.item)}" onchange="editExpenseField('${e.id}', 'item', this.value)" class="font-medium text-cocoa-900 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-0.5 w-full focus:outline-none" />
+          </td>
+          <td class="py-3 px-4 text-right whitespace-nowrap tabular-nums">
+            $<input type="number" step="0.01" value="${(parseFloat(e.gross) || 0).toFixed(2)}" onchange="editExpenseField('${e.id}', 'gross', parseFloat(this.value) || 0)" class="w-16 text-right font-semibold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
+          </td>
+          <td class="py-3 px-4 text-right whitespace-nowrap tabular-nums">
+            $<input type="number" step="0.01" value="${(parseFloat(e.refund) || 0).toFixed(2)}" onchange="editExpenseField('${e.id}', 'refund', parseFloat(this.value) || 0)" class="w-14 text-right text-blue-800 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
+          </td>
+          <td class="py-3 px-4 text-right whitespace-nowrap font-bold tabular-nums">${fmtMoney(getExpenseNet(e))}</td>
+          <td class="py-3 px-4 text-right whitespace-nowrap">
+            <button onclick="deleteExpense('${e.id}')" class="p-2 rounded-xl text-cocoa-700 hover:text-rose-600 hover:bg-rose-50 transition"><i class="fa-regular fa-trash-can"></i></button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function setStoreFilter(st) { state.storeFilter = st; renderExpensesTab(); }
+    function resetExpenseFilters() { state.storeFilter = 'ALL'; document.getElementById('expCategoryFilter').value = 'ALL'; renderExpensesTab(); }
+    function editExpenseField(id, field, val) {
+      const e = state.expenses.find(x => x.id === id);
+      if (!e) return;
+      e[field] = val;
+      saveAllStorage();
+      renderExpensesTab();
+    }
+    function deleteExpense(id) {
+      state.expenses = state.expenses.filter(x => x.id !== id);
+      saveAllStorage();
+      renderExpensesTab();
+      showToast('Expense removed', 'info');
+    }
+
+    function handleVendorCsvUpload(ev, vendorName) {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = String(e.target?.result || '');
+        const lines = text.split(/\r?\n/).filter(Boolean);
+        if (lines.length < 2) {
+          showToast(`${vendorName} CSV appears empty`, 'info');
+          return;
+        }
+        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim().toLowerCase());
+        const dateIdx = headers.findIndex(h => h.includes('order date') || h.includes('date'));
+        const itemIdx = headers.findIndex(h => h.includes('title') || h.includes('item') || h.includes('description') || h.includes('product'));
+        const totalIdx = headers.findIndex(h => h.includes('item total') || h.includes('total') || h.includes('amount') || h.includes('price'));
+        const refundIdx = headers.findIndex(h => h.includes('refund') || h.includes('credit'));
+
+        let added = 0;
+        lines.slice(1).forEach((row, idx) => {
+          const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
+          const clean = (i) => (i >= 0 && cols[i] ? cols[i].replace(/^"|"$/g, '').trim() : '');
+          const rawItem = clean(itemIdx >= 0 ? itemIdx : 1);
+          const rawTotal = parseFloat(clean(totalIdx >= 0 ? totalIdx : 2).replace(/[$,]/g, '')) || 0;
+          if (!rawItem || rawTotal <= 0) return;
+
+          const rawDate = normalizeAnyDate(clean(dateIdx >= 0 ? dateIdx : 0) || TODAY_ISO);
+          const rawRefund = refundIdx >= 0 ? (parseFloat(clean(refundIdx).replace(/[$,]/g, '')) || 0) : 0;
+          const lower = rawItem.toLowerCase();
+          const autoCat = (lower.includes('printer') || lower.includes('mixer') || lower.includes('airbrush'))
+            ? 'Capital Expenditure'
+            : (lower.includes('edible') || lower.includes('icing') || lower.includes('topper') || lower.includes('wafer'))
+            ? 'Edible Printing & Toppers'
+            : (lower.includes('mold') || lower.includes('scraper') || lower.includes('turntable') || lower.includes('tip'))
+            ? 'Tools & Equipment'
+            : 'Consumables';
+
+          state.expenses.unshift({
+            id: `EXP-${Date.now()}-${idx}`,
+            date: rawDate,
+            store: vendorName,
+            category: autoCat,
+            item: rawItem,
+            gross: rawTotal,
+            refund: rawRefund
+          });
+          added += 1;
+        });
+
+        saveAllStorage();
+        renderExpensesTab();
+        showToast(`Imported ${added} ${vendorName} expense items!`, 'success');
+      };
+      reader.readAsText(file);
+      ev.target.value = '';
+    }
+
+    // =========================================================================
+    // 7. GOOGLE SHEET SYNC (CLEAN 15-COLUMN CAKEFLAKES_ORDERS)
+    // =========================================================================
+    function openSheetSyncModal() {
+      document.getElementById('sheetCsvInput').value = state.sheetConfig.csvUrl || '';
+      document.getElementById('sheetScriptInput').value = state.sheetConfig.scriptUrl || '';
+      const m = document.getElementById('sheetSyncModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeSheetSyncModal() {
+      const m = document.getElementById('sheetSyncModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function updateSheetStatusBadge() {
+      const dot = document.getElementById('sheetStatusDot');
+      const txt = document.getElementById('sheetStatusText');
+      if (!dot || !txt) return;
+      if (state.sheetConfig.scriptUrl) {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+        txt.textContent = '2-Way Sheet Live';
+      } else if (state.sheetConfig.csvUrl) {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-blue-500';
+        txt.textContent = 'CSV Feed Live';
+      } else {
+        dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+        txt.textContent = 'Google Sheet Sync';
+      }
+    }
+
+    async function pushOrderToGoogleSheet(order, action = 'upsert') {
+      const scriptUrl = state.sheetConfig?.scriptUrl;
+      if (!scriptUrl || !order) return;
+      const tierSpecsStr = order.tierSpecs || getOrderTierList(order)
+        .map(t => `${t.label}: ${[t.diameter, t.shape, t.height, t.servings ? `${t.servings} srv` : '', t.flavor].filter(Boolean).join(' ')}`)
+        .join(' | ');
+      const frostingColorsStr = order.frostingColors || [order.frosting, order.colors].filter(Boolean).join(' • ');
+
+      const cleanPayload = {
+        id: order.id,
+        pickupDate: order.pickupDate,
+        customerName: order.customerName,
+        phone: order.phone || '',
+        eventType: order.eventType || 'Birthday',
+        themeTitle: order.themeTitle || order.cakeDetails || '',
+        tiers: order.tiers || '1 Tier',
+        tierSpecs: tierSpecsStr,
+        frostingColors: frostingColorsStr,
+        notes: order.notes || '',
+        totalPrice: parseFloat(order.totalPrice) || 0,
+        advancePaid: parseFloat(order.advancePaid) || 0,
+        advanceMode: order.advanceMode || 'Zelle',
+        finalPaid: parseFloat(order.finalPaid) || 0,
+        phase: order.phase || 'Order Received'
+      };
+
+      try {
+        await fetch(scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, order: cleanPayload })
+        });
+      } catch (err) {
+        console.warn('Background push to Google Sheet skipped:', err);
+      }
+    }
+
+    function parseTierSpecsText(specsText, tiersStr, fallbackShape = 'Round') {
+      const raw = String(specsText || '').trim();
+      if (!raw) return buildDefaultTierRows(tiersStr, fallbackShape, []);
+      const parts = raw.split('|').map(s => s.trim()).filter(Boolean);
+      const parsed = parts.map((part, idx) => {
+        const colonIdx = part.indexOf(':');
+        const label = colonIdx > -1 ? part.slice(0, colonIdx).trim() : `Tier ${idx + 1}`;
+        const body = colonIdx > -1 ? part.slice(colonIdx + 1).trim() : part;
+        const diaMatch = body.match(/(\d+(?:\.\d+)?")/);
+        const shapeMatch = SHAPE_OPTIONS.find(sh => body.toLowerCase().includes(sh.toLowerCase()));
+        return {
+          label,
+          shape: shapeMatch || fallbackShape,
+          diameter: diaMatch ? diaMatch[1] : '',
+          height: '',
+          servings: '',
+          flavor: body
+        };
+      });
+      return buildDefaultTierRows(tiersStr, fallbackShape, parsed);
+    }
+
+    function mapSheetRowToOrder(r, idx) {
+      const tiersStr = TIER_OPTIONS.includes(r.tiers) ? r.tiers : '1 Tier';
+      const resolvedPhase = PHASES.some(p => p.name === r.phase) ? r.phase : 'Order Received';
+      const fcParts = String(r.frostingColors || '').split('•').map(s => s.trim());
+      const frostingStr = fcParts[0] || 'Swiss Meringue Buttercream';
+      const colorsStr = fcParts.slice(1).join(' • ');
+      const tierSpecsStr = String(r.tierSpecs || '').trim();
+      const total = parseFloat(r.totalPrice) || 0;
+      const adv = parseFloat(r.advancePaid) || 0;
+      const fin = parseFloat(r.finalPaid) || 0;
+
+      return {
+        id: String(r.id || `CF-${101 + idx}`),
+        pickupDate: parseShortSheetDate(r.pickupDate || TODAY_ISO),
+        customerName: String(r.customerName || 'Customer').trim(),
+        phone: String(r.phone || '').trim(),
+        eventType: String(r.eventType || 'Birthday').trim(),
+        themeTitle: String(r.themeTitle || 'Custom Cake').trim(),
+        tiers: tiersStr,
+        shape: 'Round',
+        tierDetails: parseTierSpecsText(tierSpecsStr, tiersStr, 'Round'),
+        tierSpecs: tierSpecsStr,
+        flavors: tierSpecsStr,
+        frosting: frostingStr,
+        colors: colorsStr,
+        frostingColors: String(r.frostingColors || '').trim(),
+        notes: String(r.notes || '').trim(),
+        totalPrice: total,
+        advancePaid: adv,
+        advanceMode: String(r.advanceMode || 'Zelle').trim(),
+        finalPaid: fin,
+        finalMode: fin > 0 ? (r.advanceMode || 'Zelle') : (adv >= total && total > 0 ? 'Paid in Advance' : 'Pending'),
+        phase: resolvedPhase
+      };
+    }
+
+    function parseOrdersCsvRows(text) {
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (lines.length < 2) return [];
+      const imported = [];
+      lines.slice(1).forEach((row, idx) => {
+        const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
+        const clean = (i) => (cols[i] || '').replace(/^"|"$/g, '').trim();
+        const custName = clean(2);
+        if (!custName) return;
+
+        imported.push(mapSheetRowToOrder({
+          id: clean(0) || `CF-${101 + idx}`,
+          pickupDate: clean(1),
+          customerName: custName,
+          phone: clean(3),
+          eventType: clean(4) || 'Birthday',
+          themeTitle: clean(5) || 'Custom Cake',
+          tiers: clean(6) || '1 Tier',
+          tierSpecs: clean(7),
+          frostingColors: clean(8),
+          notes: clean(9),
+          totalPrice: clean(10).replace(/[$,]/g, ''),
+          advancePaid: clean(11).replace(/[$,]/g, ''),
+          advanceMode: clean(12) || 'Zelle',
+          finalPaid: clean(13).replace(/[$,]/g, ''),
+          phase: clean(14) || 'Order Received'
+        }, idx));
+      });
+      return imported;
+    }
+
+    function fetchScriptJsonp(scriptUrl) {
+      return new Promise((resolve, reject) => {
+        const cbName = `cfJsonpCb_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
+        const script = document.createElement('script');
+        const timer = setTimeout(() => {
+          delete window[cbName];
+          script.remove();
+          reject(new Error('JSONP timeout'));
+        }, 9000);
+
+        window[cbName] = (data) => {
+          clearTimeout(timer);
+          delete window[cbName];
+          script.remove();
+          resolve(data);
+        };
+
+        script.onerror = () => {
+          clearTimeout(timer);
+          delete window[cbName];
+          script.remove();
+          reject(new Error('JSONP script load error'));
+        };
+
+        const sep = scriptUrl.includes('?') ? '&' : '?';
+        script.src = `${scriptUrl}${sep}callback=${cbName}&t=${Date.now()}`;
+        document.body.appendChild(script);
+      });
+    }
+
+    async function refreshFromGoogleSheet(silent = false) {
+      const { scriptUrl, csvUrl } = state.sheetConfig;
+      if (!scriptUrl && !csvUrl) {
+        openSheetSyncModal();
+        showToast('Paste your Google Sheet CSV or Apps Script URL first to sync live!', 'info');
+        return;
+      }
+
+      const icon = document.getElementById('refreshSheetIcon');
+      if (icon) icon.classList.add('fa-spin');
+
+      try {
+        if (scriptUrl) {
+          let json = null;
+          try {
+            const bustUrl = `${scriptUrl}${scriptUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
+            const res = await fetch(bustUrl);
+            json = await res.json();
+          } catch (fetchErr) {
+            // Sandboxed blob: preview frames block cross-origin redirects; fall back to JSONP script tag
+            json = await fetchScriptJsonp(scriptUrl);
+          }
+
+          if (json && Array.isArray(json.orders)) {
+            state.orders = json.orders.map((r, idx) => mapSheetRowToOrder(r, idx));
+            saveAllStorage();
+            renderAll();
+            if (!silent) showToast(`Refreshed ${state.orders.length} live orders from Q4_2026_Orders!`, 'success');
+            return;
+          }
+        }
+
+        if (csvUrl) {
+          const bustCsv = `${csvUrl}${csvUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
+          const res = await fetch(bustCsv);
+          const csvText = await res.text();
+          const parsedOrders = parseOrdersCsvRows(csvText);
+          if (parsedOrders.length > 0) {
+            state.orders = parsedOrders;
+            saveAllStorage();
+            renderAll();
+            if (!silent) showToast(`Refreshed ${state.orders.length} live orders from Published Google Sheet CSV!`, 'success');
+            return;
+          }
+        }
+
+        if (!silent) showToast('Connected to sheet, but no order rows with Total Quoted > 0 were found yet.', 'info');
+      } catch (err) {
+        console.warn('Google Sheet refresh blocked or unreachable:', err.message);
+        if (!silent) {
+          showToast('Preview sandbox blocked direct fetch — redeploy Apps Script with updated doGet(e) or use "Import Orders CSV" in Tab 1.', 'info');
+        }
+      } finally {
+        if (icon) icon.classList.remove('fa-spin');
+      }
+    }
+
+    async function saveAndSyncGoogleSheet() {
+      const csvUrl = document.getElementById('sheetCsvInput').value.trim();
+      const scriptUrl = document.getElementById('sheetScriptInput').value.trim();
+      state.sheetConfig = { csvUrl, scriptUrl };
+      saveAllStorage();
+      updateSheetStatusBadge();
+      closeSheetSyncModal();
+      await refreshFromGoogleSheet(false);
+    }
+
+    function disconnectGoogleSheet() {
+      state.sheetConfig = { csvUrl: '', scriptUrl: '' };
+      saveAllStorage();
+      updateSheetStatusBadge();
+      closeSheetSyncModal();
+      showToast('Using local browser storage mode', 'info');
+    }
+    function copyAppsScript() {
+      const ta = document.createElement('textarea');
+      ta.value = document.getElementById('appsScriptCodeBlock').textContent;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Apps Script copied to clipboard!', 'success');
+    }
+
+    function exportOrdersCsv() {
+      const headers = ['Order ID', 'Pickup Date', 'Customer Name', 'Phone', 'Event Type', 'Theme Title', 'Tiers', 'Shape', 'Diameter', 'Height', 'Servings', 'Flavors', 'Frosting', 'Colors', 'Notes', 'Total Price', 'Advance Paid', 'Advance Mode', 'Balance Due', 'Final Paid', 'Final Mode', 'Phase'];
+      const rows = state.orders.map(o => [
+        o.id, o.pickupDate, o.customerName, o.phone, o.eventType, o.themeTitle || o.cakeDetails,
+        o.tiers, o.shape, o.diameter, o.height, o.servings, o.flavors, o.frosting, o.colors, o.notes,
+        o.totalPrice, o.advancePaid, o.advanceMode, getOrderBalance(o), o.finalPaid, o.finalMode, o.phase
+      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_orders_income.csv');
+    }
+
+    function exportExpensesCsv() {
+      const headers = ['Date', 'Store', 'Category', 'Item Description', 'Gross Cost', 'Refund', 'Net Cost'];
+      const rows = state.expenses.map(e => [
+        e.date, e.store, e.category, e.item, e.gross, e.refund, getExpenseNet(e)
+      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_expenses_2026.csv');
+    }
+
+    function triggerCsvDownload(text, filename) {
+      const blob = new Blob([text], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = filename;
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Downloaded ${filename}`, 'success');
+    }
+
+    function parseShortSheetDate(raw) {
+      if (raw instanceof Date && !isNaN(raw.getTime())) {
+        return raw.toISOString().slice(0, 10);
+      }
+      const s = String(raw || '').trim();
+      if (!s) return '2026-11-15';
+      // Handle ISO strings like "2026-11-21" or "2026-11-21T08:00:00.000Z"
+      if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
+      // Handle slash dates like "11/21/2026" or "11/21"
+      const slashM = s.match(/^(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);
+      if (slashM) {
+        const mm = slashM[1].padStart(2, '0');
+        const dd = slashM[2].padStart(2, '0');
+        const yyyy = slashM[3] ? (slashM[3].length === 2 ? `20${slashM[3]}` : slashM[3]) : '2026';
+        return `${yyyy}-${mm}-${dd}`;
+      }
+      // Handle short month names like "21-Nov", "14 Nov", "Nov 21"
+      const monthMap = { jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06', jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12' };
+      const dmy = s.match(/^(\d{1,2})[-\s]([A-Za-z]{3})/);
+      if (dmy) {
+        const dd = dmy[1].padStart(2, '0');
+        const mm = monthMap[dmy[2].toLowerCase()] || '11';
+        return `2026-${mm}-${dd}`;
+      }
+      const mdy = s.match(/^([A-Za-z]{3})[-\s](\d{1,2})/);
+      if (mdy) {
+        const mm = monthMap[mdy[1].toLowerCase()] || '11';
+        const dd = mdy[2].padStart(2, '0');
+        return `2026-${mm}-${dd}`;
+      }
+      return normalizeAnyDate(s);
+    }
+
+    function handleCustomerOrdersCsvUpload(ev) {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = String(e.target?.result || '');
+        const imported = parseOrdersCsvRows(text);
+        if (imported.length > 0) {
+          state.orders = imported;
+          saveAllStorage();
+          renderAll();
+          showToast(`Imported ${imported.length} clean orders from Cakeflakes_Orders CSV!`, 'success');
+        } else {
+          showToast('No customer rows found. Ensure Row 1 has the 15 headers (A–O) and rows start at Row 2.', 'info');
+        }
+      };
+      reader.readAsText(file);
+      ev.target.value = '';
+    }
+
+    function normalizeAnyDate(str) {
+      if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
+      const d = new Date(str);
+      if (!isNaN(d.getTime())) return d.toISOString().slice(0, 10);
+      return '2026-11-15';
+    }
+
+    function setReconcilePeriod(period) {
+      state.reconcilePeriod = period;
+      renderReconcileTab();
+    }
+
+    function handleStatementCsvUpload(ev) {
+      const file = ev.target.files?.[0];
+      if (!file) return;
+      const accountType = document.getElementById('stmtAccountTypeSelect')?.value || 'Bank Checking (Debit & Credit)';
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const text = String(e.target?.result || '');
+        const lines = text.split(/\r?\n/).filter(Boolean);
+        if (lines.length < 2) {
+          showToast('Statement CSV appears empty', 'info');
+          return;
+        }
+        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim().toLowerCase());
+        const dateIdx = headers.findIndex(h => h.includes('date'));
+        const descIdx = headers.findIndex(h => h.includes('desc') || h.includes('memo') || h.includes('merchant') || h.includes('name'));
+        const amtIdx = headers.findIndex(h => h === 'amount' || h.includes('amount'));
+        const debitIdx = headers.findIndex(h => h.includes('debit') || h.includes('withdrawal'));
+        const creditIdx = headers.findIndex(h => h.includes('credit') || h.includes('deposit'));
+
+        const parsed = [];
+        lines.slice(1).forEach((row, idx) => {
+          const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
+          const rawDate = (cols[dateIdx >= 0 ? dateIdx : 0] || '').replace(/^"|"$/g, '').trim();
+          const rawDesc = (cols[descIdx >= 0 ? descIdx : 1] || 'Bank Transaction').replace(/^"|"$/g, '').trim();
+          let amount = 0;
+          if (amtIdx >= 0) {
+            amount = parseFloat((cols[amtIdx] || '0').replace(/["$,]/g, '').trim());
+          } else if (debitIdx >= 0 || creditIdx >= 0) {
+            const deb = debitIdx >= 0 ? (parseFloat((cols[debitIdx] || '0').replace(/["$,]/g, '').trim()) || 0) : 0;
+            const cred = creditIdx >= 0 ? (parseFloat((cols[creditIdx] || '0').replace(/["$,]/g, '').trim()) || 0) : 0;
+            amount = cred > 0 ? cred : -Math.abs(deb);
+          }
+          if (!isNaN(amount) && amount !== 0) {
+            parsed.push({
+              id: `STMT-${Date.now()}-${idx}`,
+              date: normalizeAnyDate(rawDate),
+              account: accountType,
+              desc: rawDesc,
+              amount
+            });
+          }
+        });
+        state.statementLines = [...state.statementLines, ...parsed];
+        saveAllStorage();
+        renderReconcileTab();
+        showToast(`Loaded ${parsed.length} lines from ${file.name} (${accountType})`, 'success');
+      };
+      reader.readAsText(file);
+      ev.target.value = '';
+    }
+
+    function loadSampleStatementLines() {
+      state.statementLines = [
+        { id: 'STMT-1', date: '2026-11-10', account: 'Business Credit Card', desc: 'SQUARE *CAKEFLAKES DEPOSIT (PHILIPS)', amount: 387.00 },
+        { id: 'STMT-2', date: '2026-11-10', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM GRACE', amount: 170.00 },
+        { id: 'STMT-3', date: '2026-11-13', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM SALIL', amount: 120.00 },
+        { id: 'STMT-4', date: '2026-11-14', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM DENA', amount: 260.00 },
+        { id: 'STMT-5', date: '2026-11-03', account: 'Business Credit Card', desc: 'AMZN MKTP US*EDIBLE INK & SHEETS', amount: -64.99 },
+        { id: 'STMT-6', date: '2026-11-05', account: 'Business Credit Card', desc: 'DAWNS CANDY & CAKE SUPPLY BOTHELL', amount: -78.50 },
+        { id: 'STMT-7', date: '2026-11-07', account: 'Business Credit Card', desc: 'COSTCO WHSE #0102 WOODINVILLE', amount: -82.40 },
+        { id: 'STMT-8', date: '2026-11-10', account: 'Business Credit Card', desc: 'AMZN MKTP US*GOLD CAKE DRUMS', amount: -34.95 },
+        { id: 'STMT-9', date: '2026-11-12', account: 'Business Credit Card', desc: 'TEMU.COM*SILICONE MOLDS', amount: -24.80 },
+        { id: 'STMT-10', date: '2026-11-13', account: 'Business Credit Card', desc: 'AMZN MKTP US*CRICUT FOIL', amount: -19.99 },
+        { id: 'STMT-11', date: '2026-11-14', account: 'Bank Checking (Debit & Credit)', desc: 'SAFEWAY #1551 BOTHELL', amount: -36.25 },
+        { id: 'STMT-12', date: '2026-11-01', account: 'Business Credit Card', desc: 'AMZN MKTP US*CAKE TURNTABLE', amount: -89.00 },
+        { id: 'STMT-13', date: '2026-11-15', account: 'Business Credit Card', desc: 'MICHAELS STORES #8821 RIBBON & BOXES', amount: -28.40 }
+      ];
+      saveAllStorage();
+      renderReconcileTab();
+      showToast('Loaded sample Nov 2026 Bank & Credit Card statement', 'info');
+    }
+
+    function clearStatementLines() {
+      state.statementLines = [];
+      saveAllStorage();
+      renderReconcileTab();
+      showToast('Cleared uploaded statement lines', 'info');
+    }
+
+    function logMissingExpenseFromStatement(lineId) {
+      const line = state.statementLines.find(x => x.id === lineId);
+      if (!line) return;
+      state.expenses.unshift({
+        id: `EXP-${Date.now()}`,
+        date: line.date,
+        store: line.desc.toLowerCase().includes('amazon') || line.desc.toLowerCase().includes('amzn') ? 'Amazon' :
+               line.desc.toLowerCase().includes('costco') ? 'Costco' :
+               line.desc.toLowerCase().includes('safeway') ? 'Safeway' :
+               line.desc.toLowerCase().includes('fred') ? 'Fred Meyer' :
+               line.desc.toLowerCase().includes('temu') ? 'Temu' : 'Other',
+        category: 'Consumables',
+        item: line.desc,
+        gross: Math.abs(line.amount),
+        refund: 0
+      });
+      saveAllStorage();
+      renderAll();
+      showToast(`Added "${line.desc}" to Tab 3 Expenses — variance resolved!`, 'success');
+    }
+
+    function renderReconcileTab() {
+      const isMonth = state.reconcilePeriod === 'MONTH';
+      const selectedYm = document.getElementById('recMonthSelect')?.value || '2026-11';
+      document.getElementById('recMonthSelect').style.display = isMonth ? 'inline-block' : 'none';
+
+      document.getElementById('recPeriodMonthBtn').className = isMonth
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200';
+      document.getElementById('recPeriodYtdBtn').className = !isMonth
+        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs'
+        : 'px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200';
+
+      const inPeriod = (dateStr) => isMonth ? String(dateStr).startsWith(selectedYm) : String(dateStr).startsWith('2026');
+
+      const periodOrders = state.orders.filter(o => inPeriod(o.pickupDate));
+      const periodExpenses = state.expenses.filter(e => inPeriod(e.date));
+      const periodStmt = state.statementLines.filter(l => inPeriod(l.date));
+
+      const loggedIncome = periodOrders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
+      const loggedExpense = periodExpenses.reduce((s, e) => s + getExpenseNet(e), 0);
+
+      const stmtIncome = periodStmt.filter(l => l.amount > 0).reduce((s, l) => s + l.amount, 0);
+      const stmtExpense = periodStmt.filter(l => l.amount < 0).reduce((s, l) => s + Math.abs(l.amount), 0);
+
+      const incVar = Number((loggedIncome - stmtIncome).toFixed(2));
+      const expVar = Number((loggedExpense - stmtExpense).toFixed(2));
+
+      document.getElementById('recLoggedIncome').textContent = fmtMoney(loggedIncome);
+      document.getElementById('recStmtIncome').textContent = fmtMoney(stmtIncome);
+      document.getElementById('recIncomeVariance').textContent = `${incVar >= 0 ? '+' : ''}${fmtMoney(incVar)}`;
+
+      document.getElementById('recLoggedExpense').textContent = fmtMoney(loggedExpense);
+      document.getElementById('recStmtExpense').textContent = fmtMoney(stmtExpense);
+      document.getElementById('recExpenseVariance').textContent = `${expVar >= 0 ? '+' : ''}${fmtMoney(expVar)}`;
+
+      styleVarianceCard('recIncomeCard', 'recIncomeVarBox', 'recIncomeVariance', 'recIncomeStatusPill', incVar, periodStmt.length > 0);
+      styleVarianceCard('recExpenseCard', 'recExpenseVarBox', 'recExpenseVariance', 'recExpenseStatusPill', expVar, periodStmt.length > 0);
+
+      // Statement lines matching table
+      const tbody = document.getElementById('reconcileLinesBody');
+      const emptyEl = document.getElementById('reconcileEmptyState');
+      if (periodStmt.length === 0) {
+        tbody.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+      } else {
+        emptyEl.classList.add('hidden');
+        tbody.innerHTML = periodStmt.map(line => {
+          const isDeposit = line.amount > 0;
+          const absAmt = Math.abs(line.amount);
+          const matched = isDeposit
+            ? periodOrders.some(o => Math.abs(((parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0)) - absAmt) < 0.05 || Math.abs((parseFloat(o.advancePaid) || 0) - absAmt) < 0.05)
+            : periodExpenses.some(e => Math.abs(getExpenseNet(e) - absAmt) < 0.05);
+
+          return `
+            <tr class="${matched ? 'hover:bg-cream-50' : 'bg-amber-50/70'} transition">
+              <td class="py-3 px-4 text-xs font-medium whitespace-nowrap">${esc(line.date)}</td>
+              <td class="py-3 px-4 text-xs font-semibold text-cocoa-700 whitespace-nowrap">${esc(line.account)}</td>
+              <td class="py-3 px-4 font-medium text-cocoa-900">${esc(line.desc)}</td>
+              <td class="py-3 px-4 text-right font-bold tabular-nums whitespace-nowrap ${isDeposit ? 'text-emerald-700' : 'text-cocoa-900'}">
+                ${isDeposit ? '+' : '-'}${fmtMoney(absAmt)}
+              </td>
+              <td class="py-3 px-4 whitespace-nowrap">
+                ${matched
+                  ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-200"><i class="fa-solid fa-check"></i> Matched</span>`
+                  : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300"><i class="fa-solid fa-triangle-exclamation"></i> Unmatched Variance</span>`
+                }
+              </td>
+              <td class="py-3 px-4 text-right whitespace-nowrap">
+                ${!matched && !isDeposit
+                  ? `<button onclick="logMissingExpenseFromStatement('${line.id}')" class="px-2.5 py-1 rounded-lg bg-berry-700 hover:bg-berry-800 text-white text-xs font-semibold transition">+ Add to Expenses</button>`
+                  : `<span class="text-xs text-cocoa-700/50">—</span>`
+                }
+              </td>
+            </tr>
+          `;
+        }).join('');
+      }
+
+      renderDorQuarterlyTable();
+    }
+
+    function styleVarianceCard(cardId, boxId, valId, pillId, variance, hasStmt) {
+      const card = document.getElementById(cardId);
+      const box = document.getElementById(boxId);
+      const val = document.getElementById(valId);
+      const pill = document.getElementById(pillId);
+
+      if (!hasStmt) {
+        card.className = 'bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3';
+        box.className = 'bg-cream-50 p-3 rounded-xl border border-cream-200';
+        val.className = 'text-lg sm:text-xl font-bold text-cocoa-800 tabular-nums';
+        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800';
+        pill.textContent = 'Upload Statement';
+        return;
+      }
+
+      if (Math.abs(variance) < 0.05) {
+        card.className = 'bg-white rounded-2xl p-5 border-2 border-emerald-400 shadow-xs space-y-3';
+        box.className = 'bg-emerald-50 p-3 rounded-xl border border-emerald-200';
+        val.className = 'text-lg sm:text-xl font-bold text-emerald-800 tabular-nums';
+        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900';
+        pill.textContent = 'Exact Match ✓';
+      } else {
+        card.className = 'bg-white rounded-2xl p-5 border-2 border-amber-400 shadow-xs space-y-3';
+        box.className = 'bg-amber-50 p-3 rounded-xl border border-amber-300';
+        val.className = 'text-lg sm:text-xl font-bold text-amber-900 tabular-nums';
+        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900';
+        pill.textContent = 'Variance Highlighted';
+      }
+    }
+
+    function getDorQuarterlyData() {
+      const quarters = [
+        { q: 'Q1 (Jan – Mar 2026)', due: 'Apr 30, 2026', months: ['2026-01', '2026-02', '2026-03'] },
+        { q: 'Q2 (Apr – Jun 2026)', due: 'Jul 31, 2026', months: ['2026-04', '2026-05', '2026-06'] },
+        { q: 'Q3 (Jul – Sep 2026)', due: 'Oct 31, 2026', months: ['2026-07', '2026-08', '2026-09'] },
+        { q: 'Q4 (Oct – Dec 2026)', due: 'Jan 31, 2027', months: ['2026-10', '2026-11', '2026-12'] }
+      ];
+
+      return quarters.map(item => {
+        const qOrders = state.orders.filter(o => item.months.some(m => String(o.pickupDate).startsWith(m)));
+        const qExpenses = state.expenses.filter(e => item.months.some(m => String(e.date).startsWith(m)));
+        let grossCollected = 0, zelle = 0, card = 0, cash = 0;
+
+        qOrders.forEach(o => {
+          const adv = parseFloat(o.advancePaid) || 0;
+          const fin = parseFloat(o.finalPaid) || 0;
+          grossCollected += (adv + fin);
+          if (o.advanceMode === 'Zelle') zelle += adv;
+          else if (o.advanceMode === 'Credit Card') card += adv;
+          else if (o.advanceMode === 'Cash') cash += adv;
+
+          if (fin > 0) {
+            if (o.finalMode === 'Zelle') zelle += fin;
+            else if (o.finalMode === 'Credit Card') card += fin;
+            else if (o.finalMode === 'Cash') cash += fin;
+          }
+        });
+
+        const expenses = qExpenses.reduce((s, e) => s + getExpenseNet(e), 0);
+        return {
+          ...item,
+          orderCount: qOrders.length,
+          grossCollected,
+          zelle,
+          card,
+          cash,
+          expenses,
+          netProfit: grossCollected - expenses
+        };
+      });
+    }
+
+    function renderDorQuarterlyTable() {
+      const rows = getDorQuarterlyData();
+      document.getElementById('dorQuarterlyBody').innerHTML = rows.map(r => `
+        <tr class="hover:bg-cream-50 transition">
+          <td class="py-3.5 px-4 font-bold text-cocoa-900 whitespace-nowrap">${r.q}</td>
+          <td class="py-3.5 px-4 text-xs font-medium text-cocoa-700 whitespace-nowrap">${r.due}</td>
+          <td class="py-3.5 px-4 text-right font-semibold tabular-nums">${r.orderCount}</td>
+          <td class="py-3.5 px-4 text-right font-bold text-cocoa-900 tabular-nums">${fmtMoney(r.grossCollected)}</td>
+          <td class="py-3.5 px-4 text-right text-xs text-cocoa-700 whitespace-nowrap tabular-nums">
+            Zelle ${fmtMoney(r.zelle)} • Card ${fmtMoney(r.card)} • Cash ${fmtMoney(r.cash)}
+          </td>
+          <td class="py-3.5 px-4 text-right font-semibold text-rose-800 tabular-nums">${fmtMoney(r.expenses)}</td>
+          <td class="py-3.5 px-4 text-right font-bold tabular-nums ${r.netProfit >= 0 ? 'text-emerald-800' : 'text-rose-800'}">${fmtMoney(r.netProfit)}</td>
+        </tr>
+      `).join('');
+    }
+
+    function exportDorQuarterlyCsv() {
+      const headers = ['Quarter', 'WA DOR Due Date', 'Orders', 'Gross Collected Sales (Taxable)', 'Zelle', 'Credit Card', 'Cash', 'Supply Expenses', 'Net Profit'];
+      const rows = getDorQuarterlyData().map(r => [
+        r.q, r.due, r.orderCount, r.grossCollected.toFixed(2), r.zelle.toFixed(2), r.card.toFixed(2), r.cash.toFixed(2), r.expenses.toFixed(2), r.netProfit.toFixed(2)
+      ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','));
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_WA_DOR_quarterly_2026.csv');
+    }
+
+    // =========================================================================
+    // 8. HELPERS
+    // =========================================================================
+    function fmtMoney(v) {
+      return (parseFloat(v) || 0).toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+    }
+    function esc(s) {
+      return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+    }
+    function showToast(msg, type = 'info') {
+      const box = document.getElementById('toastContainer');
+      const el = document.createElement('div');
+      el.className = `pointer-events-auto flex items-center gap-2 px-4 py-3 rounded-2xl shadow-lg text-xs sm:text-sm font-medium text-white ${
+        type === 'success' ? 'bg-cocoa-900 border border-emerald-500' : 'bg-cocoa-800 border border-cream-300/30'
+      }`;
+      el.innerHTML = `<i class="fa-solid ${type === 'success' ? 'fa-circle-check text-emerald-400' : 'fa-sparkles text-berry-300'}"></i><span>${esc(msg)}</span>`;
+      box.appendChild(el);
+      setTimeout(() => { el.style.opacity = '0'; setTimeout(() => el.remove(), 250); }, 2600);
+    }
+  </script>
+</body>
+</html>
