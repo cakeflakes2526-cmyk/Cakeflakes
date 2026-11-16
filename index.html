@@ -340,27 +340,28 @@
     <!-- TAB 2: CASH INCOME & INVOICES                                         -->
     <!-- ===================================================================== -->
     <div id="tabPanel-income" class="hidden space-y-6">
+      <!-- Consolidated All-Time + Q4 2026 Live KPIs -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
         <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Total Contracted</span>
-          <div id="incKpiContracted" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
-          <p id="incKpiOrderCount" class="text-xs text-cocoa-700/75 mt-1">Across 0 confirmed orders</p>
+          <span class="text-xs font-bold uppercase tracking-wider text-berry-800">All-Time Consolidated Revenue</span>
+          <div id="incKpiAllTimeRev" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$19,853.00</div>
+          <p id="incKpiAllTimeOrders" class="text-xs text-cocoa-700/75 mt-1">142 historical + 0 Q4 2026 orders</p>
         </div>
 
         <div class="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Collected to Date</span>
-          <div id="incKpiCollected" class="text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums">$0.00</div>
-          <p class="text-xs text-emerald-800/80 mt-1">Advances + Pickup Balances</p>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Q4 2026 Live Booked (Orders Sheet)</span>
+          <div id="incKpiQ4Live" class="text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums">$0.00</div>
+          <p id="incKpiQ4CollectedSub" class="text-xs text-emerald-800/80 mt-1">Collected: $0.00 • Due: $0.00</p>
         </div>
 
         <div class="bg-amber-50/70 rounded-2xl p-4 border border-amber-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Pending at Pickup</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-900">Pending at Pickup (Orders Sheet)</span>
           <div id="incKpiPending" class="text-2xl sm:text-3xl font-bold text-amber-900 mt-2 tabular-nums">$0.00</div>
           <p id="incKpiPendingCount" class="text-xs text-amber-800/80 mt-1">0 orders due at pickup</p>
         </div>
 
         <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs space-y-1.5">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Collected by Mode</span>
+          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Live Sheet Collected by Mode</span>
           <div class="text-xs space-y-1 pt-1">
             <div class="flex justify-between"><span class="font-semibold text-emerald-800">Cash</span><span id="incModeCash" class="font-bold tabular-nums">$0.00</span></div>
             <div class="flex justify-between"><span class="font-semibold text-blue-800">Credit Card</span><span id="incModeCard" class="font-bold tabular-nums">$0.00</span></div>
@@ -374,6 +375,55 @@
         </div>
       </div>
 
+      <!-- Historical Quarterly Income (Q3 2025 - Q3 2026) + Q4 2026 Live Rollup -->
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">Historical Static Ledger + Q4 2026 Live Sync</span>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Quarterly Revenue &amp; Order Volume (2025 – 2026)</h2>
+            <p class="text-xs text-cocoa-700/80">Q3 2025 – Q3 2026 historical baseline ($19,853 across 142 orders) merged live with your Q4 2026 Cakeflakes_Orders sheet.</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="incAvgOrderBadge" class="px-3 py-1.5 rounded-xl bg-cream-50 border border-cream-300 text-xs font-bold text-cocoa-900 tabular-nums">Avg Order: $139.81</span>
+            <button onclick="exportQuarterlyIncomeCsv()" class="px-3.5 py-2 rounded-xl bg-cocoa-900 hover:bg-cocoa-800 text-white text-xs font-semibold shadow-xs">
+              <i class="fa-solid fa-file-csv mr-1"></i> Export Quarterly Summary
+            </button>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 divide-y lg:divide-y-0 lg:divide-x divide-cream-200">
+          <!-- Quarterly Table -->
+          <div class="lg:col-span-3 overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+              <thead>
+                <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                  <th class="py-3 px-4">Quarter / Period</th>
+                  <th class="py-3 px-4">Data Source</th>
+                  <th class="py-3 px-4 text-right">Revenue</th>
+                  <th class="py-3 px-4 text-right">% of Total</th>
+                  <th class="py-3 px-4 text-right">Total Orders</th>
+                </tr>
+              </thead>
+              <tbody id="quarterlyIncomeTableBody" class="divide-y divide-cream-200 text-sm"></tbody>
+            </table>
+          </div>
+
+          <!-- Visual Quarterly Bar Chart -->
+          <div class="lg:col-span-2 p-5 bg-cream-50/40 flex flex-col justify-between space-y-4">
+            <div>
+              <h3 class="font-serif text-base font-bold text-cocoa-900">Quarterly Revenue Trajectory</h3>
+              <p class="text-xs text-cocoa-700/75 mt-0.5">Share of total bakery revenue by quarter</p>
+              <div id="quarterlyRevenueBars" class="mt-4 space-y-3"></div>
+            </div>
+            <div class="bg-white p-3.5 rounded-xl border border-cream-200 text-xs text-cocoa-800 flex items-center justify-between">
+              <span class="font-semibold">Historical Pre-Q4 Baseline:</span>
+              <span class="font-bold text-cocoa-900 tabular-nums">$19,853.00 (142 orders)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Live Order Payment Ledger & Customer Invoices -->
       <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
         <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
           <div>
@@ -405,275 +455,171 @@
     </div>
 
     <!-- ===================================================================== -->
-    <!-- TAB 3: EXPENSES TRACKER                                               -->
-    <!-- ===================================================================== -->
-    <div id="tabPanel-expenses" class="hidden space-y-6">
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3.5">
-        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Gross Spend</span>
-          <div id="expKpiGross" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
-          <p id="expKpiCount" class="text-xs text-cocoa-700/75 mt-1">0 supply receipts</p>
-        </div>
-
-        <div class="bg-blue-50/70 rounded-2xl p-4 border border-blue-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-blue-900">Refunds / Credits</span>
-          <div id="expKpiRefunds" class="text-2xl sm:text-3xl font-bold text-blue-900 mt-2 tabular-nums">$0.00</div>
-          <p class="text-xs text-blue-800/80 mt-1">Returned items credited</p>
-        </div>
-
-        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Net Spend</span>
-          <div id="expKpiNet" class="text-2xl sm:text-3xl font-bold text-cocoa-900 mt-2 tabular-nums">$0.00</div>
-          <p class="text-xs text-cocoa-700/75 mt-1">Gross minus refunds</p>
-        </div>
-
-        <div id="netCashPositionCard" class="bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-900">Net Cash Position</span>
-          <div id="expKpiNetCash" class="text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums">$0.00</div>
-          <p class="text-xs text-emerald-800/80 mt-1">Collected Income − Net Spend</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <section class="lg:col-span-2 bg-white rounded-2xl p-5 border border-cream-200 shadow-xs space-y-4">
-          <div class="flex flex-wrap items-center justify-between gap-2 border-b border-cream-100 pb-3">
-            <div>
-              <h2 class="font-serif text-lg sm:text-xl font-bold text-cocoa-900">Log Store Purchase or Import Vendor CSV</h2>
-              <p class="text-xs text-cocoa-700/80">Supports Amazon Business CSV, Restaurant Depot CSV, or manual entries.</p>
-            </div>
-            <div class="flex flex-wrap gap-2">
-              <label class="cursor-pointer px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200 text-xs font-semibold">
-                <i class="fa-brands fa-amazon mr-1"></i> Amazon CSV
-                <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Amazon')" class="hidden" />
-              </label>
-              <label class="cursor-pointer px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-900 border border-blue-200 text-xs font-semibold">
-                <i class="fa-solid fa-file-invoice mr-1"></i> Restaurant Depot CSV
-                <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Restaurant Depot')" class="hidden" />
-              </label>
-            </div>
-          </div>
-
-          <form onsubmit="addExpenseEntry(event)" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3">
-            <div>
-              <label for="expInputDate" class="block text-xs font-semibold mb-1">Date *</label>
-              <input type="date" id="expInputDate" required value="2026-11-15" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
-            </div>
-            <div>
-              <label for="expInputStore" class="block text-xs font-semibold mb-1">Store *</label>
-              <select id="expInputStore" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
-                <option value="Amazon">Amazon</option>
-                <option value="Restaurant Depot">Restaurant Depot</option>
-                <option value="Temu">Temu</option>
-                <option value="Dawn's Candy & Cake Supply">Dawn's Candy &amp; Cake Supply</option>
-                <option value="Costco">Costco</option>
-                <option value="Safeway">Safeway</option>
-                <option value="Fred Meyer">Fred Meyer</option>
-                <option value="Other">Other</option>
-              </select>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="expInputCategory" class="block text-xs font-semibold mb-1">Category *</label>
-              <select id="expInputCategory" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
-                <option value="Consumables">Consumables</option>
-                <option value="Capital Expenditure">Capital Expenditure</option>
-                <option value="Tools & Equipment">Tools &amp; Equipment</option>
-                <option value="Edible Printing & Toppers">Edible Printing &amp; Toppers</option>
-              </select>
-            </div>
-            <div class="sm:col-span-2">
-              <label for="expInputItem" class="block text-xs font-semibold mb-1">Item Description *</label>
-              <input type="text" id="expInputItem" required placeholder="e.g., 12-inch Tall Window Cake Boxes" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
-            </div>
-            <div>
-              <label for="expInputGross" class="block text-xs font-semibold mb-1">Gross ($) *</label>
-              <input type="number" step="0.01" min="0" id="expInputGross" required placeholder="34.99" oninput="previewExpenseNet()" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
-            </div>
-            <div>
-              <label for="expInputRefund" class="block text-xs font-semibold mb-1">Refund ($)</label>
-              <input type="number" step="0.01" min="0" id="expInputRefund" value="0" oninput="previewExpenseNet()" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
-            </div>
-            <div class="sm:col-span-4 flex items-center justify-between pt-1">
-              <span id="expFormNetBadge" class="text-xs font-bold text-cocoa-800 bg-cream-100 px-3 py-1.5 rounded-xl">Net: $0.00</span>
-              <button type="submit" class="px-5 py-2.5 rounded-xl bg-berry-700 hover:bg-berry-800 text-white text-xs sm:text-sm font-semibold shadow-xs transition">+ Add Expense</button>
-            </div>
-          </form>
-        </section>
-
-        <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs flex flex-col justify-between">
-          <div>
-            <h2 class="font-serif text-lg font-bold text-cocoa-900">Spend by Category</h2>
-            <div id="expCategoryBars" class="mt-4 space-y-3"></div>
-          </div>
-          <button onclick="resetExpenseFilters()" class="mt-4 w-full py-2 text-xs font-semibold bg-cream-100 hover:bg-cream-200 rounded-xl border border-cream-200">Reset Filters</button>
-        </section>
-      </div>
-
-      <section class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs flex flex-wrap items-center justify-between gap-2.5">
-        <div class="flex flex-wrap gap-1.5" id="expStoreChips"></div>
-        <div class="flex items-center gap-2">
-          <select id="expCategoryFilter" onchange="renderExpensesTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
-            <option value="ALL">All Categories</option>
-            <option value="Capital Expenditure">Capital Expenditure</option>
-            <option value="Consumables">Consumables</option>
-            <option value="Tools & Equipment">Tools &amp; Equipment</option>
-            <option value="Edible Printing & Toppers">Edible Printing &amp; Toppers</option>
-          </select>
-          <button onclick="exportExpensesCsv()" class="px-3.5 py-2 rounded-xl bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-200 text-xs font-semibold">
-            <i class="fa-solid fa-file-csv mr-1"></i> Export CSV
-          </button>
-        </div>
-      </section>
-
-      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="w-full text-left border-collapse">
-            <thead>
-              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
-                <th class="py-3 px-4">Date</th>
-                <th class="py-3 px-4">Store</th>
-                <th class="py-3 px-4">Category</th>
-                <th class="py-3 px-4">Item Description</th>
-                <th class="py-3 px-4 text-right">Gross</th>
-                <th class="py-3 px-4 text-right">Refund</th>
-                <th class="py-3 px-4 text-right">Net</th>
-                <th class="py-3 px-4 text-right">Delete</th>
-              </tr>
-            </thead>
-            <tbody id="expensesTableBody" class="divide-y divide-cream-200 text-sm"></tbody>
-          </table>
-        </div>
-      </section>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- TAB 4: TRAFFIC & LEADS (MARKETING CONVERSION)                         -->
-    <!-- ===================================================================== -->
-    <div id="tabPanel-traffic" class="hidden space-y-6">
-      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Monthly Inquiries</span>
-          <div class="text-3xl font-bold text-cocoa-900 mt-2">42</div>
-          <p class="text-xs text-emerald-700 font-semibold mt-1">+18% vs October (Instagram &amp; Website)</p>
-        </div>
-        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Quote-to-Order Conversion</span>
-          <div class="text-3xl font-bold text-berry-700 mt-2">34%</div>
-          <p class="text-xs text-cocoa-700/80 mt-1">Bothell &amp; Mill Creek custom cake requests</p>
-        </div>
-        <div class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs">
-          <span class="text-xs font-bold uppercase tracking-wider text-cocoa-700">Top Lead Channel</span>
-          <div class="text-2xl font-bold text-cocoa-900 mt-2">@Cake_flakes IG</div>
-          <p class="text-xs text-cocoa-700/80 mt-1">Followed by www.cakeflakes.com &amp; referrals</p>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===================================================================== -->
-    <!-- TAB 5: FINANCIAL RECONCILIATION & WA DOR QUARTERLY TAX                -->
+    <!-- TAB 5: FINANCIAL RECONCILIATION & CHASE BANK STATEMENT SYNC           -->
     <!-- ===================================================================== -->
     <div id="tabPanel-reconcile" class="hidden space-y-6">
-      <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
-        <div>
-          <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">100% Local Browser CSV Parsing</span>
-          <h2 class="font-serif text-xl font-bold text-cocoa-900">Bank &amp; Credit Card Statement Reconciliation</h2>
-          <p class="text-xs text-cocoa-700/80 mt-0.5">Compare logged orders &amp; expenses against uploaded bank/card statements and highlight variances.</p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2">
-          <div class="inline-flex bg-cream-100 p-1 rounded-xl border border-cream-200">
-            <button id="recPeriodMonthBtn" onclick="setReconcilePeriod('MONTH')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs">Month-to-Month</button>
-            <button id="recPeriodYtdBtn" onclick="setReconcilePeriod('YTD')" class="px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200">Year-to-Date (2026)</button>
-          </div>
-
-          <select id="recMonthSelect" onchange="renderReconcileTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
-            <option value="2026-10">October 2026</option>
-            <option value="2026-11" selected>November 2026</option>
-            <option value="2026-12">December 2026</option>
-          </select>
-
-          <select id="stmtAccountTypeSelect" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
-            <option value="Bank Checking (Debit & Credit)">Bank Checking (Debit &amp; Credit)</option>
-            <option value="Business Credit Card">Business Credit Card</option>
-          </select>
-
-          <label class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cocoa-900 hover:bg-cocoa-800 text-white text-xs font-semibold shadow-xs transition">
-            <i class="fa-solid fa-upload"></i>
-            <span>Upload Statement CSV</span>
-            <input type="file" accept=".csv" onchange="handleStatementCsvUpload(event)" class="hidden" />
-          </label>
-
-          <button onclick="loadSampleStatementLines()" class="px-3 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-800 border border-cream-300 text-xs font-semibold">Sample Statement</button>
-          <button onclick="clearStatementLines()" class="px-3 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-700 border border-cream-300 text-xs font-semibold">Clear</button>
-        </div>
-      </section>
-
-      <!-- Income & Expense Variance Highlight Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div id="recIncomeCard" class="bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3">
+      <!-- Verified 11-Month Chase Bank Statement Summary Cards (Acct ending 3371) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs space-y-1.5">
           <div class="flex items-center justify-between">
-            <h3 class="font-serif text-lg font-bold text-cocoa-900">Deposits &amp; Collected Income Match</h3>
-            <span id="recIncomeStatusPill" class="px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800">Upload Statement</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-cocoa-700">2025 Statement (Dec 8–31)</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cream-100 text-cocoa-800">Acct ••3371</span>
           </div>
-          <div class="grid grid-cols-3 gap-2 text-xs">
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Logged Orders</span>
-              <span id="recLoggedIncome" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Statement Deposits</span>
-              <span id="recStmtIncome" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
-            </div>
-            <div id="recIncomeVarBox" class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Variance</span>
-              <span id="recIncomeVariance" class="text-base font-bold text-cocoa-800 tabular-nums">$0.00</span>
-            </div>
-          </div>
+          <div class="text-2xl font-bold text-emerald-800 tabular-nums">+$3,050.05 <span class="text-xs font-medium text-cocoa-700">Net</span></div>
+          <p class="text-xs text-cocoa-700/85 tabular-nums">30 Deposits: <strong>$3,395.00</strong> • 3 Withdrawals: <strong>$344.95</strong></p>
         </div>
 
-        <div id="recExpenseCard" class="bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs space-y-1.5">
           <div class="flex items-center justify-between">
-            <h3 class="font-serif text-lg font-bold text-cocoa-900">Card &amp; Debit Spend Match</h3>
-            <span id="recExpenseStatusPill" class="px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800">Upload Statement</span>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-cocoa-700">2026 YTD (Jan 1 – Oct 30)</span>
+            <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">10 Months</span>
           </div>
-          <div class="grid grid-cols-3 gap-2 text-xs">
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Logged Net Spend</span>
-              <span id="recLoggedExpense" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
-            </div>
-            <div class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Statement Charges</span>
-              <span id="recStmtExpense" class="text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
-            </div>
-            <div id="recExpenseVarBox" class="bg-cream-50 p-3 rounded-xl border border-cream-200">
-              <span class="text-cocoa-700/80 block">Variance</span>
-              <span id="recExpenseVariance" class="text-base font-bold text-cocoa-800 tabular-nums">$0.00</span>
-            </div>
+          <div class="text-2xl font-bold text-emerald-800 tabular-nums">+$7,338.62 <span class="text-xs font-medium text-cocoa-700">Net</span></div>
+          <p class="text-xs text-cocoa-700/85 tabular-nums">137 Deposits: <strong>$18,455.05</strong> • 91 Withdrawals: <strong>$11,116.43</strong></p>
+        </div>
+
+        <div class="bg-cocoa-900 text-white rounded-2xl p-4 border border-cocoa-800 shadow-xs space-y-1.5">
+          <div class="flex items-center justify-between">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-berry-200">All-Time Consolidated (11 Mos)</span>
+            <span id="bankSyncModeBadge" class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-white/15 text-cream-100">Verified Baseline</span>
           </div>
+          <div id="bankKpiAllTimeNet" class="text-2xl font-bold text-emerald-300 tabular-nums">+$10,388.67 <span class="text-xs font-normal text-cream-200">Net Cash</span></div>
+          <p id="bankKpiAllTimeSub" class="text-xs text-cream-200/85 tabular-nums">167 Deposits: <strong>$21,850.05</strong> • 94 Withdrawals: <strong>$11,461.38</strong></p>
         </div>
       </div>
 
-      <!-- Statement Line-by-Line Matching Table -->
+      <!-- Dedicated Bank Reconciliation Google Sheet Sync & Filter Bar -->
+      <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs space-y-4">
+        <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-3">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">Separate Read-Only Sheet Connection (Orders Page Untouched)</span>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Chase Bank Reconciliation &amp; All Transactions Sync</h2>
+            <p class="text-xs text-cocoa-700/80 mt-0.5">Connect your <strong>Bank reconcilation</strong> Google Sheet (<code>All Transactions</code> Cols A–J, Row 5+) or upload a CSV export.</p>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-2">
+            <button onclick="openBankSyncModal()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-berry-700 hover:bg-berry-800 text-white text-xs font-semibold shadow-xs transition">
+              <i class="fa-solid fa-building-columns"></i>
+              <span id="bankSyncBtnLabel">Connect Bank Sheet</span>
+            </button>
+
+            <button onclick="refreshBankReconcileSheet()" class="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs transition">
+              <i id="refreshBankIcon" class="fa-solid fa-arrows-rotate"></i>
+              <span>Refresh Bank Sheet</span>
+            </button>
+
+            <label class="cursor-pointer inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs font-semibold transition">
+              <i class="fa-solid fa-file-csv text-emerald-700"></i>
+              <span>Upload Bank CSV</span>
+              <input type="file" accept=".csv" onchange="handleBankReconcileCsvUpload(event)" class="hidden" />
+            </label>
+
+            <button onclick="exportBankReconcileCsv()" class="px-3.5 py-2 rounded-xl bg-white hover:bg-cream-50 text-cocoa-800 border border-cream-300 text-xs font-semibold">
+              <i class="fa-solid fa-download mr-1"></i> Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- Cross-Check Comparison: Booked Order Income vs. Chase Bank Deposits -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-1">
+          <div id="recIncomeCard" class="bg-cream-50/70 rounded-2xl p-4 border border-cream-200 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-base font-bold text-cocoa-900">Booked Order Revenue vs. Chase Bank Deposits</h3>
+              <span id="recIncomeStatusPill" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-900">Cross-Check Live</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <div class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Total Booked Orders</span>
+                <span id="recLoggedIncome" class="text-sm sm:text-base font-bold text-cocoa-900 tabular-nums">$19,853.00</span>
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Chase Deposits</span>
+                <span id="recStmtIncome" class="text-sm sm:text-base font-bold text-emerald-800 tabular-nums">$21,850.05</span>
+              </div>
+              <div id="recIncomeVarBox" class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Bank − Booked Diff</span>
+                <span id="recIncomeVariance" class="text-sm sm:text-base font-bold text-cocoa-900 tabular-nums">+$1,997.05</span>
+              </div>
+            </div>
+          </div>
+
+          <div id="recExpenseCard" class="bg-cream-50/70 rounded-2xl p-4 border border-cream-200 space-y-2.5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-base font-bold text-cocoa-900">Logged Supply Spend vs. Chase Bank Withdrawals</h3>
+              <span id="recExpenseStatusPill" class="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-cream-100 text-cocoa-800">Outflow Check</span>
+            </div>
+            <div class="grid grid-cols-3 gap-2 text-xs">
+              <div class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Tab 3 Net Spend</span>
+                <span id="recLoggedExpense" class="text-sm sm:text-base font-bold text-cocoa-900 tabular-nums">$0.00</span>
+              </div>
+              <div class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Chase Withdrawals</span>
+                <span id="recStmtExpense" class="text-sm sm:text-base font-bold text-rose-800 tabular-nums">$11,461.38</span>
+              </div>
+              <div id="recExpenseVarBox" class="bg-white p-2.5 rounded-xl border border-cream-200">
+                <span class="text-cocoa-700/80 block">Unlogged Bank Outflow</span>
+                <span id="recExpenseVariance" class="text-sm sm:text-base font-bold text-amber-900 tabular-nums">$11,461.38</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Filters for Bank Transactions -->
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cream-100">
+          <div class="flex flex-wrap items-center gap-2">
+            <select id="bankFilterYear" onchange="renderReconcileTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+              <option value="ALL">All Years (2025–2026)</option>
+              <option value="2026">2026 Only</option>
+              <option value="2025">2025 Only</option>
+            </select>
+
+            <select id="bankFilterMonth" onchange="renderReconcileTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+              <option value="ALL">All Statement Months</option>
+            </select>
+
+            <select id="bankFilterType" onchange="renderReconcileTab()" class="px-3 py-2 text-xs font-semibold bg-cream-50 border border-cream-300 rounded-xl">
+              <option value="ALL">Deposits &amp; Withdrawals</option>
+              <option value="DEPOSIT">Deposits Only (+)</option>
+              <option value="WITHDRAWAL">Withdrawals Only (-)</option>
+            </select>
+          </div>
+
+          <div class="relative flex-1 sm:flex-initial">
+            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-cocoa-700/50 text-xs"></i>
+            <input type="text" id="bankSearchInput" oninput="renderReconcileTab()" placeholder="Search Party, Merchant, Category..." class="w-full sm:w-64 pl-8 pr-3 py-2 text-xs bg-cream-50 border border-cream-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-berry-600/30" />
+          </div>
+        </div>
+      </section>
+
+      <!-- All Transactions / Monthly Executive Summary Table -->
       <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
-        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200">
-          <h3 class="font-serif text-lg font-bold text-cocoa-900">Uploaded Statement Line-by-Line Verification</h3>
+        <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h3 id="bankTableHeading" class="font-serif text-lg font-bold text-cocoa-900">Chase Bank Ledger (All Transactions • Cols A–J)</h3>
+            <p id="bankTableSubheading" class="text-xs text-cocoa-700/80">Showing verified statement baseline — connect your Bank reconcilation Apps Script URL above to load all 261 line items.</p>
+          </div>
+          <span id="bankFilteredTotalsPill" class="px-3 py-1.5 rounded-xl bg-white border border-cream-300 text-xs font-bold text-cocoa-900 tabular-nums">
+            Deposits: $21,850.05 • Withdrawals: $11,461.38
+          </span>
         </div>
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse">
             <thead>
               <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
-                <th class="py-3 px-4">Date</th>
-                <th class="py-3 px-4">Account</th>
-                <th class="py-3 px-4">Statement Description</th>
-                <th class="py-3 px-4 text-right">Amount</th>
-                <th class="py-3 px-4">Match Status</th>
-                <th class="py-3 px-4 text-right">Action</th>
+                <th class="py-3 px-3.5">Tx #</th>
+                <th class="py-3 px-3.5">Date</th>
+                <th class="py-3 px-3.5">Statement Month</th>
+                <th class="py-3 px-3.5">Section / Category</th>
+                <th class="py-3 px-3.5">Party / Merchant</th>
+                <th class="py-3 px-3.5 text-right">Deposit ($)</th>
+                <th class="py-3 px-3.5 text-right">Withdrawal ($)</th>
+                <th class="py-3 px-3.5 text-right">Net Impact</th>
+                <th class="py-3 px-3.5 text-right">Action</th>
               </tr>
             </thead>
             <tbody id="reconcileLinesBody" class="divide-y divide-cream-200 text-sm"></tbody>
           </table>
-        </div>
-        <div id="reconcileEmptyState" class="py-10 text-center text-xs text-cocoa-700/80">
-          No bank or credit card CSV uploaded for this period yet. Click <strong>Upload Statement CSV</strong> or <strong>Sample Statement</strong> above.
         </div>
       </section>
 
@@ -682,7 +628,7 @@
         <div class="px-5 py-4 bg-cream-100/80 border-b border-cream-200 flex flex-wrap items-center justify-between gap-2">
           <div>
             <h3 class="font-serif text-lg font-bold text-cocoa-900">Washington DOR Quarterly Excise Tax Summary (2026)</h3>
-            <p class="text-xs text-cocoa-700/80">Quarterly Gross Collected Revenue, Payment Mode Split, Supply Deductions &amp; Net Operating Profit.</p>
+            <p class="text-xs text-cocoa-700/80">Combines Q1–Q3 2026 Historical Revenue ($13,024) with Live Q4 2026 Orders &amp; Supply Deductions.</p>
           </div>
           <button onclick="exportDorQuarterlyCsv()" class="px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold shadow-xs">
             <i class="fa-solid fa-file-csv mr-1"></i> Export WA DOR Quarterly CSV
@@ -696,7 +642,7 @@
                 <th class="py-3 px-4">WA DOR Due Date</th>
                 <th class="py-3 px-4 text-right">Orders</th>
                 <th class="py-3 px-4 text-right">Gross Taxable Sales</th>
-                <th class="py-3 px-4 text-right">Payment Split</th>
+                <th class="py-3 px-4 text-right">Source / Mode Split</th>
                 <th class="py-3 px-4 text-right">Supply Expenses</th>
                 <th class="py-3 px-4 text-right">Net Profit</th>
               </tr>
@@ -705,6 +651,148 @@
           </table>
         </div>
       </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 3: EXPENSES TRACKER                                               -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-expenses" class="hidden space-y-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3">
+        <div class="bg-white rounded-2xl p-4 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-cocoa-700">Net YTD Expenses</span>
+          <div id="expKpiTotal" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">$0.00</div>
+          <p id="expKpiCount" class="text-[11px] text-cocoa-700/75 mt-0.5">0 purchase lines</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border-l-4 border-l-indigo-600 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-indigo-900">Capital Expenditure</span>
+          <div id="expKpiCapEx" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">$0.00</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Equipment &amp; printers</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border-l-4 border-l-amber-600 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-amber-900">Consumables</span>
+          <div id="expKpiConsumables" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">$0.00</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Ingredients &amp; boxes</p>
+        </div>
+
+        <div class="bg-white rounded-2xl p-4 border-l-4 border-l-teal-600 border border-cream-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-teal-900">Tools &amp; Toppers</span>
+          <div id="expKpiTools" class="text-2xl font-bold text-cocoa-900 mt-1.5 tabular-nums">$0.00</div>
+          <p class="text-[11px] text-cocoa-700/75 mt-0.5">Molds, pans &amp; decor</p>
+        </div>
+
+        <div class="bg-emerald-50/70 rounded-2xl p-4 border border-emerald-200 shadow-xs">
+          <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-900">Net Cash Position</span>
+          <div id="expKpiNetCash" class="text-2xl font-bold text-emerald-900 mt-1.5 tabular-nums">$0.00</div>
+          <p class="text-[11px] text-emerald-800/80 mt-0.5">Collected − Net Spend</p>
+        </div>
+      </div>
+
+      <!-- Quick Expense Form + CSV Uploads -->
+      <section class="bg-white rounded-2xl p-5 border border-cream-200 shadow-xs space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Log Store Expense or Import Vendor CSV</h2>
+            <p class="text-xs text-cocoa-700/80">Track Amazon, Restaurant Depot, Temu, Dawn's Candy &amp; Cake Supply, Costco, Safeway &amp; Fred Meyer.</p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs font-semibold transition">
+              <i class="fa-brands fa-amazon text-amber-700"></i>
+              <span>Import Amazon CSV</span>
+              <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Amazon')" class="hidden" />
+            </label>
+            <label class="cursor-pointer inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-cream-100 hover:bg-cream-200 text-cocoa-900 border border-cream-300 text-xs font-semibold transition">
+              <i class="fa-solid fa-warehouse text-emerald-700"></i>
+              <span>Import Restaurant Depot CSV</span>
+              <input type="file" accept=".csv" onchange="handleVendorCsvUpload(event, 'Restaurant Depot')" class="hidden" />
+            </label>
+          </div>
+        </div>
+
+        <form onsubmit="addManualExpense(event)" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-3">
+          <input type="date" id="expFormDate" value="2026-11-16" required class="px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          <select id="expFormStore" class="px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
+            <option value="Amazon">Amazon</option>
+            <option value="Restaurant Depot">Restaurant Depot</option>
+            <option value="Temu">Temu</option>
+            <option value="Dawn's Candy & Cake Supply">Dawn's Candy &amp; Cake Supply</option>
+            <option value="Costco">Costco</option>
+            <option value="Safeway">Safeway</option>
+            <option value="Fred Meyer">Fred Meyer</option>
+            <option value="Other">Other</option>
+          </select>
+          <select id="expFormCat" class="px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl">
+            <option value="Consumables">Consumables</option>
+            <option value="Capital Expenditure">Capital Expenditure</option>
+            <option value="Tools & Equipment">Tools &amp; Equipment</option>
+            <option value="Edible Printing & Toppers">Edible Printing &amp; Toppers</option>
+          </select>
+          <input type="text" id="expFormItem" required placeholder="Item description..." class="lg:col-span-2 px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          <div class="flex gap-2">
+            <input type="number" step="0.01" min="0" id="expFormGross" required placeholder="Cost $" class="w-full px-3 py-2 text-xs sm:text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+            <button type="submit" class="px-4 py-2 rounded-xl bg-berry-700 hover:bg-berry-800 text-white text-xs font-semibold shrink-0">+ Add</button>
+          </div>
+        </form>
+
+        <div class="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-cream-100">
+          <div id="expStoreChips" class="flex flex-wrap gap-1.5"></div>
+          <input type="text" id="expSearchInput" oninput="renderExpensesTab()" placeholder="Search item or store..." class="px-3 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-xl" />
+        </div>
+      </section>
+
+      <section class="bg-white rounded-2xl border border-cream-200 shadow-xs overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="bg-cream-50 border-b border-cream-200 text-[11px] font-bold uppercase tracking-wider text-cocoa-700">
+                <th class="py-3 px-4">Date</th>
+                <th class="py-3 px-4">Store</th>
+                <th class="py-3 px-4">Category</th>
+                <th class="py-3 px-4">Item Description</th>
+                <th class="py-3 px-4 text-right">Gross ($)</th>
+                <th class="py-3 px-4 text-right">Refund ($)</th>
+                <th class="py-3 px-4 text-right">Net ($)</th>
+                <th class="py-3 px-4 text-right">Delete</th>
+              </tr>
+            </thead>
+            <tbody id="expensesTableBody" class="divide-y divide-cream-200 text-sm"></tbody>
+          </table>
+        </div>
+      </section>
+    </div>
+
+    <!-- ===================================================================== -->
+    <!-- TAB 4: WEBSITE TRAFFIC & LEAD FUNNEL                                  -->
+    <!-- ===================================================================== -->
+    <div id="tabPanel-traffic" class="hidden space-y-6">
+      <div class="bg-white rounded-2xl p-6 border border-cream-200 shadow-xs space-y-4">
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <div>
+            <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">www.cakeflakes.com • @Cake_flakes</span>
+            <h2 class="font-serif text-xl font-bold text-cocoa-900">Website Traffic &amp; Order Conversion Funnel</h2>
+            <p class="text-xs text-cocoa-700/80">Connect Google Analytics / Wix / Squarespace traffic stats to measure inquiry-to-booked cake conversion.</p>
+          </div>
+          <span id="trafficOrdersBadge" class="px-3.5 py-2 rounded-xl bg-cream-100 text-xs font-bold text-cocoa-900">0 Booked Orders Synced</span>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          <div class="p-4 rounded-2xl bg-cream-50 border border-cream-200">
+            <span class="text-xs font-bold uppercase text-cocoa-700">Primary Channels</span>
+            <p class="text-sm font-bold text-cocoa-900 mt-1">Instagram (@Cake_flakes) &amp; WhatsApp Direct</p>
+            <p class="text-xs text-cocoa-700/75 mt-0.5">Bothell, Mill Creek &amp; Greater Seattle referrals</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-cream-50 border border-cream-200">
+            <span class="text-xs font-bold uppercase text-cocoa-700">Live Sheet Orders</span>
+            <p id="trafficLiveCount" class="text-2xl font-bold text-berry-800 mt-1 tabular-nums">0</p>
+            <p class="text-xs text-cocoa-700/75 mt-0.5">Active &amp; completed orders in Cakeflakes_Orders</p>
+          </div>
+          <div class="p-4 rounded-2xl bg-cream-50 border border-cream-200">
+            <span class="text-xs font-bold uppercase text-cocoa-700">Avg Custom Cake Ticket</span>
+            <p id="trafficAvgTicket" class="text-2xl font-bold text-emerald-800 mt-1 tabular-nums">$0.00</p>
+            <p class="text-xs text-cocoa-700/75 mt-0.5">Across all historical &amp; live orders</p>
+          </div>
+        </div>
+      </div>
     </div>
 
   </main>
@@ -1213,6 +1301,82 @@ function doPost(e) {
     </div>
   </div>
 
+  <!-- ======================================================================= -->
+  <!-- MODAL 5: BANK RECONCILIATION SHEET SYNC MODAL (SEPARATE FROM ORDERS)    -->
+  <!-- ======================================================================= -->
+  <div id="bankSyncModal" class="fixed inset-0 z-40 hidden items-center justify-center bg-cocoa-900/55 backdrop-blur-xs p-4 overflow-y-auto no-print">
+    <div class="bg-white rounded-3xl max-w-2xl w-full border border-cream-200 shadow-2xl overflow-hidden my-auto">
+      <div class="px-6 py-4 bg-cream-100 border-b border-cream-200 flex items-center justify-between">
+        <div>
+          <span class="text-[11px] font-bold uppercase tracking-wider text-berry-700">Read-Only Bank Statement Feed</span>
+          <h3 class="font-serif text-xl font-bold text-cocoa-900">Connect "Bank reconcilation" Google Sheet</h3>
+        </div>
+        <button onclick="closeBankSyncModal()" class="w-9 h-9 rounded-full bg-white hover:bg-cream-200 flex items-center justify-center">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <div class="p-6 space-y-4 max-h-[82vh] overflow-y-auto">
+        <div>
+          <label for="bankScriptUrlInput" class="block text-xs font-bold uppercase tracking-wider text-cocoa-800 mb-1">Bank Reconciliation Apps Script Web App URL (Read-Only)</label>
+          <input type="url" id="bankScriptUrlInput" placeholder="https://script.google.com/macros/s/.../exec" class="w-full px-3.5 py-2.5 text-sm bg-cream-50 border border-cream-300 rounded-xl" />
+          <p class="text-[11px] text-cocoa-700/80 mt-1">Stored separately from your Customer Orders URL so Tab 1 is never affected.</p>
+        </div>
+
+        <div class="flex flex-wrap items-center justify-between gap-2">
+          <button onclick="saveAndSyncBankSheet()" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs sm:text-sm font-semibold shadow-xs">Save &amp; Load Bank Transactions</button>
+          <button onclick="resetBankToBaseline()" class="text-xs text-cocoa-700 hover:text-rose-600 underline">Reset to Verified 11-Month Baseline</button>
+        </div>
+
+        <div class="bg-cream-50 p-4 rounded-2xl border border-cream-200 space-y-2.5">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold uppercase tracking-wider text-cocoa-900">Read-Only Script for "Bank reconcilation" (All Transactions Cols A–J, Row 5+)</span>
+            <button onclick="copyBankAppsScript()" class="px-3 py-1 rounded-lg bg-white border border-cream-300 text-xs font-semibold hover:bg-cream-100"><i class="fa-regular fa-copy mr-1"></i> Copy Bank Script</button>
+          </div>
+          <ol class="text-xs text-cocoa-800 space-y-1 list-decimal list-inside">
+            <li>Open your <strong>Bank reconcilation</strong> Google Sheet &rarr; <strong>Extensions &rarr; Apps Script</strong>.</li>
+            <li>Paste the script below, click <strong>Save</strong>, then click <strong>Deploy &rarr; New deployment &rarr; Web app</strong> (<em>Execute as: Me</em>, <em>Who has access: Anyone</em>).</li>
+            <li>Copy the Web App URL and paste it into the box above.</li>
+          </ol>
+          <pre id="bankAppsScriptBlock" class="bg-cocoa-900 text-cream-100 p-3 rounded-xl text-[11px] overflow-x-auto leading-relaxed">function doGet(e) {
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  const sheet = ss.getSheetByName('All Transactions') || ss.getSheets()[0];
+  const tz = ss.getSpreadsheetTimeZone();
+  const fmtDate = (val) => (val instanceof Date)
+    ? Utilities.formatDate(val, tz, 'yyyy-MM-dd')
+    : String(val || '').trim();
+
+  // Header is on Row 4; transactions start at Row 5 (Cols A through J)
+  const rows = sheet.getDataRange().getValues();
+  const transactions = rows.slice(4)
+    .filter(r => r[1] || r[6] || r[7] || r[8])
+    .map((r, i) => ({
+      txNum: String(r[0] || (i + 1)).trim(),
+      date: fmtDate(r[1]),
+      year: String(r[2] || '').trim(),
+      statementMonth: String(r[3] || '').trim(),
+      section: String(r[4] || '').trim(),
+      category: String(r[5] || '').trim(),
+      party: String(r[6] || '').trim(),
+      deposit: parseFloat(r[7]) || 0,
+      withdrawal: parseFloat(r[8]) || 0,
+      netImpact: parseFloat(r[9]) || ((parseFloat(r[7]) || 0) - (parseFloat(r[8]) || 0))
+    }));
+
+  const jsonStr = JSON.stringify({ transactions });
+  const cb = e && e.parameter && e.parameter.callback;
+  if (cb) {
+    return ContentService.createTextOutput(`${cb}(${jsonStr})`)
+      .setMimeType(ContentService.MimeType.JAVASCRIPT);
+  }
+  return ContentService.createTextOutput(jsonStr)
+    .setMimeType(ContentService.MimeType.JSON);
+}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <script>
     // =========================================================================
     // 1. CONSTANTS, 5-PHASE CONFIGURATION & REAL CUSTOMER ORDERS_CAKEFLAKES DATA
@@ -1238,8 +1402,25 @@ function doPost(e) {
     const KEY_EXPENSES = 'cakeflakes_hub_expenses_live_v1';
     const KEY_SHEET = 'cakeflakes_hub_sheet_v1';
     const KEY_STATEMENT = 'cakeflakes_hub_statement_v1';
+    const KEY_BANK_SHEET = 'cakeflakes_hub_bank_sheet_v1';
     const PIN_PASSCODE = '2526';
     const KEY_PIN_SESSION = 'cakeflakes_hub_unlocked_v1';
+
+    // Historical Quarterly Income Baseline (Q3 2025 - Q3 2026)
+    const HISTORICAL_QUARTERS = [
+      { id: 'Q3_2025', quarter: 'Q3 2025', year: 2025, source: 'Historical Ledger', revenue: 1790, orders: 12 },
+      { id: 'Q4_2025', quarter: 'Q4 2025', year: 2025, source: 'Historical Ledger', revenue: 5039, orders: 53 },
+      { id: 'Q1_2026', quarter: 'Q1 2026', year: 2026, source: 'Historical Ledger', revenue: 4820, orders: 33 },
+      { id: 'Q2_2026', quarter: 'Q2 2026', year: 2026, source: 'Historical Ledger', revenue: 140, orders: 1 },
+      { id: 'ADD_2026', quarter: 'Additional Orders (2026)', year: 2026, source: 'Historical Ledger', revenue: 4920, orders: 28 },
+      { id: 'Q3_2026', quarter: 'Q3 2026', year: 2026, source: 'Historical Ledger', revenue: 3144, orders: 15 }
+    ];
+
+    // Verified 11-Month Chase Bank Consolidated Baseline (Acct ending 3371, Dec 8, 2025 - Oct 30, 2026)
+    const VERIFIED_BANK_BASELINE = [
+      { txNum: '2025-DEC', date: '2025-12-31', year: '2025', statementMonth: 'Dec 2025 (Dec 8–31)', section: 'Executive Summary', category: 'Consolidated Statement (30 Deposits / 3 Withdrawals)', party: 'Chase Bank Acct ••3371 — Dec 2025 Summary', deposit: 3395.00, withdrawal: 344.95, netImpact: 3050.05 },
+      { txNum: '2026-YTD', date: '2026-10-30', year: '2026', statementMonth: 'Jan–Oct 2026 (10 Mos)', section: 'Executive Summary', category: 'Consolidated Statement (137 Deposits / 91 Withdrawals)', party: 'Chase Bank Acct ••3371 — 2026 YTD Summary', deposit: 18455.05, withdrawal: 11116.43, netImpact: 7338.62 }
+    ];
 
     const DEMO_ORDERS = [];
     const DEMO_EXPENSES = [];
@@ -1252,6 +1433,9 @@ function doPost(e) {
       orders: [],
       expenses: [],
       statementLines: [],
+      bankTransactions: [],
+      bankScriptUrl: '',
+      bankLiveConnected: false,
       reconcilePeriod: 'MONTH',
       year: 2026,
       month: 10, // November 2026
@@ -1269,6 +1453,9 @@ function doPost(e) {
       switchHubTab('orders');
       if (state.sheetConfig.scriptUrl || state.sheetConfig.csvUrl) {
         refreshFromGoogleSheet(true);
+      }
+      if (state.bankScriptUrl) {
+        refreshBankReconcileSheet(true);
       }
     });
 
@@ -1324,15 +1511,23 @@ function doPost(e) {
         const e = localStorage.getItem(KEY_EXPENSES);
         const s = localStorage.getItem(KEY_SHEET);
         const st = localStorage.getItem(KEY_STATEMENT);
+        const bs = localStorage.getItem(KEY_BANK_SHEET);
         state.orders = o ? JSON.parse(o) : JSON.parse(JSON.stringify(DEMO_ORDERS));
         state.expenses = e ? JSON.parse(e) : JSON.parse(JSON.stringify(DEMO_EXPENSES));
         state.sheetConfig = s ? JSON.parse(s) : { csvUrl: '', scriptUrl: '' };
         state.statementLines = st ? JSON.parse(st) : [];
+        const bankCfg = bs ? JSON.parse(bs) : { scriptUrl: '', transactions: null };
+        state.bankScriptUrl = bankCfg.scriptUrl || '';
+        state.bankTransactions = Array.isArray(bankCfg.transactions) && bankCfg.transactions.length > 0
+          ? bankCfg.transactions
+          : JSON.parse(JSON.stringify(VERIFIED_BANK_BASELINE));
+        state.bankLiveConnected = Boolean(bankCfg.liveConnected);
         if (!o || !e) saveAllStorage();
       } catch (err) {
         state.orders = JSON.parse(JSON.stringify(DEMO_ORDERS));
         state.expenses = JSON.parse(JSON.stringify(DEMO_EXPENSES));
         state.statementLines = [];
+        state.bankTransactions = JSON.parse(JSON.stringify(VERIFIED_BANK_BASELINE));
       }
     }
 
@@ -1341,6 +1536,11 @@ function doPost(e) {
       localStorage.setItem(KEY_EXPENSES, JSON.stringify(state.expenses));
       localStorage.setItem(KEY_SHEET, JSON.stringify(state.sheetConfig));
       localStorage.setItem(KEY_STATEMENT, JSON.stringify(state.statementLines));
+      localStorage.setItem(KEY_BANK_SHEET, JSON.stringify({
+        scriptUrl: state.bankScriptUrl,
+        transactions: state.bankTransactions,
+        liveConnected: state.bankLiveConnected
+      }));
     }
 
     function clearLocalCache() {
@@ -1363,326 +1563,67 @@ function doPost(e) {
     }
 
     // =========================================================================
-    // 3. UNIFIED TAB SWITCHING
+    // 3. TAB NAVIGATION & ORDERS HELPERS
     // =========================================================================
-    function switchHubTab(tabName) {
-      state.activeTab = tabName;
+    function switchHubTab(tab) {
+      state.activeTab = tab;
       ['orders', 'income', 'expenses', 'traffic', 'reconcile'].forEach(t => {
         const panel = document.getElementById(`tabPanel-${t}`);
         const btn = document.getElementById(`navTab-${t}`);
-        if (!panel || !btn) return;
-        if (t === tabName) {
-          panel.classList.remove('hidden');
-          btn.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-berry-700 text-white shadow-xs';
-        } else {
-          panel.classList.add('hidden');
-          btn.className = 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800';
+        if (panel) panel.classList.toggle('hidden', t !== tab);
+        if (btn) {
+          btn.className = t === tab
+            ? 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-berry-700 text-white shadow-xs'
+            : 'px-4 py-2.5 rounded-xl text-xs sm:text-sm font-semibold whitespace-nowrap transition flex items-center gap-2 bg-cream-100 hover:bg-cream-200 text-cocoa-800';
         }
       });
       renderAll();
     }
 
-    function renderAll() {
-      renderOrdersTab();
-      renderIncomeTab();
-      renderExpensesTab();
-      renderReconcileTab();
+    function getPhaseMeta(phaseName) {
+      return PHASES.find(p => p.name === phaseName) || PHASES[0];
+    }
+
+    function getOrderBalance(o) {
+      const tot = parseFloat(o.totalPrice) || 0;
+      const adv = parseFloat(o.advancePaid) || 0;
+      const fin = parseFloat(o.finalPaid) || 0;
+      return Math.max(0, Number((tot - adv - fin).toFixed(2)));
+    }
+
+    function getDaysCountdownBadge(pickupDate) {
+      if (!pickupDate) return '';
+      const today = new Date(`${TODAY_ISO}T00:00:00`);
+      const target = new Date(`${pickupDate}T00:00:00`);
+      if (isNaN(target.getTime())) return '';
+      const diffDays = Math.round((target - today) / 86400000);
+      if (diffDays < 0) return `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-cream-200 text-cocoa-700">${Math.abs(diffDays)}d ago</span>`;
+      if (diffDays === 0) return `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-rose-100 text-rose-800 border border-rose-200">Due Today</span>`;
+      if (diffDays <= 3) return `<span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-amber-100 text-amber-900 border border-amber-200">${diffDays} days to deliver</span>`;
+      return `<span class="text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cream-100 text-cocoa-800">${diffDays} days to deliver</span>`;
     }
 
     // =========================================================================
-    // 4. TAB 1: OPEN ORDERS, DAYS-TO-DELIVER COUNTDOWN & CALENDAR LOGIC
+    // 4. TAB 1: OPEN ORDERS & PRODUCTION CALENDAR
     // =========================================================================
-    function getPhaseInfo(name) {
-      return PHASES.find(p => p.name === name) || PHASES[0];
-    }
-
-    function getDeliveryCountdown(order) {
-      const meta = getPhaseInfo(order.phase);
-      if (order.phase === FINAL_PHASE) {
-        return {
-          days: 0,
-          text: 'Delivered ✓',
-          phaseStepText: `Phase ${meta.step}/5 • Completed`,
-          badgeClass: 'bg-emerald-100 text-emerald-900 border-emerald-200'
-        };
-      }
-      const [ty, tm, td] = TODAY_ISO.split('-').map(Number);
-      const [py, pm, pd] = String(order.pickupDate || TODAY_ISO).split('-').map(Number);
-      const todayUtc = Date.UTC(ty, tm - 1, td);
-      const pickupUtc = Date.UTC(py, pm - 1, pd);
-      const diffDays = Math.round((pickupUtc - todayUtc) / 86400000);
-
-      let text = '';
-      let badgeClass = '';
-      if (diffDays < 0) {
-        text = `${Math.abs(diffDays)}d overdue`;
-        badgeClass = 'bg-rose-100 text-rose-900 border-rose-300';
-      } else if (diffDays === 0) {
-        text = 'Due Today (0d)';
-        badgeClass = 'bg-purple-100 text-purple-900 border-purple-300';
-      } else if (diffDays === 1) {
-        text = '1 day to deliver';
-        badgeClass = 'bg-amber-100 text-amber-900 border-amber-300';
-      } else {
-        text = `${diffDays} days to deliver`;
-        badgeClass = diffDays <= 3
-          ? 'bg-amber-50 text-amber-900 border-amber-200'
-          : 'bg-blue-50 text-blue-900 border-blue-200';
-      }
-
-      return {
-        days: diffDays,
-        text,
-        phaseStepText: `Phase ${meta.step}/5 • ${meta.name}`,
-        badgeClass
-      };
-    }
-
-    function getOrderTierList(order) {
-      if (Array.isArray(order.tierDetails) && order.tierDetails.length > 0) {
-        return order.tierDetails;
-      }
-      return [{
-        label: order.tiers || 'Tier 1',
-        shape: order.shape || 'Round',
-        diameter: order.diameter || '',
-        height: order.height || '',
-        servings: order.servings || '',
-        flavor: order.flavors || ''
-      }];
-    }
-
-    function getOrderBalance(order) {
-      const total = parseFloat(order.totalPrice) || 0;
-      const adv = parseFloat(order.advancePaid) || 0;
-      const fin = parseFloat(order.finalPaid) || 0;
-      return Math.max(0, Number((total - adv - fin).toFixed(2)));
-    }
-
-    function getFilteredOrders() {
-      const q = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
-      return state.orders
-        .filter(o => {
-          const isDone = o.phase === FINAL_PHASE;
-          if (!state.showCompleted && isDone && state.phaseFilter !== FINAL_PHASE) return false;
-          if (state.phaseFilter === 'OPEN' && isDone) return false;
-          if (state.phaseFilter !== 'OPEN' && state.phaseFilter !== 'ALL' && o.phase !== state.phaseFilter) return false;
-          if (q) {
-            const tierHay = getOrderTierList(o).map(t => `${t.label} ${t.shape} ${t.diameter} ${t.flavor}`).join(' ');
-            const hay = `${o.id} ${o.customerName} ${o.eventType} ${o.themeTitle || o.cakeDetails || ''} ${tierHay} ${o.frosting || ''} ${o.colors || ''} ${o.notes || ''} ${o.pickupDate}`.toLowerCase();
-            if (!hay.includes(q)) return false;
-          }
-          return true;
-        })
-        .sort((a, b) => a.pickupDate.localeCompare(b.pickupDate));
-    }
-
-    function renderOrdersTab() {
-      const activeOrders = state.orders.filter(o => o.phase !== FINAL_PHASE);
-      const inProgress = state.orders.filter(o => o.phase === 'Baking Finished' || o.phase === 'Designing Phase');
-      const ready = state.orders.filter(o => o.phase === 'Ready for Pickup');
-      const openVal = activeOrders.reduce((s, o) => s + (parseFloat(o.totalPrice) || 0), 0);
-
-      document.getElementById('kpiActiveOrders').textContent = activeOrders.length;
-      document.getElementById('kpiInProgressOrders').textContent = inProgress.length;
-      document.getElementById('kpiReadyOrders').textContent = ready.length;
-      document.getElementById('kpiOpenOrderValue').textContent = fmtMoney(openVal);
-
-      // Phase Filter Pills
-      const pillsBox = document.getElementById('phaseFilterPillsContainer');
-      const filterItems = [
-        { key: 'OPEN', label: 'All Open (1–4)', dot: 'bg-cocoa-900' },
-        ...PHASES.map(p => ({ key: p.name, label: `${p.step}. ${p.name}`, dot: `bg-[${p.hex}]` }))
-      ];
-      pillsBox.innerHTML = filterItems.map(item => {
-        const active = state.phaseFilter === item.key;
-        return `
-          <button onclick="setOrderPhaseFilter('${item.key}')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border transition ${
-            active ? 'bg-cocoa-900 text-white border-cocoa-900 shadow-xs' : 'bg-cream-50 text-cocoa-800 border-cream-300 hover:bg-cream-100'
-          }">
-            <span class="w-2 h-2 rounded-full ${item.dot}"></span>
-            <span>${item.label}</span>
-          </button>
-        `;
-      }).join('');
-
-      renderCalendarGrid();
-      renderOrdersTable();
-    }
-
-    function renderCalendarGrid() {
-      const grid = document.getElementById('calendarDaysGrid');
-      const heading = document.getElementById('calendarMonthHeading');
-      const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
-      heading.textContent = `${monthNames[state.month]} ${state.year}`;
-
-      const firstWeekday = new Date(state.year, state.month, 1).getDay();
-      const totalDays = new Date(state.year, state.month + 1, 0).getDate();
-      const filtered = getFilteredOrders();
-
-      const byDate = {};
-      filtered.forEach(o => {
-        if (!byDate[o.pickupDate]) byDate[o.pickupDate] = [];
-        byDate[o.pickupDate].push(o);
-      });
-
-      let html = '';
-      for (let i = 0; i < firstWeekday; i++) {
-        html += `<div class="min-h-[112px] sm:min-h-[130px] bg-cream-50/70 p-2"></div>`;
-      }
-
-      for (let d = 1; d <= totalDays; d++) {
-        const iso = `${state.year}-${String(state.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
-        const list = byDate[iso] || [];
-        const isToday = iso === '2026-11-15';
-
-        html += `
-          <div class="group min-h-[112px] sm:min-h-[130px] p-1.5 sm:p-2 flex flex-col justify-between transition hover:bg-cream-50 ${isToday ? 'bg-berry-50/40' : 'bg-white'}">
-            <div>
-              <div class="flex items-center justify-between mb-1.5">
-                <span class="w-6 h-6 rounded-full inline-flex items-center justify-center text-xs font-bold ${isToday ? 'bg-berry-700 text-white' : 'text-cocoa-800'}">${d}</span>
-                <button onclick="openNewOrderModal('${iso}')" title="Add order on ${iso}" class="opacity-80 sm:opacity-0 sm:group-hover:opacity-100 w-6 h-6 rounded-lg bg-cream-100 hover:bg-berry-700 hover:text-white text-cocoa-800 flex items-center justify-center text-xs transition">
-                  <i class="fa-solid fa-plus"></i>
-                </button>
-              </div>
-              <div class="space-y-1">
-                ${list.map(o => {
-                  const meta = getPhaseInfo(o.phase);
-                  const titleText = o.themeTitle || o.cakeDetails || 'Custom Cake';
-                  const cd = getDeliveryCountdown(o);
-                  return `
-                    <button onclick="openEditOrderModal('${o.id}')" class="w-full text-left px-2 py-1.5 rounded-xl border text-[11px] leading-tight shadow-xs hover:brightness-95 transition ${meta.pillClass}">
-                      <div class="flex items-center justify-between gap-1 font-bold truncate">
-                        <span class="truncate">${esc(o.customerName)}</span>
-                        <span class="text-[9px] uppercase bg-black/20 px-1.5 py-0.5 rounded shrink-0">${meta.short}</span>
-                      </div>
-                      <div class="truncate text-[10px] opacity-95 mt-0.5">${esc(o.tiers || '')} • ${esc(titleText)}</div>
-                      <div class="mt-1 flex items-center justify-between text-[9px] font-bold bg-black/15 px-1.5 py-0.5 rounded">
-                        <span>${esc(cd.text)}</span>
-                        <span>P${meta.step}/5</span>
-                      </div>
-                    </button>
-                  `;
-                }).join('')}
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      const rem = (firstWeekday + totalDays) % 7;
-      if (rem !== 0) {
-        for (let i = 0; i < 7 - rem; i++) {
-          html += `<div class="min-h-[112px] sm:min-h-[130px] bg-cream-50/70 p-2"></div>`;
-        }
-      }
-      grid.innerHTML = html;
-    }
-
-    function renderOrdersTable() {
-      const tbody = document.getElementById('ordersTableBody');
-      const emptyEl = document.getElementById('ordersEmptyState');
-      const list = getFilteredOrders();
-
-      if (list.length === 0) {
-        tbody.innerHTML = '';
-        emptyEl.classList.remove('hidden');
-        return;
-      }
-      emptyEl.classList.add('hidden');
-
-      tbody.innerHTML = list.map(o => {
-        const bal = getOrderBalance(o);
-        const titleText = o.themeTitle || o.cakeDetails || 'Custom Cake';
-        const tierList = getOrderTierList(o);
-        const cd = getDeliveryCountdown(o);
-        const phaseBtns = PHASES.map(p => {
-          const active = p.name === o.phase;
-          return `
-            <button type="button" onclick="quickSetOrderPhase('${o.id}', '${p.name}')" class="px-2 py-1 rounded-lg text-[11px] font-semibold border transition ${
-              active ? `${p.pillClass} shadow-xs` : 'bg-cream-50 text-cocoa-800 border-cream-200 hover:bg-cream-100'
-            }">
-              ${p.step}. ${p.short}
-            </button>
-          `;
-        }).join('');
-
-        const tierBadgesHtml = tierList.map(t => {
-          const specs = [t.shape, t.diameter ? `${t.diameter} Dia` : '', t.height ? `${t.height} H` : '', t.servings ? `${t.servings} srv` : ''].filter(Boolean).join(' • ');
-          return `
-            <div class="text-[11px] bg-cream-50 border border-cream-200 rounded-lg px-2 py-1">
-              <span class="font-bold text-berry-800">${esc(t.label)}:</span>
-              <span class="font-semibold text-cocoa-900">${esc(t.flavor || 'Custom Flavor')}</span>
-              ${specs ? `<span class="text-cocoa-700"> (${esc(specs)})</span>` : ''}
-            </div>
-          `;
-        }).join('');
-
-        return `
-          <tr class="hover:bg-cream-50/90 transition align-top">
-            <td class="py-3 px-3.5 whitespace-nowrap">
-              <input type="date" value="${o.pickupDate}" onchange="inlineEditOrder('${o.id}', 'pickupDate', this.value)" class="text-xs font-semibold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-1 focus:outline-none" />
-              <div class="px-1.5 mt-1">
-                <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded-full border ${cd.badgeClass}">${esc(cd.text)}</span>
-              </div>
-              <div class="text-[10px] font-semibold text-cocoa-700/70 px-1.5 mt-0.5">${esc(o.id)}</div>
-            </td>
-            <td class="py-3 px-3.5">
-              <input type="text" value="${esc(o.customerName)}" onchange="inlineEditOrder('${o.id}', 'customerName', this.value)" class="font-semibold text-cocoa-900 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-0.5 w-full max-w-[170px] focus:outline-none" />
-              <span class="inline-block mt-1 ml-1.5 text-[10px] font-semibold px-2 py-0.5 rounded-full bg-cream-100 text-cocoa-800 border border-cream-200">${esc(o.eventType)}</span>
-            </td>
-            <td class="py-3 px-3.5 min-w-[270px] max-w-sm space-y-1.5">
-              <div class="font-bold text-cocoa-900 text-xs sm:text-sm">${esc(titleText)}</div>
-              <div class="space-y-1">${tierBadgesHtml}</div>
-              <div class="text-[11px] text-cocoa-800 leading-snug">
-                ${o.frosting ? `<span class="font-semibold">Frosting:</span> ${esc(o.frosting)}` : ''}
-                ${o.colors ? ` • <span class="font-semibold">Colors:</span> ${esc(o.colors)}` : ''}
-              </div>
-              ${o.notes ? `<div class="text-[11px] italic text-cocoa-700/85 bg-cream-100/70 px-2 py-0.5 rounded-md"><i class="fa-regular fa-note-sticky mr-1 text-berry-700"></i>${esc(o.notes)}</div>` : ''}
-            </td>
-            <td class="py-3 px-3.5 text-right whitespace-nowrap tabular-nums">
-              <span class="text-xs text-cocoa-700/70">$</span>
-              <input type="number" step="0.01" value="${o.totalPrice}" onchange="inlineEditOrder('${o.id}', 'totalPrice', parseFloat(this.value) || 0)" class="w-16 text-right font-bold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
-            </td>
-            <td class="py-3 px-3.5 text-right whitespace-nowrap tabular-nums">
-              <span class="text-xs text-cocoa-700/70">$</span>
-              <input type="number" step="0.01" value="${o.advancePaid}" onchange="inlineEditOrder('${o.id}', 'advancePaid', parseFloat(this.value) || 0)" class="w-16 text-right font-semibold text-emerald-800 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
-            </td>
-            <td class="py-3 px-3.5 text-right whitespace-nowrap font-bold tabular-nums ${bal > 0 ? 'text-amber-800' : 'text-emerald-700'}">
-              ${bal > 0 ? fmtMoney(bal) : 'Paid'}
-            </td>
-            <td class="py-3 px-3.5">
-              <div class="flex flex-wrap gap-1">${phaseBtns}</div>
-              <div class="text-[10px] font-semibold text-cocoa-700/80 mt-1">${esc(cd.phaseStepText)} • ${esc(cd.text)}</div>
-            </td>
-            <td class="py-3 px-3.5 text-right whitespace-nowrap">
-              <button onclick="openEditOrderModal('${o.id}')" title="Edit cake specs" class="p-2 rounded-xl text-cocoa-700 hover:text-cocoa-900 hover:bg-cream-100 transition"><i class="fa-regular fa-pen-to-square"></i></button>
-              <button onclick="openInvoiceModal('${o.id}')" title="Print Invoice" class="p-2 rounded-xl text-berry-700 hover:bg-berry-50 transition"><i class="fa-solid fa-print"></i></button>
-              <button onclick="removeOrder('${o.id}')" title="Delete" class="p-2 rounded-xl text-cocoa-700 hover:text-rose-600 hover:bg-rose-50 transition"><i class="fa-regular fa-trash-can"></i></button>
-            </td>
-          </tr>
-        `;
-      }).join('');
-    }
-
     function toggleShowCompleted() {
-      const checked = document.getElementById('showCompletedToggle').checked;
-      state.showCompleted = checked;
-      document.getElementById('showCompletedStatusText').textContent = checked ? 'ON' : 'OFF';
-      state.phaseFilter = checked ? 'ALL' : 'OPEN';
+      const cb = document.getElementById('showCompletedToggle');
+      state.showCompleted = Boolean(cb?.checked);
+      const lbl = document.getElementById('showCompletedStatusText');
+      if (lbl) lbl.textContent = state.showCompleted ? 'ON' : 'OFF';
+      if (state.showCompleted && state.phaseFilter === 'OPEN') state.phaseFilter = 'ALL';
+      if (!state.showCompleted && (state.phaseFilter === 'ALL' || state.phaseFilter === FINAL_PHASE)) state.phaseFilter = 'OPEN';
       renderOrdersTab();
     }
 
-    function setOrderPhaseFilter(key) {
-      state.phaseFilter = key;
-      if (key === FINAL_PHASE && !state.showCompleted) {
+    function setPhaseFilter(val) {
+      state.phaseFilter = val;
+      if ((val === 'ALL' || val === FINAL_PHASE) && !state.showCompleted) {
         state.showCompleted = true;
-        document.getElementById('showCompletedToggle').checked = true;
-        document.getElementById('showCompletedStatusText').textContent = 'ON';
-      } else if (key === 'OPEN' && state.showCompleted) {
-        state.showCompleted = false;
-        document.getElementById('showCompletedToggle').checked = false;
-        document.getElementById('showCompletedStatusText').textContent = 'OFF';
+        const cb = document.getElementById('showCompletedToggle');
+        if (cb) cb.checked = true;
+        const lbl = document.getElementById('showCompletedStatusText');
+        if (lbl) lbl.textContent = 'ON';
       }
       renderOrdersTab();
     }
@@ -1691,171 +1632,244 @@ function doPost(e) {
       state.month += delta;
       if (state.month < 0) { state.month = 11; state.year -= 1; }
       else if (state.month > 11) { state.month = 0; state.year += 1; }
-      renderCalendarGrid();
+      renderOrdersTab();
     }
 
     function jumpToNov2026() {
       state.year = 2026;
       state.month = 10;
-      renderCalendarGrid();
+      renderOrdersTab();
     }
 
-    function quickSetOrderPhase(id, phase) {
-      const o = state.orders.find(x => x.id === id);
-      if (!o || o.phase === phase) return;
-      o.phase = phase;
-      saveAllStorage();
-      pushOrderToGoogleSheet(o);
-      renderAll();
-      showToast(`${o.customerName}: moved to "${phase}"`, 'success');
+    function getFilteredOrders() {
+      const q = (document.getElementById('orderSearchInput')?.value || '').trim().toLowerCase();
+      return state.orders.filter(o => {
+        const isDone = o.phase === FINAL_PHASE;
+        if (!state.showCompleted && isDone && state.phaseFilter !== FINAL_PHASE) return false;
+        if (state.phaseFilter === 'OPEN' && isDone) return false;
+        if (state.phaseFilter !== 'ALL' && state.phaseFilter !== 'OPEN' && o.phase !== state.phaseFilter) return false;
+        if (q) {
+          const hay = `${o.id} ${o.customerName} ${o.themeTitle} ${o.tierSpecs} ${o.frostingColors} ${o.notes} ${o.pickupDate}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      }).sort((a, b) => String(a.pickupDate).localeCompare(String(b.pickupDate)));
     }
 
-    function inlineEditOrder(id, field, val) {
-      const o = state.orders.find(x => x.id === id);
-      if (!o) return;
-      o[field] = val;
-      saveAllStorage();
-      pushOrderToGoogleSheet(o);
-      renderAll();
-      showToast(`Saved ${o.customerName}'s update`, 'info');
-    }
+    function renderOrdersTab() {
+      const openOrders = state.orders.filter(o => o.phase !== FINAL_PHASE);
+      const inProgress = state.orders.filter(o => o.phase === 'Baking Finished' || o.phase === 'Designing Phase');
+      const ready = state.orders.filter(o => o.phase === 'Ready for Pickup');
+      const openVal = openOrders.reduce((s, o) => s + (parseFloat(o.totalPrice) || 0), 0);
 
-    function removeOrder(id) {
-      const idx = state.orders.findIndex(x => x.id === id);
-      if (idx === -1) return;
-      const removed = state.orders.splice(idx, 1)[0];
-      saveAllStorage();
-      pushOrderToGoogleSheet(removed, 'delete');
-      renderAll();
-      showToast(`Removed ${removed.customerName}'s order`, 'info');
-    }
+      document.getElementById('kpiActiveOrders').textContent = openOrders.length;
+      document.getElementById('kpiInProgressOrders').textContent = inProgress.length;
+      document.getElementById('kpiReadyOrders').textContent = ready.length;
+      document.getElementById('kpiOpenOrderValue').textContent = fmtMoney(openVal);
 
-    // Order Modal (Add / Quick-Edit with Per-Tier Rows)
-    let modalTierRows = [];
-
-    function buildDefaultTierRows(tierOption, defaultShape = 'Round', existingRows = []) {
-      const count = tierOption === '3 Tier' ? 3 : tierOption === '2 Tier' ? 2 : 1;
-      const labels = count === 3
-        ? ['Tier 1 (Bottom)', 'Tier 2 (Middle)', 'Tier 3 (Top)']
-        : count === 2
-        ? ['Tier 1 (Bottom)', 'Tier 2 (Top)']
-        : [tierOption === 'Sheet / Box' ? 'Sheet / Box' : 'Tier 1'];
-      const defaultDias = count === 3 ? ['10"', '8"', '6"'] : count === 2 ? ['8"', '6"'] : ['8"'];
-      const defaultServs = count === 3 ? ['30', '22', '13'] : count === 2 ? ['22', '13'] : ['20'];
-
-      return labels.map((lbl, idx) => {
-        const prev = existingRows[idx] || {};
-        return {
-          label: lbl,
-          shape: prev.shape || defaultShape,
-          diameter: prev.diameter || defaultDias[idx] || '8"',
-          height: prev.height || '5" Tall',
-          servings: prev.servings || defaultServs[idx] || '20',
-          flavor: prev.flavor || ''
-        };
-      });
-    }
-
-    function renderModalTierRows() {
-      const box = document.getElementById('tierRowsContainer');
-      box.innerHTML = modalTierRows.map((row, idx) => `
-        <div class="bg-white p-3 rounded-xl border border-cream-300 space-y-2">
-          <div class="flex items-center justify-between">
-            <span class="text-xs font-bold text-berry-700">${esc(row.label)}</span>
-            <span class="text-[10px] text-cocoa-700/70">Line ${idx + 1} of ${modalTierRows.length}</span>
-          </div>
-          <div class="grid grid-cols-2 sm:grid-cols-6 gap-2">
-            <div>
-              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Shape</label>
-              <select onchange="updateModalTierField(${idx}, 'shape', this.value)" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg">
-                ${SHAPE_OPTIONS.map(s => `<option value="${esc(s)}" ${row.shape === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}
-              </select>
-            </div>
-            <div>
-              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Diameter</label>
-              <input type="text" value="${esc(row.diameter)}" onchange="updateModalTierField(${idx}, 'diameter', this.value)" placeholder='8"' class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Height</label>
-              <input type="text" value="${esc(row.height)}" onchange="updateModalTierField(${idx}, 'height', this.value)" placeholder='5" Tall' class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
-            </div>
-            <div>
-              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Servings</label>
-              <input type="text" value="${esc(row.servings)}" onchange="updateModalTierField(${idx}, 'servings', this.value)" placeholder="20" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
-            </div>
-            <div class="col-span-2">
-              <label class="block text-[10px] font-semibold text-cocoa-700 mb-0.5">Flavor &amp; Filling *</label>
-              <input type="text" required value="${esc(row.flavor)}" oninput="updateModalTierField(${idx}, 'flavor', this.value)" placeholder="e.g., Vanilla Bean Strawberry" class="w-full px-2 py-1.5 text-xs bg-cream-50 border border-cream-300 rounded-lg" />
-            </div>
-          </div>
-          <div class="flex flex-wrap gap-1 pt-0.5">
-            ${FLAVOR_PRESETS.map(fl => `
-              <button type="button" onclick="setModalTierFlavor(${idx}, '${fl}')" class="px-2 py-0.5 text-[10px] font-semibold rounded-full bg-cream-50 border border-cream-300 hover:bg-berry-50">+ ${fl}</button>
-            `).join('')}
-          </div>
-        </div>
+      // Phase Filter Pills
+      const filterOpts = [
+        { key: 'OPEN', label: `Open Queue (${openOrders.length})` },
+        { key: 'ALL', label: `All (${state.orders.length})` },
+        ...PHASES.map(p => ({
+          key: p.name,
+          label: `${p.step}. ${p.short} (${state.orders.filter(o => o.phase === p.name).length})`
+        }))
+      ];
+      document.getElementById('phaseFilterPillsContainer').innerHTML = filterOpts.map(f => `
+        <button onclick="setPhaseFilter('${esc(f.key)}')" class="px-3 py-1.5 rounded-full text-xs font-semibold border transition ${
+          state.phaseFilter === f.key
+            ? 'bg-cocoa-900 text-white border-cocoa-900 shadow-xs'
+            : 'bg-cream-50 text-cocoa-800 border-cream-300 hover:bg-cream-100'
+        }">${esc(f.label)}</button>
       `).join('');
-    }
 
-    function updateModalTierField(idx, field, val) {
-      if (modalTierRows[idx]) modalTierRows[idx][field] = val;
-    }
+      const filtered = getFilteredOrders();
+      renderCalendarGrid(filtered);
 
-    function setModalTierFlavor(idx, flavorText) {
-      if (!modalTierRows[idx]) return;
-      modalTierRows[idx].flavor = flavorText;
-      renderModalTierRows();
-    }
+      const tbody = document.getElementById('ordersTableBody');
+      const emptyEl = document.getElementById('ordersEmptyState');
+      if (filtered.length === 0) {
+        tbody.innerHTML = '';
+        emptyEl.classList.remove('hidden');
+        return;
+      }
+      emptyEl.classList.add('hidden');
 
-    function selectTierOption(opt) {
-      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, opt, 'selectTierOption');
-      const defShape = document.getElementById('formShape').value || 'Round';
-      modalTierRows = buildDefaultTierRows(opt, defShape, modalTierRows);
-      renderModalTierRows();
-    }
+      tbody.innerHTML = filtered.map(o => {
+        const bal = getOrderBalance(o);
+        const phaseBtns = PHASES.map(p => `
+          <button type="button" onclick="setOrderPhase('${esc(o.id)}', '${esc(p.name)}')" class="px-2 py-1 rounded-lg text-[11px] font-semibold border transition ${
+            p.name === o.phase ? `${p.pillClass} shadow-xs` : 'bg-cream-50 text-cocoa-800 border-cream-200 hover:bg-cream-100'
+          }">${p.step}. ${p.short}</button>
+        `).join('');
 
-    function selectDefaultShapeOption(shapeOpt) {
-      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, shapeOpt, 'selectDefaultShapeOption');
-      modalTierRows.forEach(r => { r.shape = shapeOpt; });
-      renderModalTierRows();
-    }
-
-    function renderSpecPills(containerId, hiddenInputId, options, selectedVal, handlerName) {
-      document.getElementById(hiddenInputId).value = selectedVal;
-      const box = document.getElementById(containerId);
-      box.innerHTML = options.map(opt => {
-        const active = opt === selectedVal;
         return `
-          <button type="button" onclick="${handlerName}('${opt}')" class="px-2.5 py-1.5 rounded-xl text-xs font-semibold border transition ${
-            active ? 'bg-berry-700 text-white border-berry-700 shadow-xs' : 'bg-white text-cocoa-800 border-cream-300 hover:bg-cream-100'
-          }">
-            ${esc(opt)}
-          </button>
+          <tr class="hover:bg-cream-50/90 transition align-top">
+            <td class="py-3.5 px-3.5 whitespace-nowrap">
+              <div class="font-bold text-cocoa-900 text-xs">${esc(o.pickupDate)}</div>
+              <div class="mt-1">${getDaysCountdownBadge(o.pickupDate)}</div>
+              <div class="text-[10px] font-bold text-berry-700 mt-1">${esc(o.id)}</div>
+            </td>
+            <td class="py-3.5 px-3.5">
+              <div class="font-bold text-cocoa-900">${esc(o.customerName)}</div>
+              <div class="text-xs text-cocoa-700/80">${esc(o.eventType || 'Birthday')} ${o.phone ? `• ${esc(o.phone)}` : ''}</div>
+            </td>
+            <td class="py-3.5 px-3.5 max-w-xs">
+              <div class="font-semibold text-cocoa-900">${esc(o.themeTitle || 'Custom Cake')}</div>
+              <div class="text-xs text-cocoa-700 mt-0.5">${esc(o.tiers || '1 Tier')} ${o.tierSpecs ? `• ${esc(o.tierSpecs)}` : ''}</div>
+              ${o.notes ? `<div class="text-[11px] text-amber-900 bg-amber-50 px-2 py-0.5 rounded mt-1 inline-block">${esc(o.notes)}</div>` : ''}
+            </td>
+            <td class="py-3.5 px-3.5 text-right font-bold tabular-nums whitespace-nowrap">${fmtMoney(o.totalPrice)}</td>
+            <td class="py-3.5 px-3.5 text-right tabular-nums whitespace-nowrap">
+              <div class="font-semibold text-emerald-800">${fmtMoney(o.advancePaid)}</div>
+              <div class="text-[10px] text-cocoa-700/75">${esc(o.advanceMode || 'Zelle')}</div>
+            </td>
+            <td class="py-3.5 px-3.5 text-right font-bold tabular-nums whitespace-nowrap ${bal > 0 ? 'text-amber-800' : 'text-emerald-700'}">
+              ${bal > 0 ? fmtMoney(bal) : 'Paid ✓'}
+            </td>
+            <td class="py-3.5 px-3.5">
+              <div class="flex flex-wrap gap-1">${phaseBtns}</div>
+            </td>
+            <td class="py-3.5 px-3.5 text-right whitespace-nowrap">
+              <div class="inline-flex items-center gap-1">
+                ${bal > 0 ? `<button onclick="openCollectModal('${esc(o.id)}')" title="Collect Pickup Balance" class="p-2 rounded-xl text-emerald-700 hover:bg-emerald-50"><i class="fa-solid fa-hand-holding-dollar"></i></button>` : ''}
+                <button onclick="openInvoiceModal('${esc(o.id)}')" title="Print Invoice" class="p-2 rounded-xl text-cocoa-700 hover:bg-cream-100"><i class="fa-solid fa-print"></i></button>
+                <button onclick="openEditOrderModal('${esc(o.id)}')" title="Edit Order" class="p-2 rounded-xl text-berry-700 hover:bg-berry-50"><i class="fa-regular fa-pen-to-square"></i></button>
+              </div>
+            </td>
+          </tr>
         `;
       }).join('');
     }
 
-    function setSpecInput(inputId, val) {
-      const el = document.getElementById(inputId);
-      if (el) el.value = val;
+    function renderCalendarGrid(filteredOrders) {
+      const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+      document.getElementById('calendarMonthHeading').textContent = `${monthNames[state.month]} ${state.year}`;
+      const firstDay = new Date(state.year, state.month, 1).getDay();
+      const daysInMonth = new Date(state.year, state.month + 1, 0).getDate();
+
+      const byDate = {};
+      filteredOrders.forEach(o => {
+        if (!byDate[o.pickupDate]) byDate[o.pickupDate] = [];
+        byDate[o.pickupDate].push(o);
+      });
+
+      let html = '';
+      for (let i = 0; i < firstDay; i++) {
+        html += `<div class="min-h-[115px] bg-cream-50/70 p-2"></div>`;
+      }
+      for (let d = 1; d <= daysInMonth; d++) {
+        const iso = `${state.year}-${String(state.month + 1).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+        const list = byDate[iso] || [];
+        const isToday = iso === TODAY_ISO;
+        html += `
+          <div class="group min-h-[115px] p-1.5 sm:p-2 flex flex-col justify-between hover:bg-cream-50 ${isToday ? 'bg-berry-50/40' : 'bg-white'}">
+            <div>
+              <div class="flex items-center justify-between mb-1">
+                <span class="w-6 h-6 rounded-full text-xs font-bold inline-flex items-center justify-center ${isToday ? 'bg-berry-700 text-white' : 'text-cocoa-800'}">${d}</span>
+                <button onclick="openNewOrderModal('${iso}')" class="opacity-70 sm:opacity-0 sm:group-hover:opacity-100 w-6 h-6 rounded-lg bg-cream-100 hover:bg-berry-700 hover:text-white text-xs flex items-center justify-center transition"><i class="fa-solid fa-plus"></i></button>
+              </div>
+              <div class="space-y-1">
+                ${list.map(o => {
+                  const meta = getPhaseMeta(o.phase);
+                  return `
+                    <button onclick="openEditOrderModal('${esc(o.id)}')" class="w-full text-left px-2 py-1.5 rounded-xl border text-[11px] leading-tight shadow-xs hover:brightness-95 transition ${meta.pillClass}">
+                      <div class="flex items-center justify-between gap-1 font-bold truncate">
+                        <span class="truncate">${esc(o.customerName)}</span>
+                        <span class="text-[9px] uppercase bg-black/20 px-1 rounded shrink-0">${meta.short}</span>
+                      </div>
+                      <div class="truncate text-[10px] opacity-95 mt-0.5">${esc(o.tiers || '1 Tier')} • ${esc(o.themeTitle || 'Custom Cake')}</div>
+                    </button>
+                  `;
+                }).join('')}
+              </div>
+            </div>
+          </div>
+        `;
+      }
+      const rem = (firstDay + daysInMonth) % 7;
+      if (rem !== 0) {
+        for (let i = 0; i < 7 - rem; i++) html += `<div class="min-h-[115px] bg-cream-50/70 p-2"></div>`;
+      }
+      document.getElementById('calendarDaysGrid').innerHTML = html;
     }
 
-    function openNewOrderModal(prefillDate = '2026-11-21') {
-      const safeFutureDate = prefillDate < TODAY_ISO ? TODAY_ISO : prefillDate;
-      document.getElementById('orderModalSub').textContent = 'New Cakeflakes Order (Ahead Pickup Date)';
-      document.getElementById('orderModalTitle').textContent = 'Log Order & Advance Deposit';
+    function setOrderPhase(orderId, newPhase) {
+      const o = state.orders.find(x => x.id === orderId);
+      if (!o || o.phase === newPhase) return;
+      o.phase = newPhase;
+      saveAllStorage();
+      pushOrderToGoogleSheet(o, 'upsert');
+      renderAll();
+      showToast(`${o.customerName}: ${newPhase}`, 'success');
+    }
+
+    // Order Modal (Add / Edit)
+    function renderTierControls(tiersVal, shapeVal, specsStr = '') {
+      document.getElementById('formTiers').value = tiersVal;
+      document.getElementById('formShape').value = shapeVal;
+      document.getElementById('tierPillsContainer').innerHTML = TIER_OPTIONS.map(t => `
+        <button type="button" onclick="renderTierControls('${t}', document.getElementById('formShape').value)" class="px-2.5 py-1 rounded-lg text-xs font-semibold border ${
+          t === tiersVal ? 'bg-cocoa-900 text-white border-cocoa-900' : 'bg-white text-cocoa-800 border-cream-300'
+        }">${t}</button>
+      `).join('');
+      document.getElementById('shapePillsContainer').innerHTML = SHAPE_OPTIONS.map(s => `
+        <button type="button" onclick="renderTierControls(document.getElementById('formTiers').value, '${s}')" class="px-2.5 py-1 rounded-lg text-xs font-semibold border ${
+          s === shapeVal ? 'bg-berry-700 text-white border-berry-700' : 'bg-white text-cocoa-800 border-cream-300'
+        }">${s}</button>
+      `).join('');
+
+      const count = tiersVal === '3 Tier' ? 3 : tiersVal === '2 Tier' ? 2 : 1;
+      const existingParts = specsStr ? specsStr.split('|').map(x => x.trim()) : [];
+      let rowsHtml = '';
+      for (let i = 1; i <= count; i++) {
+        const defaultVal = existingParts[i - 1] || (tiersVal === 'Sheet / Box' ? 'Half Sheet Vanilla Berry' : `${i === 1 ? '8"' : i === 2 ? '6"' : '4"'} ${shapeVal} Vanilla Bean Berry`);
+        rowsHtml += `
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-bold text-cocoa-700 w-14 shrink-0">Tier ${i}:</span>
+            <input type="text" class="tier-spec-input w-full px-3 py-1.5 text-xs bg-white border border-cream-300 rounded-xl" value="${esc(defaultVal)}" />
+          </div>
+        `;
+      }
+      document.getElementById('tierRowsContainer').innerHTML = rowsHtml;
+    }
+
+    function selectModalPhase(phaseName) {
+      document.getElementById('formOrderPhase').value = phaseName;
+      document.getElementById('modalPhaseSelector').innerHTML = PHASES.map(p => `
+        <button type="button" onclick="selectModalPhase('${p.name}')" class="p-2 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1 transition ${
+          p.name === phaseName ? `${p.pillClass} shadow-xs` : 'bg-cream-50 text-cocoa-800 border-cream-300'
+        }">
+          <span>${p.step}. ${p.short}</span>
+        </button>
+      `).join('');
+    }
+
+    function updateOrderModalBalancePreview() {
+      const tot = parseFloat(document.getElementById('formTotalPrice').value) || 0;
+      const adv = parseFloat(document.getElementById('formAdvancePaid').value) || 0;
+      document.getElementById('orderModalBalancePreview').textContent = fmtMoney(Math.max(0, tot - adv));
+    }
+
+    function getNextCfOrderId() {
+      const nums = state.orders
+        .map(o => String(o.id || '').match(/^CF26(\d+)$/i))
+        .filter(Boolean)
+        .map(m => parseInt(m[1], 10));
+      const next = nums.length > 0 ? Math.max(...nums) + 1 : 1;
+      return `CF26${String(next).padStart(2, '0')}`;
+    }
+
+    function openNewOrderModal(prefillDate = '2026-11-22') {
       document.getElementById('formOrderId').value = '';
+      document.getElementById('orderModalSub').textContent = 'New Cakeflakes Order';
+      document.getElementById('orderModalTitle').textContent = 'Log Order & Advance Deposit';
       document.getElementById('formCustomerName').value = '';
       document.getElementById('formCustomerPhone').value = '';
-      const dateInput = document.getElementById('formPickupDate');
-      dateInput.min = TODAY_ISO;
-      dateInput.value = safeFutureDate;
+      document.getElementById('formPickupDate').value = prefillDate;
       document.getElementById('formEventType').value = 'Birthday';
       document.getElementById('formThemeTitle').value = '';
-      modalTierRows = buildDefaultTierRows('1 Tier', 'Round', []);
-      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, '1 Tier', 'selectTierOption');
-      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, 'Round', 'selectDefaultShapeOption');
-      renderModalTierRows();
       document.getElementById('formFrosting').value = 'Swiss Meringue Buttercream';
       document.getElementById('formColors').value = '';
       document.getElementById('formNotes').value = '';
@@ -1863,7 +1877,8 @@ function doPost(e) {
       document.getElementById('formAdvancePaid').value = '100';
       document.getElementById('formAdvanceMode').value = 'Zelle';
       document.getElementById('deleteModalOrderBtn').classList.add('hidden');
-      selectModalPhasePill('Order Received');
+      selectModalPhase('Order Received');
+      renderTierControls('1 Tier', 'Round');
       updateOrderModalBalancePreview();
 
       const m = document.getElementById('orderModal');
@@ -1871,35 +1886,27 @@ function doPost(e) {
       m.classList.add('flex');
     }
 
-    function openEditOrderModal(id) {
-      const o = state.orders.find(x => x.id === id);
+    function openEditOrderModal(orderId) {
+      const o = state.orders.find(x => x.id === orderId);
       if (!o) return;
-      document.getElementById('orderModalSub').textContent = `Order ${o.id} • ${getDeliveryCountdown(o).text}`;
-      document.getElementById('orderModalTitle').textContent = `Edit Order • ${o.customerName}`;
       document.getElementById('formOrderId').value = o.id;
+      document.getElementById('orderModalSub').textContent = `Order ID: ${o.id}`;
+      document.getElementById('orderModalTitle').textContent = `Edit Order • ${o.customerName}`;
       document.getElementById('formCustomerName').value = o.customerName;
       document.getElementById('formCustomerPhone').value = o.phone || '';
-      const dateInput = document.getElementById('formPickupDate');
-      dateInput.removeAttribute('min');
-      dateInput.value = o.pickupDate;
+      document.getElementById('formPickupDate').value = o.pickupDate;
       document.getElementById('formEventType').value = o.eventType || 'Birthday';
-      document.getElementById('formThemeTitle').value = o.themeTitle || o.cakeDetails || '';
-
-      const tierOpt = TIER_OPTIONS.includes(o.tiers) ? o.tiers : '1 Tier';
-      const shapeOpt = SHAPE_OPTIONS.includes(o.shape) ? o.shape : 'Round';
-      modalTierRows = buildDefaultTierRows(tierOpt, shapeOpt, getOrderTierList(o));
-      renderSpecPills('tierPillsContainer', 'formTiers', TIER_OPTIONS, tierOpt, 'selectTierOption');
-      renderSpecPills('shapePillsContainer', 'formShape', SHAPE_OPTIONS, shapeOpt, 'selectDefaultShapeOption');
-      renderModalTierRows();
-
-      document.getElementById('formFrosting').value = o.frosting || 'Swiss Meringue Buttercream';
-      document.getElementById('formColors').value = o.colors || '';
+      document.getElementById('formThemeTitle').value = o.themeTitle || '';
+      const fcParts = String(o.frostingColors || '').split('•').map(x => x.trim());
+      document.getElementById('formFrosting').value = fcParts[0] || 'Swiss Meringue Buttercream';
+      document.getElementById('formColors').value = fcParts[1] || '';
       document.getElementById('formNotes').value = o.notes || '';
-      document.getElementById('formTotalPrice').value = o.totalPrice;
-      document.getElementById('formAdvancePaid').value = o.advancePaid;
+      document.getElementById('formTotalPrice').value = o.totalPrice || 0;
+      document.getElementById('formAdvancePaid').value = o.advancePaid || 0;
       document.getElementById('formAdvanceMode').value = o.advanceMode || 'Zelle';
       document.getElementById('deleteModalOrderBtn').classList.remove('hidden');
-      selectModalPhasePill(o.phase);
+      selectModalPhase(o.phase || 'Order Received');
+      renderTierControls(o.tiers || '1 Tier', o.shape || 'Round', o.tierSpecs || '');
       updateOrderModalBalancePreview();
 
       const m = document.getElementById('orderModal');
@@ -1913,109 +1920,186 @@ function doPost(e) {
       m.classList.remove('flex');
     }
 
-    function selectModalPhasePill(phaseName) {
-      document.getElementById('formOrderPhase').value = phaseName;
-      const box = document.getElementById('modalPhaseSelector');
-      box.innerHTML = PHASES.map(p => {
-        const active = p.name === phaseName;
-        const span = p.name === FINAL_PHASE ? 'col-span-2 sm:col-span-1' : '';
-        return `
-          <button type="button" onclick="selectModalPhasePill('${p.name}')" class="${span} p-2.5 rounded-xl border text-xs font-semibold flex flex-col items-center gap-1 transition ${
-            active ? `${p.pillClass} shadow-sm` : 'bg-cream-50 text-cocoa-800 border-cream-300 hover:bg-cream-100'
-          }">
-            <span class="w-2.5 h-2.5 rounded-full ${active ? 'bg-white' : `bg-[${p.hex}]`}"></span>
-            <span>${p.step}. ${p.short}</span>
-          </button>
-        `;
-      }).join('');
-    }
-
-    function updateOrderModalBalancePreview() {
-      const tot = parseFloat(document.getElementById('formTotalPrice').value) || 0;
-      const adv = parseFloat(document.getElementById('formAdvancePaid').value) || 0;
-      document.getElementById('orderModalBalancePreview').textContent = fmtMoney(Math.max(0, tot - adv));
-    }
-
-    function saveOrderModal(e) {
-      e.preventDefault();
+    function saveOrderModal(ev) {
+      ev.preventDefault();
       const existingId = document.getElementById('formOrderId').value;
-      const existing = existingId ? state.orders.find(x => x.id === existingId) : null;
-      const pickupDate = document.getElementById('formPickupDate').value;
-      const phase = document.getElementById('formOrderPhase').value;
-
-      if (!existingId && phase === 'Order Received' && pickupDate < TODAY_ISO) {
-        showToast('New Order Received must have a pickup date today or ahead.', 'info');
-        return;
-      }
-
-      const total = parseFloat(document.getElementById('formTotalPrice').value) || 0;
-      const adv = parseFloat(document.getElementById('formAdvancePaid').value) || 0;
-      const tiers = document.getElementById('formTiers').value;
-      const shape = document.getElementById('formShape').value;
+      const existingObj = existingId ? state.orders.find(x => x.id === existingId) : null;
+      const tierInputs = [...document.querySelectorAll('.tier-spec-input')].map((inp, idx) => `Tier ${idx + 1}: ${inp.value.trim()}`);
       const frosting = document.getElementById('formFrosting').value;
       const colors = document.getElementById('formColors').value.trim();
-      const notes = document.getElementById('formNotes').value.trim();
-      const themeTitle = document.getElementById('formThemeTitle').value.trim();
-      const cleanTiers = modalTierRows.map(r => ({ ...r }));
 
-      const flavorsSummary = cleanTiers.map(t => `${t.label}: ${t.flavor}`).join(' | ');
-      const tierSpecsFormatted = cleanTiers
-        .map(t => `${t.label}: ${[t.diameter, t.shape, t.height, t.servings ? `${t.servings} srv` : '', t.flavor].filter(Boolean).join(' ')}`)
-        .join(' | ');
-      const frostingColorsFormatted = [frosting, colors].filter(Boolean).join(' • ');
-      const combinedSummary = `${tiers} ${themeTitle} (${flavorsSummary})`;
-      const uniqueNewId = `CF-${String(Date.now()).slice(-4)}`;
-
-      const payload = {
-        id: existingId || uniqueNewId,
-        pickupDate,
+      const orderObj = {
+        id: existingId || getNextCfOrderId(),
+        pickupDate: document.getElementById('formPickupDate').value,
         customerName: document.getElementById('formCustomerName').value.trim(),
         phone: document.getElementById('formCustomerPhone').value.trim(),
         eventType: document.getElementById('formEventType').value,
-        themeTitle,
-        tiers,
-        shape,
-        tierDetails: cleanTiers,
-        tierSpecs: tierSpecsFormatted,
-        flavors: flavorsSummary,
-        frosting,
-        colors,
-        frostingColors: frostingColorsFormatted,
-        notes,
-        cakeDetails: combinedSummary,
-        totalPrice: total,
-        advancePaid: adv,
+        themeTitle: document.getElementById('formThemeTitle').value.trim(),
+        tiers: document.getElementById('formTiers').value,
+        shape: document.getElementById('formShape').value,
+        tierSpecs: tierInputs.join(' | '),
+        frostingColors: colors ? `${frosting} • ${colors}` : frosting,
+        notes: document.getElementById('formNotes').value.trim(),
+        totalPrice: parseFloat(document.getElementById('formTotalPrice').value) || 0,
+        advancePaid: parseFloat(document.getElementById('formAdvancePaid').value) || 0,
         advanceMode: document.getElementById('formAdvanceMode').value,
-        finalPaid: existing ? (existing.finalPaid || 0) : 0,
-        finalMode: existing ? (existing.finalMode || 'Pending') : (adv >= total && total > 0 ? 'Paid in Advance' : 'Pending'),
-        phase
+        finalPaid: existingObj ? (parseFloat(existingObj.finalPaid) || 0) : 0,
+        finalMode: existingObj ? (existingObj.finalMode || '') : '',
+        phase: document.getElementById('formOrderPhase').value
       };
 
-      if (existing) {
-        Object.assign(existing, payload);
-        showToast(`Updated order ${payload.id}`, 'success');
+      if (existingId) {
+        const idx = state.orders.findIndex(x => x.id === existingId);
+        if (idx !== -1) state.orders[idx] = orderObj;
       } else {
-        state.orders.push(payload);
-        const [y, m] = payload.pickupDate.split('-').map(Number);
-        if (y && m) { state.year = y; state.month = m - 1; }
-        showToast(`Added order ${payload.id} for ${payload.customerName}`, 'success');
+        state.orders.push(orderObj);
       }
 
       saveAllStorage();
-      pushOrderToGoogleSheet(payload, 'upsert');
+      pushOrderToGoogleSheet(orderObj, 'upsert');
       closeOrderModal();
       renderAll();
+      showToast(`Saved order ${orderObj.id} for ${orderObj.customerName}`, 'success');
     }
 
     function deleteModalOrder() {
       const id = document.getElementById('formOrderId').value;
+      const idx = state.orders.findIndex(x => x.id === id);
+      if (idx === -1) return;
+      const removed = state.orders.splice(idx, 1)[0];
+      saveAllStorage();
+      pushOrderToGoogleSheet(removed, 'delete');
       closeOrderModal();
-      removeOrder(id);
+      renderAll();
+      showToast(`Deleted order ${removed.id}`, 'info');
+    }
+
+    // Collect Balance & Invoice Modals
+    function openCollectModal(orderId) {
+      const o = state.orders.find(x => x.id === orderId);
+      if (!o) return;
+      document.getElementById('collectOrderIdInput').value = o.id;
+      document.getElementById('collectTitle').textContent = `Collect Balance • ${o.id}`;
+      document.getElementById('collectCustomerText').textContent = o.customerName;
+      document.getElementById('collectCakeText').textContent = o.themeTitle || 'Custom Cake';
+      document.getElementById('collectBalanceAmount').textContent = fmtMoney(getOrderBalance(o));
+      const m = document.getElementById('collectModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeCollectModal() {
+      const m = document.getElementById('collectModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function completeBalanceCollection(mode) {
+      const id = document.getElementById('collectOrderIdInput').value;
+      const o = state.orders.find(x => x.id === id);
+      if (!o) return;
+      const bal = getOrderBalance(o);
+      o.finalPaid = Number(((parseFloat(o.finalPaid) || 0) + bal).toFixed(2));
+      o.finalMode = mode;
+      saveAllStorage();
+      pushOrderToGoogleSheet(o, 'upsert');
+      closeCollectModal();
+      renderAll();
+      showToast(`Collected ${fmtMoney(bal)} via ${mode} for ${o.customerName}!`, 'success');
+    }
+
+    function openInvoiceModal(orderId) {
+      state.activeInvoiceOrderId = orderId;
+      renderInvoiceModalBody();
+      const m = document.getElementById('invoiceModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeInvoiceModal() {
+      const m = document.getElementById('invoiceModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function renderInvoiceModalBody() {
+      const o = state.orders.find(x => x.id === state.activeInvoiceOrderId);
+      if (!o) return;
+      const tot = parseFloat(o.totalPrice) || 0;
+      const adv = parseFloat(o.advancePaid) || 0;
+      const fin = parseFloat(o.finalPaid) || 0;
+      const bal = getOrderBalance(o);
+
+      document.getElementById('invNumText').textContent = `#${o.id}`;
+      document.getElementById('invPickupText').textContent = `Pickup Date: ${o.pickupDate}`;
+      document.getElementById('invCustName').textContent = o.customerName;
+      document.getElementById('invCustPhone').textContent = o.phone || 'Bothell, WA Pickup';
+      document.getElementById('invDescText').textContent = o.themeTitle || 'Custom Cake';
+      document.getElementById('invSpecsLine').textContent = `${o.tiers || '1 Tier'} • ${o.tierSpecs || ''}`;
+      document.getElementById('invEventSubtext').textContent = `${o.eventType || 'Celebration'} • ${o.frostingColors || ''}`;
+      document.getElementById('invLineAmount').textContent = fmtMoney(tot);
+      document.getElementById('invTotalAmt').textContent = fmtMoney(tot);
+      document.getElementById('invAdvLabel').textContent = `Advance Paid (${o.advanceMode || 'Zelle'}):`;
+      document.getElementById('invAdvAmt').textContent = `-${fmtMoney(adv)}`;
+
+      const finRow = document.getElementById('invFinalPaidRow');
+      if (fin > 0) {
+        finRow.classList.remove('hidden');
+        document.getElementById('invFinalLabel').textContent = `Pickup Balance Paid (${o.finalMode || 'Paid'}):`;
+        document.getElementById('invFinalAmt').textContent = `-${fmtMoney(fin)}`;
+      } else {
+        finRow.classList.add('hidden');
+      }
+
+      document.getElementById('invBalLabel').textContent = bal <= 0 ? 'Balance Due:' : 'Balance Due at Pickup:';
+      document.getElementById('invBalAmt').textContent = bal <= 0 ? '$0.00 (PAID IN FULL)' : fmtMoney(bal);
+      document.getElementById('invBadgeBox').innerHTML = bal <= 0
+        ? `<span class="px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900">PAID IN FULL</span>`
+        : `<span class="px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900">DEPOSIT RECEIVED</span>`;
+
+      document.getElementById('invPayPalRow').style.display = document.getElementById('invPayPalToggle').checked ? 'block' : 'none';
     }
 
     // =========================================================================
-    // 5. TAB 2: CASH INCOME & PRINTABLE INVOICES
+    // 5. TAB 2: CASH INCOME (HISTORICAL Q3 2025–Q3 2026 + Q4 2026 LIVE) & INVOICES
     // =========================================================================
+    function getQuarterlyIncomeRollup() {
+      const q4Orders = state.orders.filter(o => {
+        const d = String(o.pickupDate || '');
+        return d.startsWith('2026-10') || d.startsWith('2026-11') || d.startsWith('2026-12');
+      });
+      const q4Revenue = q4Orders.reduce((s, o) => s + (parseFloat(o.totalPrice) || 0), 0);
+      const q4Collected = q4Orders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
+
+      const rows = [
+        ...HISTORICAL_QUARTERS,
+        {
+          id: 'Q4_2026',
+          quarter: 'Q4 2026 (Live)',
+          year: 2026,
+          source: 'Cakeflakes_Orders Sync',
+          revenue: Number(q4Revenue.toFixed(2)),
+          collected: Number(q4Collected.toFixed(2)),
+          orders: q4Orders.length,
+          isLive: true
+        }
+      ];
+
+      const grandRevenue = rows.reduce((s, r) => s + r.revenue, 0);
+      const grandOrders = rows.reduce((s, r) => s + r.orders, 0);
+      return {
+        rows: rows.map(r => ({
+          ...r,
+          pct: grandRevenue > 0 ? ((r.revenue / grandRevenue) * 100) : 0
+        })),
+        grandRevenue,
+        grandOrders,
+        q4Revenue,
+        q4Collected,
+        q4OrdersCount: q4Orders.length
+      };
+    }
+
     function renderIncomeTab() {
       let contracted = 0, collected = 0, pending = 0, pendingCount = 0;
       let cash = 0, card = 0, zelle = 0;
@@ -2042,11 +2126,17 @@ function doPost(e) {
         }
       });
 
-      document.getElementById('incKpiContracted').textContent = fmtMoney(contracted);
-      document.getElementById('incKpiOrderCount').textContent = `Across ${state.orders.length} confirmed orders`;
-      document.getElementById('incKpiCollected').textContent = fmtMoney(collected);
+      const rollup = getQuarterlyIncomeRollup();
+      const q4Due = Math.max(0, rollup.q4Revenue - rollup.q4Collected);
+      const avgOrderVal = rollup.grandOrders > 0 ? (rollup.grandRevenue / rollup.grandOrders) : 0;
+
+      document.getElementById('incKpiAllTimeRev').textContent = fmtMoney(rollup.grandRevenue);
+      document.getElementById('incKpiAllTimeOrders').textContent = `142 historical + ${rollup.q4OrdersCount} Q4 2026 orders (${rollup.grandOrders} total)`;
+      document.getElementById('incKpiQ4Live').textContent = fmtMoney(rollup.q4Revenue);
+      document.getElementById('incKpiQ4CollectedSub').textContent = `Collected: ${fmtMoney(rollup.q4Collected)} • Due: ${fmtMoney(q4Due)}`;
       document.getElementById('incKpiPending').textContent = fmtMoney(pending);
       document.getElementById('incKpiPendingCount').textContent = `${pendingCount} order${pendingCount === 1 ? '' : 's'} due at pickup`;
+      document.getElementById('incAvgOrderBadge').textContent = `Avg Order: ${fmtMoney(avgOrderVal)}`;
 
       document.getElementById('incModeCash').textContent = fmtMoney(cash);
       document.getElementById('incModeCard').textContent = fmtMoney(card);
@@ -2056,6 +2146,46 @@ function doPost(e) {
       document.getElementById('incBarCash').style.width = `${(cash / modeSum) * 100}%`;
       document.getElementById('incBarCard').style.width = `${(card / modeSum) * 100}%`;
       document.getElementById('incBarZelle').style.width = `${(zelle / modeSum) * 100}%`;
+
+      const qBody = document.getElementById('quarterlyIncomeTableBody');
+      qBody.innerHTML = rollup.rows.map(r => `
+        <tr class="${r.isLive ? 'bg-emerald-50/50 font-semibold' : 'hover:bg-cream-50/80'} transition">
+          <td class="py-3 px-4 font-bold text-cocoa-900 whitespace-nowrap">${esc(r.quarter)}</td>
+          <td class="py-3 px-4 whitespace-nowrap">
+            ${r.isLive
+              ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-200"><span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> Live Orders Sheet</span>`
+              : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[10px] font-semibold bg-cream-100 text-cocoa-700 border border-cream-200">Historical Static</span>`
+            }
+          </td>
+          <td class="py-3 px-4 text-right font-bold text-cocoa-900 tabular-nums whitespace-nowrap">${fmtMoney(r.revenue)}</td>
+          <td class="py-3 px-4 text-right text-xs font-semibold text-cocoa-700 tabular-nums whitespace-nowrap">${r.pct.toFixed(1)}%</td>
+          <td class="py-3 px-4 text-right font-semibold tabular-nums whitespace-nowrap">${r.orders}</td>
+        </tr>
+      `).join('') + `
+        <tr class="bg-cocoa-900 text-white font-bold">
+          <td class="py-3.5 px-4">Consolidated All-Time Total</td>
+          <td class="py-3.5 px-4 text-xs font-normal text-cream-200">Q3 2025 – Q4 2026</td>
+          <td class="py-3.5 px-4 text-right tabular-nums">${fmtMoney(rollup.grandRevenue)}</td>
+          <td class="py-3.5 px-4 text-right tabular-nums">100.0%</td>
+          <td class="py-3.5 px-4 text-right tabular-nums">${rollup.grandOrders}</td>
+        </tr>
+      `;
+
+      const maxRev = Math.max(1, ...rollup.rows.map(r => r.revenue));
+      document.getElementById('quarterlyRevenueBars').innerHTML = rollup.rows.map(r => {
+        const widthPct = Math.max(4, Math.round((r.revenue / maxRev) * 100));
+        return `
+          <div>
+            <div class="flex justify-between text-xs mb-1">
+              <span class="font-semibold text-cocoa-800">${esc(r.quarter)} <span class="text-cocoa-700/70 font-normal">(${r.orders} ord)</span></span>
+              <span class="font-bold tabular-nums text-cocoa-900">${fmtMoney(r.revenue)} <span class="text-[11px] font-medium text-cocoa-700">(${r.pct.toFixed(1)}%)</span></span>
+            </div>
+            <div class="w-full h-2.5 rounded-full bg-cream-200/80 overflow-hidden">
+              <div class="${r.isLive ? 'bg-emerald-600' : 'bg-berry-700'} h-full rounded-full transition-all" style="width: ${widthPct}%"></div>
+            </div>
+          </div>
+        `;
+      }).join('');
 
       const sorted = [...state.orders].sort((a, b) => a.pickupDate.localeCompare(b.pickupDate));
       document.getElementById('incomeLedgerBody').innerHTML = sorted.map(o => {
@@ -2096,254 +2226,61 @@ function doPost(e) {
       }).join('');
     }
 
-    function openCollectModal(id) {
-      const o = state.orders.find(x => x.id === id);
-      if (!o) return;
-      document.getElementById('collectOrderIdInput').value = o.id;
-      document.getElementById('collectTitle').textContent = `Collect Balance • ${o.id}`;
-      document.getElementById('collectCustomerText').textContent = o.customerName;
-      document.getElementById('collectCakeText').textContent = o.cakeDetails;
-      document.getElementById('collectBalanceAmount').textContent = fmtMoney(getOrderBalance(o));
-
-      const m = document.getElementById('collectModal');
-      m.classList.remove('hidden');
-      m.classList.add('flex');
+    function exportQuarterlyIncomeCsv() {
+      const rollup = getQuarterlyIncomeRollup();
+      const headers = ['Quarter', 'Source', 'Revenue ($)', '% of Total', 'Total Orders'];
+      const rows = rollup.rows.map(r => [
+        r.quarter, r.source, r.revenue.toFixed(2), `${r.pct.toFixed(1)}%`, r.orders
+      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+      rows.push(`"Consolidated All-Time Total","Q3 2025 - Q4 2026","${rollup.grandRevenue.toFixed(2)}","100.0%","${rollup.grandOrders}"`);
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_quarterly_income_2025_2026.csv');
     }
 
-    function closeCollectModal() {
-      const m = document.getElementById('collectModal');
-      m.classList.add('hidden');
-      m.classList.remove('flex');
-    }
-
-    function completeBalanceCollection(mode) {
-      const id = document.getElementById('collectOrderIdInput').value;
-      const o = state.orders.find(x => x.id === id);
-      if (!o) return;
-      const due = getOrderBalance(o);
-      o.finalPaid = Number(((parseFloat(o.finalPaid) || 0) + due).toFixed(2));
-      o.finalMode = mode;
-      saveAllStorage();
-      pushOrderToGoogleSheet(o);
-      closeCollectModal();
-      renderAll();
-      showToast(`Collected ${fmtMoney(due)} via ${mode} — ${o.id} Paid in Full!`, 'success');
-    }
-
-    function openInvoiceModal(id) {
-      state.activeInvoiceOrderId = id;
-      renderInvoiceModalBody();
-      const m = document.getElementById('invoiceModal');
-      m.classList.remove('hidden');
-      m.classList.add('flex');
-    }
-
-    function closeInvoiceModal() {
-      const m = document.getElementById('invoiceModal');
-      m.classList.add('hidden');
-      m.classList.remove('flex');
-    }
-
-    function renderInvoiceModalBody() {
-      const o = state.orders.find(x => x.id === state.activeInvoiceOrderId);
-      if (!o) return;
-      const bal = getOrderBalance(o);
-      const tierBreakdown = getOrderTierList(o).map(t =>
-        `${t.label}: ${t.shape} ${t.diameter || ''} (${t.height || ''}, ${t.servings || '?'} srv) — ${t.flavor}`
-      ).join(' | ');
-      const specsList = [
-        tierBreakdown,
-        o.frosting ? `Frosting: ${o.frosting}` : '',
-        o.colors ? `Colors: ${o.colors}` : ''
-      ].filter(Boolean).join(' • ');
-
-      document.getElementById('invNumText').textContent = `#${o.id}`;
-      document.getElementById('invPickupText').textContent = `Pickup Date: ${o.pickupDate}`;
-      document.getElementById('invCustName').textContent = o.customerName;
-      document.getElementById('invCustPhone').textContent = o.phone ? `Phone / WhatsApp: ${o.phone}` : 'Bothell Pickup / Delivery';
-      document.getElementById('invDescText').textContent = o.themeTitle || o.cakeDetails;
-      document.getElementById('invSpecsLine').textContent = specsList;
-      document.getElementById('invEventSubtext').textContent = `Event Type: ${o.eventType}${o.notes ? ` • Notes: ${o.notes}` : ''}`;
-      document.getElementById('invLineAmount').textContent = fmtMoney(o.totalPrice);
-      document.getElementById('invTotalAmt').textContent = fmtMoney(o.totalPrice);
-
-      document.getElementById('invAdvLabel').textContent = `Advance Paid (${o.advanceMode}):`;
-      document.getElementById('invAdvAmt').textContent = `-${fmtMoney(o.advancePaid)}`;
-
-      const finRow = document.getElementById('invFinalPaidRow');
-      if ((parseFloat(o.finalPaid) || 0) > 0) {
-        finRow.classList.remove('hidden');
-        document.getElementById('invFinalLabel').textContent = `Pickup Balance Paid (${o.finalMode}):`;
-        document.getElementById('invFinalAmt').textContent = `-${fmtMoney(o.finalPaid)}`;
-      } else {
-        finRow.classList.add('hidden');
-      }
-
-      const badgeBox = document.getElementById('invBadgeBox');
-      if (bal <= 0.009) {
-        document.getElementById('invBalLabel').textContent = 'Balance Due:';
-        document.getElementById('invBalAmt').textContent = '$0.00 (PAID IN FULL)';
-        document.getElementById('invBalAmt').className = 'text-lg tabular-nums text-emerald-700';
-        badgeBox.innerHTML = `<span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900 border border-emerald-300">PAID IN FULL</span>`;
-      } else {
-        document.getElementById('invBalLabel').textContent = 'Balance Due at Pickup:';
-        document.getElementById('invBalAmt').textContent = fmtMoney(bal);
-        document.getElementById('invBalAmt').className = 'text-lg tabular-nums text-amber-800';
-        badgeBox.innerHTML = `<span class="inline-block px-3 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900 border border-amber-300">DEPOSIT PAID • BALANCE DUE</span>`;
-      }
-
-      document.getElementById('invPayPalRow').style.display = document.getElementById('invPayPalToggle').checked ? 'block' : 'none';
+    function exportOrdersCsv() {
+      const headers = ['Order_ID', 'Pickup_Date', 'Customer_Name', 'Phone', 'Event_Type', 'Theme_Title', 'Tiers', 'Tier_Specs', 'Frosting_Colors', 'Notes', 'Total_Price', 'Advance_Paid', 'Advance_Mode', 'Final_Paid', 'Phase'];
+      const rows = state.orders.map(o => [
+        o.id, o.pickupDate, o.customerName, o.phone, o.eventType, o.themeTitle,
+        o.tiers, o.tierSpecs, o.frostingColors, o.notes, o.totalPrice, o.advancePaid,
+        o.advanceMode, o.finalPaid, o.phase
+      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'Cakeflakes_Orders_export.csv');
     }
 
     // =========================================================================
-    // 6. TAB 3: EXPENSES TRACKER LOGIC
+    // 6. TAB 3: EXPENSES TRACKER & TAB 4: TRAFFIC
     // =========================================================================
     function getExpenseNet(e) {
-      return Number(((parseFloat(e.gross) || 0) - (parseFloat(e.refund) || 0)).toFixed(2));
+      return Math.max(0, Number(((parseFloat(e.gross) || 0) - (parseFloat(e.refund) || 0)).toFixed(2)));
     }
 
-    function previewExpenseNet() {
-      const g = parseFloat(document.getElementById('expInputGross').value) || 0;
-      const r = parseFloat(document.getElementById('expInputRefund').value) || 0;
-      document.getElementById('expFormNetBadge').textContent = `Net: ${fmtMoney(Math.max(0, g - r))}`;
-    }
-
-    function addExpenseEntry(ev) {
+    function addManualExpense(ev) {
       ev.preventDefault();
       state.expenses.unshift({
         id: `EXP-${Date.now()}`,
-        date: document.getElementById('expInputDate').value,
-        store: document.getElementById('expInputStore').value,
-        category: document.getElementById('expInputCategory').value,
-        item: document.getElementById('expInputItem').value.trim(),
-        gross: parseFloat(document.getElementById('expInputGross').value) || 0,
-        refund: parseFloat(document.getElementById('expInputRefund').value) || 0
+        date: document.getElementById('expFormDate').value,
+        store: document.getElementById('expFormStore').value,
+        category: document.getElementById('expFormCat').value,
+        item: document.getElementById('expFormItem').value.trim(),
+        gross: parseFloat(document.getElementById('expFormGross').value) || 0,
+        refund: 0
       });
+      document.getElementById('expFormItem').value = '';
+      document.getElementById('expFormGross').value = '';
       saveAllStorage();
-      document.getElementById('expInputItem').value = '';
-      document.getElementById('expInputGross').value = '';
-      document.getElementById('expInputRefund').value = '0';
-      previewExpenseNet();
-      renderExpensesTab();
-      showToast('Expense added to ledger', 'success');
+      renderAll();
+      showToast('Added expense entry', 'success');
     }
 
-    function renderExpensesTab() {
-      let grossSum = 0, refundSum = 0, netSum = 0;
-      const catMap = { 'Capital Expenditure': 0, 'Consumables': 0, 'Tools & Equipment': 0, 'Edible Printing & Toppers': 0 };
-
-      state.expenses.forEach(e => {
-        const g = parseFloat(e.gross) || 0;
-        const r = parseFloat(e.refund) || 0;
-        const n = getExpenseNet(e);
-        grossSum += g;
-        refundSum += r;
-        netSum += n;
-        if (catMap[e.category] !== undefined) catMap[e.category] += n;
-      });
-
-      const collectedIncome = state.orders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
-      const netCashPos = collectedIncome - netSum;
-
-      document.getElementById('expKpiGross').textContent = fmtMoney(grossSum);
-      document.getElementById('expKpiCount').textContent = `${state.expenses.length} supply receipts`;
-      document.getElementById('expKpiRefunds').textContent = fmtMoney(refundSum);
-      document.getElementById('expKpiNet').textContent = fmtMoney(netSum);
-
-      const netCashEl = document.getElementById('expKpiNetCash');
-      const netCashCard = document.getElementById('netCashPositionCard');
-      netCashEl.textContent = fmtMoney(netCashPos);
-      if (netCashPos >= 0) {
-        netCashCard.className = 'bg-emerald-50/80 rounded-2xl p-4 border border-emerald-200 shadow-xs';
-        netCashEl.className = 'text-2xl sm:text-3xl font-bold text-emerald-900 mt-2 tabular-nums';
-      } else {
-        netCashCard.className = 'bg-rose-50/80 rounded-2xl p-4 border border-rose-200 shadow-xs';
-        netCashEl.className = 'text-2xl sm:text-3xl font-bold text-rose-900 mt-2 tabular-nums';
-      }
-
-      // Visual Category Breakdown Bars
-      const barColors = {
-        'Capital Expenditure': 'bg-indigo-600',
-        'Consumables': 'bg-amber-500',
-        'Tools & Equipment': 'bg-teal-600',
-        'Edible Printing & Toppers': 'bg-berry-600'
-      };
-      const denom = Math.max(1, netSum);
-      document.getElementById('expCategoryBars').innerHTML = EXP_CATEGORIES.map(c => {
-        const val = catMap[c] || 0;
-        const pct = Math.round((val / denom) * 100);
-        return `
-          <div>
-            <div class="flex justify-between text-xs mb-1">
-              <span class="font-semibold text-cocoa-800">${c}</span>
-              <span class="font-bold tabular-nums">${fmtMoney(val)} (${pct}%)</span>
-            </div>
-            <div class="w-full h-2 rounded-full bg-cream-100 overflow-hidden">
-              <div class="${barColors[c]} h-full rounded-full transition-all" style="width: ${pct}%"></div>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      // Store Quick-Filter Chips
-      document.getElementById('expStoreChips').innerHTML = ['ALL', ...STORES].map(st => {
-        const active = state.storeFilter === st;
-        return `
-          <button onclick="setStoreFilter('${st.replace(/'/g, "\\'")}')" class="px-3 py-1.5 rounded-full text-xs font-semibold border transition ${
-            active ? 'bg-cocoa-900 text-white border-cocoa-900' : 'bg-white text-cocoa-800 border-cream-300 hover:bg-cream-50'
-          }">${st === 'ALL' ? 'All Stores' : esc(st)}</button>
-        `;
-      }).join('');
-
-      const catFilter = document.getElementById('expCategoryFilter').value;
-      const filtered = state.expenses
-        .filter(e => (state.storeFilter === 'ALL' || e.store === state.storeFilter) && (catFilter === 'ALL' || e.category === catFilter))
-        .sort((a, b) => b.date.localeCompare(a.date));
-
-      document.getElementById('expensesTableBody').innerHTML = filtered.map(e => `
-        <tr class="hover:bg-cream-50/90 transition align-middle">
-          <td class="py-3 px-4 whitespace-nowrap text-xs font-medium">${esc(e.date)}</td>
-          <td class="py-3 px-4 whitespace-nowrap">
-            <select onchange="editExpenseField('${e.id}', 'store', this.value)" class="text-xs font-semibold bg-cream-50 border border-cream-300 rounded-lg px-2 py-1">
-              ${STORES.map(s => `<option value="${esc(s)}" ${e.store === s ? 'selected' : ''}>${esc(s)}</option>`).join('')}
-            </select>
-          </td>
-          <td class="py-3 px-4 whitespace-nowrap">
-            <select onchange="editExpenseField('${e.id}', 'category', this.value)" class="text-xs font-semibold bg-cream-50 border border-cream-300 rounded-lg px-2 py-1">
-              ${EXP_CATEGORIES.map(c => `<option value="${esc(c)}" ${e.category === c ? 'selected' : ''}>${esc(c)}</option>`).join('')}
-            </select>
-          </td>
-          <td class="py-3 px-4 min-w-[220px]">
-            <input type="text" value="${esc(e.item)}" onchange="editExpenseField('${e.id}', 'item', this.value)" class="font-medium text-cocoa-900 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1.5 py-0.5 w-full focus:outline-none" />
-          </td>
-          <td class="py-3 px-4 text-right whitespace-nowrap tabular-nums">
-            $<input type="number" step="0.01" value="${(parseFloat(e.gross) || 0).toFixed(2)}" onchange="editExpenseField('${e.id}', 'gross', parseFloat(this.value) || 0)" class="w-16 text-right font-semibold bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
-          </td>
-          <td class="py-3 px-4 text-right whitespace-nowrap tabular-nums">
-            $<input type="number" step="0.01" value="${(parseFloat(e.refund) || 0).toFixed(2)}" onchange="editExpenseField('${e.id}', 'refund', parseFloat(this.value) || 0)" class="w-14 text-right text-blue-800 bg-transparent hover:bg-white focus:bg-white border border-transparent hover:border-cream-300 rounded-lg px-1 py-0.5 focus:outline-none" />
-          </td>
-          <td class="py-3 px-4 text-right whitespace-nowrap font-bold tabular-nums">${fmtMoney(getExpenseNet(e))}</td>
-          <td class="py-3 px-4 text-right whitespace-nowrap">
-            <button onclick="deleteExpense('${e.id}')" class="p-2 rounded-xl text-cocoa-700 hover:text-rose-600 hover:bg-rose-50 transition"><i class="fa-regular fa-trash-can"></i></button>
-          </td>
-        </tr>
-      `).join('');
+    function deleteExpenseRow(id) {
+      state.expenses = state.expenses.filter(e => e.id !== id);
+      saveAllStorage();
+      renderAll();
+      showToast('Deleted expense entry', 'info');
     }
 
-    function setStoreFilter(st) { state.storeFilter = st; renderExpensesTab(); }
-    function resetExpenseFilters() { state.storeFilter = 'ALL'; document.getElementById('expCategoryFilter').value = 'ALL'; renderExpensesTab(); }
-    function editExpenseField(id, field, val) {
-      const e = state.expenses.find(x => x.id === id);
-      if (!e) return;
-      e[field] = val;
-      saveAllStorage();
+    function setExpStoreFilter(storeName) {
+      state.storeFilter = storeName;
       renderExpensesTab();
-    }
-    function deleteExpense(id) {
-      state.expenses = state.expenses.filter(x => x.id !== id);
-      saveAllStorage();
-      renderExpensesTab();
-      showToast('Expense removed', 'info');
     }
 
     function handleVendorCsvUpload(ev, vendorName) {
@@ -2351,59 +2288,103 @@ function doPost(e) {
       if (!file) return;
       const reader = new FileReader();
       reader.onload = (e) => {
-        const text = String(e.target?.result || '');
-        const lines = text.split(/\r?\n/).filter(Boolean);
-        if (lines.length < 2) {
-          showToast(`${vendorName} CSV appears empty`, 'info');
-          return;
-        }
-        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim().toLowerCase());
-        const dateIdx = headers.findIndex(h => h.includes('order date') || h.includes('date'));
-        const itemIdx = headers.findIndex(h => h.includes('title') || h.includes('item') || h.includes('description') || h.includes('product'));
-        const totalIdx = headers.findIndex(h => h.includes('item total') || h.includes('total') || h.includes('amount') || h.includes('price'));
-        const refundIdx = headers.findIndex(h => h.includes('refund') || h.includes('credit'));
-
+        const lines = String(e.target?.result || '').split(/\r?\n/).filter(Boolean);
         let added = 0;
-        lines.slice(1).forEach((row, idx) => {
-          const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
-          const clean = (i) => (i >= 0 && cols[i] ? cols[i].replace(/^"|"$/g, '').trim() : '');
-          const rawItem = clean(itemIdx >= 0 ? itemIdx : 1);
-          const rawTotal = parseFloat(clean(totalIdx >= 0 ? totalIdx : 2).replace(/[$,]/g, '')) || 0;
-          if (!rawItem || rawTotal <= 0) return;
-
-          const rawDate = normalizeAnyDate(clean(dateIdx >= 0 ? dateIdx : 0) || TODAY_ISO);
-          const rawRefund = refundIdx >= 0 ? (parseFloat(clean(refundIdx).replace(/[$,]/g, '')) || 0) : 0;
-          const lower = rawItem.toLowerCase();
-          const autoCat = (lower.includes('printer') || lower.includes('mixer') || lower.includes('airbrush'))
-            ? 'Capital Expenditure'
-            : (lower.includes('edible') || lower.includes('icing') || lower.includes('topper') || lower.includes('wafer'))
-            ? 'Edible Printing & Toppers'
-            : (lower.includes('mold') || lower.includes('scraper') || lower.includes('turntable') || lower.includes('tip'))
-            ? 'Tools & Equipment'
-            : 'Consumables';
-
-          state.expenses.unshift({
-            id: `EXP-${Date.now()}-${idx}`,
-            date: rawDate,
-            store: vendorName,
-            category: autoCat,
-            item: rawItem,
-            gross: rawTotal,
-            refund: rawRefund
-          });
-          added += 1;
+        lines.slice(1).forEach((line, idx) => {
+          const cols = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || line.split(',');
+          const clean = (i) => (cols[i] || '').replace(/^"|"$/g, '').trim();
+          const nums = cols.map(c => parseFloat(String(c).replace(/[$,]/g, ''))).filter(n => !isNaN(n) && n > 0);
+          const amt = nums[nums.length - 1] || 0;
+          const desc = clean(1) || clean(2) || `${vendorName} Supply Order #${idx + 1}`;
+          if (amt > 0) {
+            state.expenses.unshift({
+              id: `EXP-CSV-${Date.now()}-${idx}`,
+              date: parseShortSheetDate(clean(0)) || TODAY_ISO,
+              store: vendorName,
+              category: 'Consumables',
+              item: desc,
+              gross: amt,
+              refund: 0
+            });
+            added += 1;
+          }
         });
-
         saveAllStorage();
-        renderExpensesTab();
-        showToast(`Imported ${added} ${vendorName} expense items!`, 'success');
+        renderAll();
+        showToast(`Imported ${added} ${vendorName} expense items`, 'success');
       };
       reader.readAsText(file);
       ev.target.value = '';
     }
 
+    function renderExpensesTab() {
+      let totalNet = 0, capEx = 0, cons = 0, tools = 0;
+      state.expenses.forEach(e => {
+        const net = getExpenseNet(e);
+        totalNet += net;
+        if (e.category === 'Capital Expenditure') capEx += net;
+        else if (e.category === 'Consumables') cons += net;
+        else tools += net;
+      });
+      const collectedInc = state.orders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
+
+      document.getElementById('expKpiTotal').textContent = fmtMoney(totalNet);
+      document.getElementById('expKpiCount').textContent = `${state.expenses.length} purchase lines`;
+      document.getElementById('expKpiCapEx').textContent = fmtMoney(capEx);
+      document.getElementById('expKpiConsumables').textContent = fmtMoney(cons);
+      document.getElementById('expKpiTools').textContent = fmtMoney(tools);
+      document.getElementById('expKpiNetCash').textContent = fmtMoney(collectedInc - totalNet);
+
+      document.getElementById('expStoreChips').innerHTML = ['ALL', ...STORES].map(st => `
+        <button onclick="setExpStoreFilter('${esc(st)}')" class="px-2.5 py-1 rounded-full text-xs font-semibold border ${
+          state.storeFilter === st ? 'bg-cocoa-900 text-white border-cocoa-900' : 'bg-cream-50 text-cocoa-800 border-cream-300'
+        }">${st === 'ALL' ? 'All Stores' : esc(st)}</button>
+      `).join('');
+
+      const q = (document.getElementById('expSearchInput')?.value || '').trim().toLowerCase();
+      const filtered = state.expenses.filter(e => {
+        if (state.storeFilter !== 'ALL' && e.store !== state.storeFilter) return false;
+        if (q && !`${e.store} ${e.category} ${e.item} ${e.date}`.toLowerCase().includes(q)) return false;
+        return true;
+      });
+
+      document.getElementById('expensesTableBody').innerHTML = filtered.map(e => `
+        <tr class="hover:bg-cream-50 transition">
+          <td class="py-3 px-4 text-xs font-medium whitespace-nowrap">${esc(e.date)}</td>
+          <td class="py-3 px-4 text-xs font-bold whitespace-nowrap">${esc(e.store)}</td>
+          <td class="py-3 px-4 text-xs whitespace-nowrap">${esc(e.category)}</td>
+          <td class="py-3 px-4 font-medium">${esc(e.item)}</td>
+          <td class="py-3 px-4 text-right tabular-nums">${fmtMoney(e.gross)}</td>
+          <td class="py-3 px-4 text-right text-emerald-700 tabular-nums">${fmtMoney(e.refund)}</td>
+          <td class="py-3 px-4 text-right font-bold tabular-nums">${fmtMoney(getExpenseNet(e))}</td>
+          <td class="py-3 px-4 text-right">
+            <button onclick="deleteExpenseRow('${esc(e.id)}')" class="p-1.5 rounded-lg text-rose-600 hover:bg-rose-50"><i class="fa-regular fa-trash-can"></i></button>
+          </td>
+        </tr>
+      `).join('');
+    }
+
+    function renderTrafficTab() {
+      const rollup = getQuarterlyIncomeRollup();
+      const avg = rollup.grandOrders > 0 ? rollup.grandRevenue / rollup.grandOrders : 0;
+      const b1 = document.getElementById('trafficOrdersBadge');
+      const b2 = document.getElementById('trafficLiveCount');
+      const b3 = document.getElementById('trafficAvgTicket');
+      if (b1) b1.textContent = `${state.orders.length} Sheet Orders Synced`;
+      if (b2) b2.textContent = String(state.orders.length);
+      if (b3) b3.textContent = fmtMoney(avg);
+    }
+
+    function renderAll() {
+      renderOrdersTab();
+      renderIncomeTab();
+      renderExpensesTab();
+      renderTrafficTab();
+      renderReconcileTab();
+    }
+
     // =========================================================================
-    // 7. GOOGLE SHEET SYNC (CLEAN 15-COLUMN CAKEFLAKES_ORDERS)
+    // 7. CUSTOMER ORDERS GOOGLE SHEET SYNC & CSV PARSING
     // =========================================================================
     function openSheetSyncModal() {
       document.getElementById('sheetCsvInput').value = state.sheetConfig.csvUrl || '';
@@ -2422,237 +2403,33 @@ function doPost(e) {
     function updateSheetStatusBadge() {
       const dot = document.getElementById('sheetStatusDot');
       const txt = document.getElementById('sheetStatusText');
-      if (!dot || !txt) return;
       if (state.sheetConfig.scriptUrl) {
-        dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
-        txt.textContent = '2-Way Sheet Live';
+        if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-emerald-500';
+        if (txt) txt.textContent = '2-Way Sheet Live';
       } else if (state.sheetConfig.csvUrl) {
-        dot.className = 'w-2.5 h-2.5 rounded-full bg-blue-500';
-        txt.textContent = 'CSV Feed Live';
+        if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-blue-500';
+        if (txt) txt.textContent = 'CSV Feed Live';
       } else {
-        dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
-        txt.textContent = 'Google Sheet Sync';
+        if (dot) dot.className = 'w-2.5 h-2.5 rounded-full bg-amber-400';
+        if (txt) txt.textContent = 'Google Sheet Sync';
       }
     }
 
-    async function pushOrderToGoogleSheet(order, action = 'upsert') {
-      const scriptUrl = state.sheetConfig?.scriptUrl;
-      if (!scriptUrl || !order) return;
-      const tierSpecsStr = order.tierSpecs || getOrderTierList(order)
-        .map(t => `${t.label}: ${[t.diameter, t.shape, t.height, t.servings ? `${t.servings} srv` : '', t.flavor].filter(Boolean).join(' ')}`)
-        .join(' | ');
-      const frostingColorsStr = order.frostingColors || [order.frosting, order.colors].filter(Boolean).join(' • ');
-
-      const cleanPayload = {
-        id: order.id,
-        pickupDate: order.pickupDate,
-        customerName: order.customerName,
-        phone: order.phone || '',
-        eventType: order.eventType || 'Birthday',
-        themeTitle: order.themeTitle || order.cakeDetails || '',
-        tiers: order.tiers || '1 Tier',
-        tierSpecs: tierSpecsStr,
-        frostingColors: frostingColorsStr,
-        notes: order.notes || '',
-        totalPrice: parseFloat(order.totalPrice) || 0,
-        advancePaid: parseFloat(order.advancePaid) || 0,
-        advanceMode: order.advanceMode || 'Zelle',
-        finalPaid: parseFloat(order.finalPaid) || 0,
-        phase: order.phase || 'Order Received'
-      };
-
-      try {
-        await fetch(scriptUrl, {
-          method: 'POST',
-          mode: 'no-cors',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ action, order: cleanPayload })
-        });
-      } catch (err) {
-        console.warn('Background push to Google Sheet skipped:', err);
-      }
-    }
-
-    function parseTierSpecsText(specsText, tiersStr, fallbackShape = 'Round') {
-      const raw = String(specsText || '').trim();
-      if (!raw) return buildDefaultTierRows(tiersStr, fallbackShape, []);
-      const parts = raw.split('|').map(s => s.trim()).filter(Boolean);
-      const parsed = parts.map((part, idx) => {
-        const colonIdx = part.indexOf(':');
-        const label = colonIdx > -1 ? part.slice(0, colonIdx).trim() : `Tier ${idx + 1}`;
-        const body = colonIdx > -1 ? part.slice(colonIdx + 1).trim() : part;
-        const diaMatch = body.match(/(\d+(?:\.\d+)?")/);
-        const shapeMatch = SHAPE_OPTIONS.find(sh => body.toLowerCase().includes(sh.toLowerCase()));
-        return {
-          label,
-          shape: shapeMatch || fallbackShape,
-          diameter: diaMatch ? diaMatch[1] : '',
-          height: '',
-          servings: '',
-          flavor: body
-        };
-      });
-      return buildDefaultTierRows(tiersStr, fallbackShape, parsed);
-    }
-
-    function mapSheetRowToOrder(r, idx) {
-      const tiersStr = TIER_OPTIONS.includes(r.tiers) ? r.tiers : '1 Tier';
-      const resolvedPhase = PHASES.some(p => p.name === r.phase) ? r.phase : 'Order Received';
-      const fcParts = String(r.frostingColors || '').split('•').map(s => s.trim());
-      const frostingStr = fcParts[0] || 'Swiss Meringue Buttercream';
-      const colorsStr = fcParts.slice(1).join(' • ');
-      const tierSpecsStr = String(r.tierSpecs || '').trim();
-      const total = parseFloat(r.totalPrice) || 0;
-      const adv = parseFloat(r.advancePaid) || 0;
-      const fin = parseFloat(r.finalPaid) || 0;
-
-      return {
-        id: String(r.id || `CF-${101 + idx}`),
-        pickupDate: parseShortSheetDate(r.pickupDate || TODAY_ISO),
-        customerName: String(r.customerName || 'Customer').trim(),
-        phone: String(r.phone || '').trim(),
-        eventType: String(r.eventType || 'Birthday').trim(),
-        themeTitle: String(r.themeTitle || 'Custom Cake').trim(),
-        tiers: tiersStr,
-        shape: 'Round',
-        tierDetails: parseTierSpecsText(tierSpecsStr, tiersStr, 'Round'),
-        tierSpecs: tierSpecsStr,
-        flavors: tierSpecsStr,
-        frosting: frostingStr,
-        colors: colorsStr,
-        frostingColors: String(r.frostingColors || '').trim(),
-        notes: String(r.notes || '').trim(),
-        totalPrice: total,
-        advancePaid: adv,
-        advanceMode: String(r.advanceMode || 'Zelle').trim(),
-        finalPaid: fin,
-        finalMode: fin > 0 ? (r.advanceMode || 'Zelle') : (adv >= total && total > 0 ? 'Paid in Advance' : 'Pending'),
-        phase: resolvedPhase
-      };
-    }
-
-    function parseOrdersCsvRows(text) {
-      const lines = text.split(/\r?\n/).filter(Boolean);
-      if (lines.length < 2) return [];
-      const imported = [];
-      lines.slice(1).forEach((row, idx) => {
-        const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
-        const clean = (i) => (cols[i] || '').replace(/^"|"$/g, '').trim();
-        const custName = clean(2);
-        if (!custName) return;
-
-        imported.push(mapSheetRowToOrder({
-          id: clean(0) || `CF-${101 + idx}`,
-          pickupDate: clean(1),
-          customerName: custName,
-          phone: clean(3),
-          eventType: clean(4) || 'Birthday',
-          themeTitle: clean(5) || 'Custom Cake',
-          tiers: clean(6) || '1 Tier',
-          tierSpecs: clean(7),
-          frostingColors: clean(8),
-          notes: clean(9),
-          totalPrice: clean(10).replace(/[$,]/g, ''),
-          advancePaid: clean(11).replace(/[$,]/g, ''),
-          advanceMode: clean(12) || 'Zelle',
-          finalPaid: clean(13).replace(/[$,]/g, ''),
-          phase: clean(14) || 'Order Received'
-        }, idx));
-      });
-      return imported;
-    }
-
-    function fetchScriptJsonp(scriptUrl) {
-      return new Promise((resolve, reject) => {
-        const cbName = `cfJsonpCb_${Date.now()}_${Math.floor(Math.random() * 1000)}`;
-        const script = document.createElement('script');
-        const timer = setTimeout(() => {
-          delete window[cbName];
-          script.remove();
-          reject(new Error('JSONP timeout'));
-        }, 9000);
-
-        window[cbName] = (data) => {
-          clearTimeout(timer);
-          delete window[cbName];
-          script.remove();
-          resolve(data);
-        };
-
-        script.onerror = () => {
-          clearTimeout(timer);
-          delete window[cbName];
-          script.remove();
-          reject(new Error('JSONP script load error'));
-        };
-
-        const sep = scriptUrl.includes('?') ? '&' : '?';
-        script.src = `${scriptUrl}${sep}callback=${cbName}&t=${Date.now()}`;
-        document.body.appendChild(script);
-      });
-    }
-
-    async function refreshFromGoogleSheet(silent = false) {
-      const { scriptUrl, csvUrl } = state.sheetConfig;
-      if (!scriptUrl && !csvUrl) {
-        openSheetSyncModal();
-        showToast('Paste your Google Sheet CSV or Apps Script URL first to sync live!', 'info');
-        return;
-      }
-
-      const icon = document.getElementById('refreshSheetIcon');
-      if (icon) icon.classList.add('fa-spin');
-
-      try {
-        if (scriptUrl) {
-          let json = null;
-          try {
-            const bustUrl = `${scriptUrl}${scriptUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
-            const res = await fetch(bustUrl);
-            json = await res.json();
-          } catch (fetchErr) {
-            // Sandboxed blob: preview frames block cross-origin redirects; fall back to JSONP script tag
-            json = await fetchScriptJsonp(scriptUrl);
-          }
-
-          if (json && Array.isArray(json.orders)) {
-            state.orders = json.orders.map((r, idx) => mapSheetRowToOrder(r, idx));
-            saveAllStorage();
-            renderAll();
-            if (!silent) showToast(`Refreshed ${state.orders.length} live orders from Q4_2026_Orders!`, 'success');
-            return;
-          }
-        }
-
-        if (csvUrl) {
-          const bustCsv = `${csvUrl}${csvUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
-          const res = await fetch(bustCsv);
-          const csvText = await res.text();
-          const parsedOrders = parseOrdersCsvRows(csvText);
-          if (parsedOrders.length > 0) {
-            state.orders = parsedOrders;
-            saveAllStorage();
-            renderAll();
-            if (!silent) showToast(`Refreshed ${state.orders.length} live orders from Published Google Sheet CSV!`, 'success');
-            return;
-          }
-        }
-
-        if (!silent) showToast('Connected to sheet, but no order rows with Total Quoted > 0 were found yet.', 'info');
-      } catch (err) {
-        console.warn('Google Sheet refresh blocked or unreachable:', err.message);
-        if (!silent) {
-          showToast('Preview sandbox blocked direct fetch — redeploy Apps Script with updated doGet(e) or use "Import Orders CSV" in Tab 1.', 'info');
-        }
-      } finally {
-        if (icon) icon.classList.remove('fa-spin');
-      }
+    function copyAppsScript() {
+      const ta = document.createElement('textarea');
+      ta.value = document.getElementById('appsScriptCodeBlock').textContent;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Apps Script copied to clipboard!', 'success');
     }
 
     async function saveAndSyncGoogleSheet() {
-      const csvUrl = document.getElementById('sheetCsvInput').value.trim();
-      const scriptUrl = document.getElementById('sheetScriptInput').value.trim();
-      state.sheetConfig = { csvUrl, scriptUrl };
+      state.sheetConfig = {
+        csvUrl: document.getElementById('sheetCsvInput').value.trim(),
+        scriptUrl: document.getElementById('sheetScriptInput').value.trim()
+      };
       saveAllStorage();
       updateSheetStatusBadge();
       closeSheetSyncModal();
@@ -2664,80 +2441,119 @@ function doPost(e) {
       saveAllStorage();
       updateSheetStatusBadge();
       closeSheetSyncModal();
-      showToast('Using local browser storage mode', 'info');
-    }
-    function copyAppsScript() {
-      const ta = document.createElement('textarea');
-      ta.value = document.getElementById('appsScriptCodeBlock').textContent;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-      showToast('Apps Script copied to clipboard!', 'success');
-    }
-
-    function exportOrdersCsv() {
-      const headers = ['Order ID', 'Pickup Date', 'Customer Name', 'Phone', 'Event Type', 'Theme Title', 'Tiers', 'Shape', 'Diameter', 'Height', 'Servings', 'Flavors', 'Frosting', 'Colors', 'Notes', 'Total Price', 'Advance Paid', 'Advance Mode', 'Balance Due', 'Final Paid', 'Final Mode', 'Phase'];
-      const rows = state.orders.map(o => [
-        o.id, o.pickupDate, o.customerName, o.phone, o.eventType, o.themeTitle || o.cakeDetails,
-        o.tiers, o.shape, o.diameter, o.height, o.servings, o.flavors, o.frosting, o.colors, o.notes,
-        o.totalPrice, o.advancePaid, o.advanceMode, getOrderBalance(o), o.finalPaid, o.finalMode, o.phase
-      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
-      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_orders_income.csv');
-    }
-
-    function exportExpensesCsv() {
-      const headers = ['Date', 'Store', 'Category', 'Item Description', 'Gross Cost', 'Refund', 'Net Cost'];
-      const rows = state.expenses.map(e => [
-        e.date, e.store, e.category, e.item, e.gross, e.refund, getExpenseNet(e)
-      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
-      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_expenses_2026.csv');
-    }
-
-    function triggerCsvDownload(text, filename) {
-      const blob = new Blob([text], { type: 'text/csv;charset=utf-8;' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast(`Downloaded ${filename}`, 'success');
+      showToast('Disconnected Google Sheet URL', 'info');
     }
 
     function parseShortSheetDate(raw) {
-      if (raw instanceof Date && !isNaN(raw.getTime())) {
-        return raw.toISOString().slice(0, 10);
-      }
       const s = String(raw || '').trim();
-      if (!s) return '2026-11-15';
-      // Handle ISO strings like "2026-11-21" or "2026-11-21T08:00:00.000Z"
+      if (!s) return TODAY_ISO;
       if (/^\d{4}-\d{2}-\d{2}/.test(s)) return s.slice(0, 10);
-      // Handle slash dates like "11/21/2026" or "11/21"
-      const slashM = s.match(/^(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/);
-      if (slashM) {
-        const mm = slashM[1].padStart(2, '0');
-        const dd = slashM[2].padStart(2, '0');
-        const yyyy = slashM[3] ? (slashM[3].length === 2 ? `20${slashM[3]}` : slashM[3]) : '2026';
+      const d = new Date(s);
+      if (!isNaN(d.getTime())) {
+        const yyyy = d.getFullYear();
+        const mm = String(d.getMonth() + 1).padStart(2, '0');
+        const dd = String(d.getDate()).padStart(2, '0');
         return `${yyyy}-${mm}-${dd}`;
       }
-      // Handle short month names like "21-Nov", "14 Nov", "Nov 21"
-      const monthMap = { jan: '01', feb: '02', mar: '03', apr: '04', may: '05', jun: '06', jul: '07', aug: '08', sep: '09', oct: '10', nov: '11', dec: '12' };
-      const dmy = s.match(/^(\d{1,2})[-\s]([A-Za-z]{3})/);
-      if (dmy) {
-        const dd = dmy[1].padStart(2, '0');
-        const mm = monthMap[dmy[2].toLowerCase()] || '11';
-        return `2026-${mm}-${dd}`;
+      return TODAY_ISO;
+    }
+
+    function fetchScriptJsonp(scriptUrl) {
+      return new Promise((resolve, reject) => {
+        const cbName = `cfJsonp_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
+        const script = document.createElement('script');
+        const timer = setTimeout(() => {
+          delete window[cbName];
+          script.remove();
+          reject(new Error('JSONP timeout'));
+        }, 10000);
+        window[cbName] = (data) => {
+          clearTimeout(timer);
+          delete window[cbName];
+          script.remove();
+          resolve(data);
+        };
+        script.src = `${scriptUrl}${scriptUrl.includes('?') ? '&' : '?'}callback=${cbName}&t=${Date.now()}`;
+        script.onerror = () => {
+          clearTimeout(timer);
+          delete window[cbName];
+          script.remove();
+          reject(new Error('JSONP script error'));
+        };
+        document.body.appendChild(script);
+      });
+    }
+
+    async function refreshFromGoogleSheet(silent = false) {
+      const { scriptUrl, csvUrl } = state.sheetConfig;
+      if (!scriptUrl && !csvUrl) {
+        if (!silent) openSheetSyncModal();
+        return;
       }
-      const mdy = s.match(/^([A-Za-z]{3})[-\s](\d{1,2})/);
-      if (mdy) {
-        const mm = monthMap[mdy[1].toLowerCase()] || '11';
-        const dd = mdy[2].padStart(2, '0');
-        return `2026-${mm}-${dd}`;
+      const icon = document.getElementById('refreshSheetIcon');
+      if (icon) icon.classList.add('fa-spin');
+      try {
+        if (scriptUrl) {
+          let data = null;
+          try {
+            const bust = `${scriptUrl}${scriptUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
+            const res = await fetch(bust);
+            data = await res.json();
+          } catch (err) {
+            data = await fetchScriptJsonp(scriptUrl);
+          }
+          if (data && Array.isArray(data.orders)) {
+            state.orders = data.orders.map((o, idx) => ({
+              ...o,
+              id: String(o.id || `CF26${String(idx + 1).padStart(2, '0')}`).trim(),
+              pickupDate: parseShortSheetDate(o.pickupDate),
+              totalPrice: parseFloat(o.totalPrice) || 0,
+              advancePaid: parseFloat(o.advancePaid) || 0,
+              finalPaid: parseFloat(o.finalPaid) || 0
+            }));
+            saveAllStorage();
+            renderAll();
+            if (!silent) showToast(`Synced ${state.orders.length} orders from Cakeflakes_Orders!`, 'success');
+          }
+        } else if (csvUrl) {
+          const res = await fetch(csvUrl);
+          const text = await res.text();
+          parseOrdersCsvRows(text);
+          saveAllStorage();
+          renderAll();
+          if (!silent) showToast(`Loaded ${state.orders.length} orders from CSV!`, 'success');
+        }
+      } catch (err) {
+        if (!silent) showToast('Could not reach Google Sheet — check Web App permissions.', 'info');
+      } finally {
+        if (icon) icon.classList.remove('fa-spin');
       }
-      return normalizeAnyDate(s);
+    }
+
+    function parseOrdersCsvRows(text) {
+      const lines = text.split(/\r?\n/).filter(Boolean);
+      if (lines.length < 2) return;
+      state.orders = lines.slice(1).map((line, idx) => {
+        const cols = line.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || line.split(',');
+        const c = (i) => (cols[i] || '').replace(/^"|"$/g, '').trim();
+        return {
+          id: c(0) || `CF26${String(idx + 1).padStart(2, '0')}`,
+          pickupDate: parseShortSheetDate(c(1)),
+          customerName: c(2) || 'Customer',
+          phone: c(3),
+          eventType: c(4) || 'Birthday',
+          themeTitle: c(5) || 'Custom Cake',
+          tiers: c(6) || '1 Tier',
+          tierSpecs: c(7),
+          frostingColors: c(8),
+          notes: c(9),
+          totalPrice: parseFloat(c(10)) || 0,
+          advancePaid: parseFloat(c(11)) || 0,
+          advanceMode: c(12) || 'Zelle',
+          finalPaid: parseFloat(c(13)) || 0,
+          phase: c(14) || 'Order Received'
+        };
+      }).filter(o => o.customerName);
     }
 
     function handleCustomerOrdersCsvUpload(ev) {
@@ -2745,261 +2561,338 @@ function doPost(e) {
       if (!file) return;
       const reader = new FileReader();
       reader.onload = (e) => {
-        const text = String(e.target?.result || '');
-        const imported = parseOrdersCsvRows(text);
-        if (imported.length > 0) {
-          state.orders = imported;
-          saveAllStorage();
-          renderAll();
-          showToast(`Imported ${imported.length} clean orders from Cakeflakes_Orders CSV!`, 'success');
-        } else {
-          showToast('No customer rows found. Ensure Row 1 has the 15 headers (A–O) and rows start at Row 2.', 'info');
-        }
+        parseOrdersCsvRows(String(e.target?.result || ''));
+        saveAllStorage();
+        renderAll();
+        showToast(`Imported ${state.orders.length} orders from CSV!`, 'success');
       };
       reader.readAsText(file);
       ev.target.value = '';
     }
 
-    function normalizeAnyDate(str) {
-      if (/^\d{4}-\d{2}-\d{2}$/.test(str)) return str;
-      const d = new Date(str);
-      if (!isNaN(d.getTime())) return d.toISOString().slice(0, 10);
-      return '2026-11-15';
+    async function pushOrderToGoogleSheet(order, action = 'upsert') {
+      if (!state.sheetConfig.scriptUrl) return;
+      try {
+        await fetch(state.sheetConfig.scriptUrl, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ action, order })
+        });
+      } catch (err) {
+        console.error('Sheet push error:', err);
+      }
     }
 
-    function setReconcilePeriod(period) {
-      state.reconcilePeriod = period;
+    function triggerCsvDownload(csvText, filename) {
+      const blob = new Blob([csvText], { type: 'text/csv;charset=utf-8;' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.setAttribute('download', filename);
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast(`Exported ${filename}`, 'success');
+    }
+
+    // =========================================================================
+    // 8. TAB 5: CHASE BANK RECONCILIATION SHEET SYNC & WA DOR QUARTERLY TAX
+    // =========================================================================
+    function openBankSyncModal() {
+      document.getElementById('bankScriptUrlInput').value = state.bankScriptUrl || '';
+      const m = document.getElementById('bankSyncModal');
+      m.classList.remove('hidden');
+      m.classList.add('flex');
+    }
+
+    function closeBankSyncModal() {
+      const m = document.getElementById('bankSyncModal');
+      m.classList.add('hidden');
+      m.classList.remove('flex');
+    }
+
+    function copyBankAppsScript() {
+      const ta = document.createElement('textarea');
+      ta.value = document.getElementById('bankAppsScriptBlock').textContent;
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      document.body.removeChild(ta);
+      showToast('Bank Reconciliation Apps Script copied!', 'success');
+    }
+
+    async function saveAndSyncBankSheet() {
+      state.bankScriptUrl = document.getElementById('bankScriptUrlInput').value.trim();
+      saveAllStorage();
+      closeBankSyncModal();
+      await refreshBankReconcileSheet(false);
+    }
+
+    function resetBankToBaseline() {
+      state.bankScriptUrl = '';
+      state.bankLiveConnected = false;
+      state.bankTransactions = JSON.parse(JSON.stringify(VERIFIED_BANK_BASELINE));
+      saveAllStorage();
+      closeBankSyncModal();
       renderReconcileTab();
+      showToast('Reset to verified 11-month Chase Bank baseline', 'info');
     }
 
-    function handleStatementCsvUpload(ev) {
+    async function refreshBankReconcileSheet(silent = false) {
+      if (!state.bankScriptUrl) {
+        if (!silent) openBankSyncModal();
+        return;
+      }
+      const icon = document.getElementById('refreshBankIcon');
+      if (icon) icon.classList.add('fa-spin');
+      try {
+        let json = null;
+        try {
+          const bustUrl = `${state.bankScriptUrl}${state.bankScriptUrl.includes('?') ? '&' : '?'}t=${Date.now()}`;
+          const res = await fetch(bustUrl);
+          json = await res.json();
+        } catch (err) {
+          json = await fetchScriptJsonp(state.bankScriptUrl);
+        }
+
+        if (json && Array.isArray(json.transactions) && json.transactions.length > 0) {
+          state.bankTransactions = json.transactions.map((t, idx) => ({
+            txNum: String(t.txNum || (idx + 1)).trim(),
+            date: parseShortSheetDate(t.date || '2026-10-30'),
+            year: String(t.year || String(t.date || '').slice(0, 4) || '2026').trim(),
+            statementMonth: String(t.statementMonth || '').trim(),
+            section: String(t.section || '').trim(),
+            category: String(t.category || '').trim(),
+            party: String(t.party || '').trim(),
+            deposit: parseFloat(t.deposit) || 0,
+            withdrawal: parseFloat(t.withdrawal) || 0,
+            netImpact: parseFloat(t.netImpact) || ((parseFloat(t.deposit) || 0) - (parseFloat(t.withdrawal) || 0))
+          }));
+          state.bankLiveConnected = true;
+          saveAllStorage();
+          renderReconcileTab();
+          if (!silent) showToast(`Synced ${state.bankTransactions.length} Chase Bank transactions!`, 'success');
+        }
+      } catch (err) {
+        if (!silent) showToast('Could not reach Bank Apps Script URL — check deployment access is set to Anyone.', 'info');
+      } finally {
+        if (icon) icon.classList.remove('fa-spin');
+      }
+    }
+
+    function handleBankReconcileCsvUpload(ev) {
       const file = ev.target.files?.[0];
       if (!file) return;
-      const accountType = document.getElementById('stmtAccountTypeSelect')?.value || 'Bank Checking (Debit & Credit)';
       const reader = new FileReader();
       reader.onload = (e) => {
         const text = String(e.target?.result || '');
         const lines = text.split(/\r?\n/).filter(Boolean);
-        if (lines.length < 2) {
-          showToast('Statement CSV appears empty', 'info');
-          return;
-        }
-        const headers = lines[0].split(',').map(h => h.replace(/^"|"$/g, '').trim().toLowerCase());
-        const dateIdx = headers.findIndex(h => h.includes('date'));
-        const descIdx = headers.findIndex(h => h.includes('desc') || h.includes('memo') || h.includes('merchant') || h.includes('name'));
-        const amtIdx = headers.findIndex(h => h === 'amount' || h.includes('amount'));
-        const debitIdx = headers.findIndex(h => h.includes('debit') || h.includes('withdrawal'));
-        const creditIdx = headers.findIndex(h => h.includes('credit') || h.includes('deposit'));
+        // Find header row containing "Tx #" or "Party / Merchant" or "Deposit"
+        let headerRowIdx = lines.findIndex(l => l.toLowerCase().includes('deposit') && (l.toLowerCase().includes('party') || l.toLowerCase().includes('withdrawal')));
+        if (headerRowIdx < 0) headerRowIdx = 0;
 
         const parsed = [];
-        lines.slice(1).forEach((row, idx) => {
+        lines.slice(headerRowIdx + 1).forEach((row, idx) => {
           const cols = row.match(/(".*?"|[^",]+)(?=\s*,|\s*$)/g) || row.split(',');
-          const rawDate = (cols[dateIdx >= 0 ? dateIdx : 0] || '').replace(/^"|"$/g, '').trim();
-          const rawDesc = (cols[descIdx >= 0 ? descIdx : 1] || 'Bank Transaction').replace(/^"|"$/g, '').trim();
-          let amount = 0;
-          if (amtIdx >= 0) {
-            amount = parseFloat((cols[amtIdx] || '0').replace(/["$,]/g, '').trim());
-          } else if (debitIdx >= 0 || creditIdx >= 0) {
-            const deb = debitIdx >= 0 ? (parseFloat((cols[debitIdx] || '0').replace(/["$,]/g, '').trim()) || 0) : 0;
-            const cred = creditIdx >= 0 ? (parseFloat((cols[creditIdx] || '0').replace(/["$,]/g, '').trim()) || 0) : 0;
-            amount = cred > 0 ? cred : -Math.abs(deb);
-          }
-          if (!isNaN(amount) && amount !== 0) {
-            parsed.push({
-              id: `STMT-${Date.now()}-${idx}`,
-              date: normalizeAnyDate(rawDate),
-              account: accountType,
-              desc: rawDesc,
-              amount
-            });
-          }
+          const clean = (i) => (cols[i] || '').replace(/^"|"$/g, '').trim();
+          const dep = parseFloat(clean(7).replace(/[$,]/g, '')) || 0;
+          const wit = parseFloat(clean(8).replace(/[$,]/g, '')) || 0;
+          const party = clean(6);
+          if (!party && dep === 0 && wit === 0) return;
+
+          const dt = parseShortSheetDate(clean(1));
+          parsed.push({
+            txNum: clean(0) || String(idx + 1),
+            date: dt,
+            year: clean(2) || dt.slice(0, 4),
+            statementMonth: clean(3) || dt.slice(0, 7),
+            section: clean(4) || 'Statement Line',
+            category: clean(5) || 'General',
+            party: party || 'Chase Bank Item',
+            deposit: dep,
+            withdrawal: wit,
+            netImpact: parseFloat(clean(9).replace(/[$,]/g, '')) || (dep - wit)
+          });
         });
-        state.statementLines = [...state.statementLines, ...parsed];
-        saveAllStorage();
-        renderReconcileTab();
-        showToast(`Loaded ${parsed.length} lines from ${file.name} (${accountType})`, 'success');
+
+        if (parsed.length > 0) {
+          state.bankTransactions = parsed;
+          state.bankLiveConnected = true;
+          saveAllStorage();
+          renderReconcileTab();
+          showToast(`Loaded ${parsed.length} Chase Bank transactions from CSV!`, 'success');
+        } else {
+          showToast('Could not detect All Transactions columns (A–J) in CSV.', 'info');
+        }
       };
       reader.readAsText(file);
       ev.target.value = '';
     }
 
-    function loadSampleStatementLines() {
-      state.statementLines = [
-        { id: 'STMT-1', date: '2026-11-10', account: 'Business Credit Card', desc: 'SQUARE *CAKEFLAKES DEPOSIT (PHILIPS)', amount: 387.00 },
-        { id: 'STMT-2', date: '2026-11-10', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM GRACE', amount: 170.00 },
-        { id: 'STMT-3', date: '2026-11-13', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM SALIL', amount: 120.00 },
-        { id: 'STMT-4', date: '2026-11-14', account: 'Bank Checking (Debit & Credit)', desc: 'ZELLE PAYMENT FROM DENA', amount: 260.00 },
-        { id: 'STMT-5', date: '2026-11-03', account: 'Business Credit Card', desc: 'AMZN MKTP US*EDIBLE INK & SHEETS', amount: -64.99 },
-        { id: 'STMT-6', date: '2026-11-05', account: 'Business Credit Card', desc: 'DAWNS CANDY & CAKE SUPPLY BOTHELL', amount: -78.50 },
-        { id: 'STMT-7', date: '2026-11-07', account: 'Business Credit Card', desc: 'COSTCO WHSE #0102 WOODINVILLE', amount: -82.40 },
-        { id: 'STMT-8', date: '2026-11-10', account: 'Business Credit Card', desc: 'AMZN MKTP US*GOLD CAKE DRUMS', amount: -34.95 },
-        { id: 'STMT-9', date: '2026-11-12', account: 'Business Credit Card', desc: 'TEMU.COM*SILICONE MOLDS', amount: -24.80 },
-        { id: 'STMT-10', date: '2026-11-13', account: 'Business Credit Card', desc: 'AMZN MKTP US*CRICUT FOIL', amount: -19.99 },
-        { id: 'STMT-11', date: '2026-11-14', account: 'Bank Checking (Debit & Credit)', desc: 'SAFEWAY #1551 BOTHELL', amount: -36.25 },
-        { id: 'STMT-12', date: '2026-11-01', account: 'Business Credit Card', desc: 'AMZN MKTP US*CAKE TURNTABLE', amount: -89.00 },
-        { id: 'STMT-13', date: '2026-11-15', account: 'Business Credit Card', desc: 'MICHAELS STORES #8821 RIBBON & BOXES', amount: -28.40 }
-      ];
-      saveAllStorage();
-      renderReconcileTab();
-      showToast('Loaded sample Nov 2026 Bank & Credit Card statement', 'info');
-    }
+    function logMissingBankWithdrawalToExpenses(txNum) {
+      const tx = state.bankTransactions.find(x => String(x.txNum) === String(txNum));
+      if (!tx || tx.withdrawal <= 0) return;
+      const pLower = tx.party.toLowerCase();
+      const autoStore = pLower.includes('amazon') || pLower.includes('amzn') ? 'Amazon'
+        : pLower.includes('restaurant depot') ? 'Restaurant Depot'
+        : pLower.includes('costco') ? 'Costco'
+        : pLower.includes('safeway') ? 'Safeway'
+        : pLower.includes('fred') ? 'Fred Meyer'
+        : pLower.includes('temu') ? 'Temu'
+        : pLower.includes('dawn') ? "Dawn's Candy & Cake Supply"
+        : 'Other';
 
-    function clearStatementLines() {
-      state.statementLines = [];
-      saveAllStorage();
-      renderReconcileTab();
-      showToast('Cleared uploaded statement lines', 'info');
-    }
-
-    function logMissingExpenseFromStatement(lineId) {
-      const line = state.statementLines.find(x => x.id === lineId);
-      if (!line) return;
       state.expenses.unshift({
-        id: `EXP-${Date.now()}`,
-        date: line.date,
-        store: line.desc.toLowerCase().includes('amazon') || line.desc.toLowerCase().includes('amzn') ? 'Amazon' :
-               line.desc.toLowerCase().includes('costco') ? 'Costco' :
-               line.desc.toLowerCase().includes('safeway') ? 'Safeway' :
-               line.desc.toLowerCase().includes('fred') ? 'Fred Meyer' :
-               line.desc.toLowerCase().includes('temu') ? 'Temu' : 'Other',
+        id: `EXP-BNK-${Date.now()}`,
+        date: tx.date,
+        store: autoStore,
         category: 'Consumables',
-        item: line.desc,
-        gross: Math.abs(line.amount),
+        item: `${tx.party} (Bank Tx #${tx.txNum})`,
+        gross: Number(tx.withdrawal.toFixed(2)),
         refund: 0
       });
       saveAllStorage();
       renderAll();
-      showToast(`Added "${line.desc}" to Tab 3 Expenses — variance resolved!`, 'success');
+      showToast(`Logged $${tx.withdrawal.toFixed(2)} (${tx.party}) into Tab 3 Expenses!`, 'success');
+    }
+
+    function exportBankReconcileCsv() {
+      const headers = ['Tx #', 'Date', 'Year', 'Statement Month', 'Section', 'Category', 'Party / Merchant', 'Deposit ($)', 'Withdrawal ($)', 'Net Cash Impact ($)'];
+      const rows = state.bankTransactions.map(t => [
+        t.txNum, t.date, t.year, t.statementMonth, t.section, t.category, t.party,
+        t.deposit.toFixed(2), t.withdrawal.toFixed(2), t.netImpact.toFixed(2)
+      ].map(v => `"${String(v ?? '').replace(/"/g, '""')}"`).join(','));
+      triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_chase_bank_reconciliation.csv');
     }
 
     function renderReconcileTab() {
-      const isMonth = state.reconcilePeriod === 'MONTH';
-      const selectedYm = document.getElementById('recMonthSelect')?.value || '2026-11';
-      document.getElementById('recMonthSelect').style.display = isMonth ? 'inline-block' : 'none';
+      const allTx = state.bankTransactions.length > 0 ? state.bankTransactions : VERIFIED_BANK_BASELINE;
 
-      document.getElementById('recPeriodMonthBtn').className = isMonth
-        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs'
-        : 'px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200';
-      document.getElementById('recPeriodYtdBtn').className = !isMonth
-        ? 'px-3 py-1.5 rounded-lg text-xs font-semibold transition bg-berry-700 text-white shadow-xs'
-        : 'px-3 py-1.5 rounded-lg text-xs font-semibold transition text-cocoa-800 hover:bg-cream-200';
-
-      const inPeriod = (dateStr) => isMonth ? String(dateStr).startsWith(selectedYm) : String(dateStr).startsWith('2026');
-
-      const periodOrders = state.orders.filter(o => inPeriod(o.pickupDate));
-      const periodExpenses = state.expenses.filter(e => inPeriod(e.date));
-      const periodStmt = state.statementLines.filter(l => inPeriod(l.date));
-
-      const loggedIncome = periodOrders.reduce((s, o) => s + (parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0), 0);
-      const loggedExpense = periodExpenses.reduce((s, e) => s + getExpenseNet(e), 0);
-
-      const stmtIncome = periodStmt.filter(l => l.amount > 0).reduce((s, l) => s + l.amount, 0);
-      const stmtExpense = periodStmt.filter(l => l.amount < 0).reduce((s, l) => s + Math.abs(l.amount), 0);
-
-      const incVar = Number((loggedIncome - stmtIncome).toFixed(2));
-      const expVar = Number((loggedExpense - stmtExpense).toFixed(2));
-
-      document.getElementById('recLoggedIncome').textContent = fmtMoney(loggedIncome);
-      document.getElementById('recStmtIncome').textContent = fmtMoney(stmtIncome);
-      document.getElementById('recIncomeVariance').textContent = `${incVar >= 0 ? '+' : ''}${fmtMoney(incVar)}`;
-
-      document.getElementById('recLoggedExpense').textContent = fmtMoney(loggedExpense);
-      document.getElementById('recStmtExpense').textContent = fmtMoney(stmtExpense);
-      document.getElementById('recExpenseVariance').textContent = `${expVar >= 0 ? '+' : ''}${fmtMoney(expVar)}`;
-
-      styleVarianceCard('recIncomeCard', 'recIncomeVarBox', 'recIncomeVariance', 'recIncomeStatusPill', incVar, periodStmt.length > 0);
-      styleVarianceCard('recExpenseCard', 'recExpenseVarBox', 'recExpenseVariance', 'recExpenseStatusPill', expVar, periodStmt.length > 0);
-
-      // Statement lines matching table
-      const tbody = document.getElementById('reconcileLinesBody');
-      const emptyEl = document.getElementById('reconcileEmptyState');
-      if (periodStmt.length === 0) {
-        tbody.innerHTML = '';
-        emptyEl.classList.remove('hidden');
+      // Update connection badge & button text
+      const badge = document.getElementById('bankSyncModeBadge');
+      const btnLbl = document.getElementById('bankSyncBtnLabel');
+      if (state.bankLiveConnected) {
+        if (badge) badge.textContent = `${allTx.length} Lines Loaded`;
+        if (btnLbl) btnLbl.textContent = 'Bank Sheet Connected ✓';
       } else {
-        emptyEl.classList.add('hidden');
-        tbody.innerHTML = periodStmt.map(line => {
-          const isDeposit = line.amount > 0;
-          const absAmt = Math.abs(line.amount);
-          const matched = isDeposit
-            ? periodOrders.some(o => Math.abs(((parseFloat(o.advancePaid) || 0) + (parseFloat(o.finalPaid) || 0)) - absAmt) < 0.05 || Math.abs((parseFloat(o.advancePaid) || 0) - absAmt) < 0.05)
-            : periodExpenses.some(e => Math.abs(getExpenseNet(e) - absAmt) < 0.05);
-
-          return `
-            <tr class="${matched ? 'hover:bg-cream-50' : 'bg-amber-50/70'} transition">
-              <td class="py-3 px-4 text-xs font-medium whitespace-nowrap">${esc(line.date)}</td>
-              <td class="py-3 px-4 text-xs font-semibold text-cocoa-700 whitespace-nowrap">${esc(line.account)}</td>
-              <td class="py-3 px-4 font-medium text-cocoa-900">${esc(line.desc)}</td>
-              <td class="py-3 px-4 text-right font-bold tabular-nums whitespace-nowrap ${isDeposit ? 'text-emerald-700' : 'text-cocoa-900'}">
-                ${isDeposit ? '+' : '-'}${fmtMoney(absAmt)}
-              </td>
-              <td class="py-3 px-4 whitespace-nowrap">
-                ${matched
-                  ? `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-900 border border-emerald-200"><i class="fa-solid fa-check"></i> Matched</span>`
-                  : `<span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[11px] font-bold bg-amber-100 text-amber-900 border border-amber-300"><i class="fa-solid fa-triangle-exclamation"></i> Unmatched Variance</span>`
-                }
-              </td>
-              <td class="py-3 px-4 text-right whitespace-nowrap">
-                ${!matched && !isDeposit
-                  ? `<button onclick="logMissingExpenseFromStatement('${line.id}')" class="px-2.5 py-1 rounded-lg bg-berry-700 hover:bg-berry-800 text-white text-xs font-semibold transition">+ Add to Expenses</button>`
-                  : `<span class="text-xs text-cocoa-700/50">—</span>`
-                }
-              </td>
-            </tr>
-          `;
-        }).join('');
+        if (badge) badge.textContent = 'Verified Baseline';
+        if (btnLbl) btnLbl.textContent = 'Connect Bank Sheet';
       }
+
+      // Populate dynamic Statement Month dropdown
+      const monthSel = document.getElementById('bankFilterMonth');
+      const currentMonthVal = monthSel ? monthSel.value : 'ALL';
+      const uniqueMonths = [...new Set(allTx.map(t => t.statementMonth).filter(Boolean))];
+      if (monthSel) {
+        monthSel.innerHTML = `<option value="ALL">All Statement Months (${uniqueMonths.length})</option>` +
+          uniqueMonths.map(m => `<option value="${esc(m)}" ${currentMonthVal === m ? 'selected' : ''}>${esc(m)}</option>`).join('');
+      }
+
+      // Totals across all bank lines
+      const totalBankDep = allTx.reduce((s, t) => s + (parseFloat(t.deposit) || 0), 0);
+      const totalBankWit = allTx.reduce((s, t) => s + (parseFloat(t.withdrawal) || 0), 0);
+      const totalBankNet = totalBankDep - totalBankWit;
+
+      document.getElementById('bankKpiAllTimeNet').innerHTML = `${totalBankNet >= 0 ? '+' : '-'}${fmtMoney(Math.abs(totalBankNet))} <span class="text-xs font-normal text-cream-200">Net Cash</span>`;
+      document.getElementById('bankKpiAllTimeSub').innerHTML = `Deposits: <strong>${fmtMoney(totalBankDep)}</strong> • Withdrawals: <strong>${fmtMoney(totalBankWit)}</strong>`;
+
+      // Cross-check Booked Revenue (Historical + Live Orders) vs Chase Bank Deposits
+      const rollup = getQuarterlyIncomeRollup();
+      const incDiff = Number((totalBankDep - rollup.grandRevenue).toFixed(2));
+      document.getElementById('recLoggedIncome').textContent = fmtMoney(rollup.grandRevenue);
+      document.getElementById('recStmtIncome').textContent = fmtMoney(totalBankDep);
+      document.getElementById('recIncomeVariance').textContent = `${incDiff >= 0 ? '+' : ''}${fmtMoney(incDiff)}`;
+
+      // Cross-check Tab 3 Net Spend vs Chase Bank Withdrawals
+      const loggedExpense = state.expenses.reduce((s, e) => s + getExpenseNet(e), 0);
+      const expDiff = Number((totalBankWit - loggedExpense).toFixed(2));
+      document.getElementById('recLoggedExpense').textContent = fmtMoney(loggedExpense);
+      document.getElementById('recStmtExpense').textContent = fmtMoney(totalBankWit);
+      document.getElementById('recExpenseVariance').textContent = `${expDiff >= 0 ? '+' : ''}${fmtMoney(expDiff)}`;
+
+      // Filter transactions for table
+      const yrFilter = document.getElementById('bankFilterYear')?.value || 'ALL';
+      const moFilter = document.getElementById('bankFilterMonth')?.value || 'ALL';
+      const tyFilter = document.getElementById('bankFilterType')?.value || 'ALL';
+      const q = (document.getElementById('bankSearchInput')?.value || '').trim().toLowerCase();
+
+      const filtered = allTx.filter(t => {
+        if (yrFilter !== 'ALL' && String(t.year) !== yrFilter) return false;
+        if (moFilter !== 'ALL' && t.statementMonth !== moFilter) return false;
+        if (tyFilter === 'DEPOSIT' && (parseFloat(t.deposit) || 0) <= 0) return false;
+        if (tyFilter === 'WITHDRAWAL' && (parseFloat(t.withdrawal) || 0) <= 0) return false;
+        if (q) {
+          const hay = `${t.txNum} ${t.date} ${t.statementMonth} ${t.section} ${t.category} ${t.party}`.toLowerCase();
+          if (!hay.includes(q)) return false;
+        }
+        return true;
+      });
+
+      const filtDep = filtered.reduce((s, t) => s + (parseFloat(t.deposit) || 0), 0);
+      const filtWit = filtered.reduce((s, t) => s + (parseFloat(t.withdrawal) || 0), 0);
+      document.getElementById('bankFilteredTotalsPill').textContent =
+        `Showing ${filtered.length} rows • Deposits: ${fmtMoney(filtDep)} • Withdrawals: ${fmtMoney(filtWit)}`;
+
+      const tbody = document.getElementById('reconcileLinesBody');
+      tbody.innerHTML = filtered.map(t => {
+        const dep = parseFloat(t.deposit) || 0;
+        const wit = parseFloat(t.withdrawal) || 0;
+        const net = dep - wit;
+        const alreadyInExp = wit > 0 && state.expenses.some(e => Math.abs(getExpenseNet(e) - wit) < 0.05 && e.date === t.date);
+
+        return `
+          <tr class="hover:bg-cream-50/90 transition align-middle">
+            <td class="py-3 px-3.5 text-xs font-bold text-cocoa-700 whitespace-nowrap">${esc(t.txNum)}</td>
+            <td class="py-3 px-3.5 text-xs font-medium whitespace-nowrap">${esc(t.date)}</td>
+            <td class="py-3 px-3.5 text-xs font-semibold text-cocoa-800 whitespace-nowrap">${esc(t.statementMonth)}</td>
+            <td class="py-3 px-3.5 text-xs">
+              <span class="font-semibold text-cocoa-900">${esc(t.category)}</span>
+              ${t.section ? `<span class="block text-[10px] text-cocoa-700/75">${esc(t.section)}</span>` : ''}
+            </td>
+            <td class="py-3 px-3.5 font-medium text-cocoa-900">${esc(t.party)}</td>
+            <td class="py-3 px-3.5 text-right font-bold tabular-nums whitespace-nowrap ${dep > 0 ? 'text-emerald-700' : 'text-cocoa-700/35'}">
+              ${dep > 0 ? fmtMoney(dep) : '—'}
+            </td>
+            <td class="py-3 px-3.5 text-right font-bold tabular-nums whitespace-nowrap ${wit > 0 ? 'text-rose-800' : 'text-cocoa-700/35'}">
+              ${wit > 0 ? fmtMoney(wit) : '—'}
+            </td>
+            <td class="py-3 px-3.5 text-right font-bold tabular-nums whitespace-nowrap ${net >= 0 ? 'text-emerald-800' : 'text-rose-800'}">
+              ${net >= 0 ? '+' : '-'}${fmtMoney(Math.abs(net))}
+            </td>
+            <td class="py-3 px-3.5 text-right whitespace-nowrap">
+              ${wit > 0 && t.section !== 'Executive Summary'
+                ? (alreadyInExp
+                  ? `<span class="text-[11px] font-bold text-emerald-700">In Expenses ✓</span>`
+                  : `<button onclick="logMissingBankWithdrawalToExpenses('${esc(t.txNum)}')" class="px-2.5 py-1 rounded-lg bg-berry-700 hover:bg-berry-800 text-white text-xs font-semibold transition">+ Add Expense</button>`)
+                : `<span class="text-xs text-cocoa-700/45">—</span>`
+              }
+            </td>
+          </tr>
+        `;
+      }).join('');
 
       renderDorQuarterlyTable();
     }
 
-    function styleVarianceCard(cardId, boxId, valId, pillId, variance, hasStmt) {
-      const card = document.getElementById(cardId);
-      const box = document.getElementById(boxId);
-      const val = document.getElementById(valId);
-      const pill = document.getElementById(pillId);
-
-      if (!hasStmt) {
-        card.className = 'bg-white rounded-2xl p-5 border-2 border-cream-200 shadow-xs space-y-3';
-        box.className = 'bg-cream-50 p-3 rounded-xl border border-cream-200';
-        val.className = 'text-lg sm:text-xl font-bold text-cocoa-800 tabular-nums';
-        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-cream-100 text-cocoa-800';
-        pill.textContent = 'Upload Statement';
-        return;
-      }
-
-      if (Math.abs(variance) < 0.05) {
-        card.className = 'bg-white rounded-2xl p-5 border-2 border-emerald-400 shadow-xs space-y-3';
-        box.className = 'bg-emerald-50 p-3 rounded-xl border border-emerald-200';
-        val.className = 'text-lg sm:text-xl font-bold text-emerald-800 tabular-nums';
-        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-emerald-100 text-emerald-900';
-        pill.textContent = 'Exact Match ✓';
-      } else {
-        card.className = 'bg-white rounded-2xl p-5 border-2 border-amber-400 shadow-xs space-y-3';
-        box.className = 'bg-amber-50 p-3 rounded-xl border border-amber-300';
-        val.className = 'text-lg sm:text-xl font-bold text-amber-900 tabular-nums';
-        pill.className = 'px-2.5 py-1 rounded-full text-xs font-bold bg-amber-100 text-amber-900';
-        pill.textContent = 'Variance Highlighted';
-      }
-    }
-
     function getDorQuarterlyData() {
       const quarters = [
-        { q: 'Q1 (Jan – Mar 2026)', due: 'Apr 30, 2026', months: ['2026-01', '2026-02', '2026-03'] },
-        { q: 'Q2 (Apr – Jun 2026)', due: 'Jul 31, 2026', months: ['2026-04', '2026-05', '2026-06'] },
-        { q: 'Q3 (Jul – Sep 2026)', due: 'Oct 31, 2026', months: ['2026-07', '2026-08', '2026-09'] },
-        { q: 'Q4 (Oct – Dec 2026)', due: 'Jan 31, 2027', months: ['2026-10', '2026-11', '2026-12'] }
+        { q: 'Q1 (Jan – Mar 2026)', due: 'Apr 30, 2026', histRev: 4820, histOrders: 33, months: ['2026-01', '2026-02', '2026-03'] },
+        { q: 'Q2 (Apr – Jun 2026 + Addl)', due: 'Jul 31, 2026', histRev: 5060, histOrders: 29, months: ['2026-04', '2026-05', '2026-06'] },
+        { q: 'Q3 (Jul – Sep 2026)', due: 'Oct 31, 2026', histRev: 3144, histOrders: 15, months: ['2026-07', '2026-08', '2026-09'] },
+        { q: 'Q4 (Oct – Dec 2026)', due: 'Jan 31, 2027', histRev: 0, histOrders: 0, months: ['2026-10', '2026-11', '2026-12'] }
       ];
 
       return quarters.map(item => {
         const qOrders = state.orders.filter(o => item.months.some(m => String(o.pickupDate).startsWith(m)));
         const qExpenses = state.expenses.filter(e => item.months.some(m => String(e.date).startsWith(m)));
-        let grossCollected = 0, zelle = 0, card = 0, cash = 0;
+        let liveCollected = 0, zelle = 0, card = 0, cash = 0;
 
         qOrders.forEach(o => {
           const adv = parseFloat(o.advancePaid) || 0;
           const fin = parseFloat(o.finalPaid) || 0;
-          grossCollected += (adv + fin);
+          liveCollected += (adv + fin);
           if (o.advanceMode === 'Zelle') zelle += adv;
           else if (o.advanceMode === 'Credit Card') card += adv;
           else if (o.advanceMode === 'Cash') cash += adv;
@@ -3011,16 +2904,20 @@ function doPost(e) {
           }
         });
 
+        const grossSales = item.histRev > 0 ? item.histRev : liveCollected;
+        const orderCount = item.histOrders > 0 ? item.histOrders : qOrders.length;
+        const splitText = item.histRev > 0
+          ? 'Historical Ledger Baseline'
+          : `Zelle ${fmtMoney(zelle)} • Card ${fmtMoney(card)} • Cash ${fmtMoney(cash)}`;
         const expenses = qExpenses.reduce((s, e) => s + getExpenseNet(e), 0);
+
         return {
           ...item,
-          orderCount: qOrders.length,
-          grossCollected,
-          zelle,
-          card,
-          cash,
+          orderCount,
+          grossCollected: grossSales,
+          splitText,
           expenses,
-          netProfit: grossCollected - expenses
+          netProfit: grossSales - expenses
         };
       });
     }
@@ -3033,9 +2930,7 @@ function doPost(e) {
           <td class="py-3.5 px-4 text-xs font-medium text-cocoa-700 whitespace-nowrap">${r.due}</td>
           <td class="py-3.5 px-4 text-right font-semibold tabular-nums">${r.orderCount}</td>
           <td class="py-3.5 px-4 text-right font-bold text-cocoa-900 tabular-nums">${fmtMoney(r.grossCollected)}</td>
-          <td class="py-3.5 px-4 text-right text-xs text-cocoa-700 whitespace-nowrap tabular-nums">
-            Zelle ${fmtMoney(r.zelle)} • Card ${fmtMoney(r.card)} • Cash ${fmtMoney(r.cash)}
-          </td>
+          <td class="py-3.5 px-4 text-right text-xs text-cocoa-700 whitespace-nowrap tabular-nums">${r.splitText}</td>
           <td class="py-3.5 px-4 text-right font-semibold text-rose-800 tabular-nums">${fmtMoney(r.expenses)}</td>
           <td class="py-3.5 px-4 text-right font-bold tabular-nums ${r.netProfit >= 0 ? 'text-emerald-800' : 'text-rose-800'}">${fmtMoney(r.netProfit)}</td>
         </tr>
@@ -3043,9 +2938,9 @@ function doPost(e) {
     }
 
     function exportDorQuarterlyCsv() {
-      const headers = ['Quarter', 'WA DOR Due Date', 'Orders', 'Gross Collected Sales (Taxable)', 'Zelle', 'Credit Card', 'Cash', 'Supply Expenses', 'Net Profit'];
+      const headers = ['Quarter', 'WA DOR Due Date', 'Orders', 'Gross Sales (Taxable)', 'Source / Mode Split', 'Supply Expenses', 'Net Profit'];
       const rows = getDorQuarterlyData().map(r => [
-        r.q, r.due, r.orderCount, r.grossCollected.toFixed(2), r.zelle.toFixed(2), r.card.toFixed(2), r.cash.toFixed(2), r.expenses.toFixed(2), r.netProfit.toFixed(2)
+        r.q, r.due, r.orderCount, r.grossCollected.toFixed(2), r.splitText, r.expenses.toFixed(2), r.netProfit.toFixed(2)
       ].map(v => `"${String(v).replace(/"/g, '""')}"`).join(','));
       triggerCsvDownload([headers.join(','), ...rows].join('\n'), 'cakeflakes_WA_DOR_quarterly_2026.csv');
     }
